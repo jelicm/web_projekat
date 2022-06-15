@@ -1,28 +1,28 @@
 package beans;
 
+import enums.Gender;
+import enums.Role;
+
 public class User {
 	protected String username;
 	protected String password;
 	protected String name;
 	protected String surname;
-	protected String geneder;  //napraviti enum nekad
-	protected String role;	//napraviti enum nekad
+	protected Gender gender;
+	protected Role role;
 	protected String dateOfBirth;
 	
-	
-	public User(){
-		
+	public User(){	
 	}
 	
-	
-	public User(String username, String password, String name, String surname, String geneder, String role,
+	public User(String username, String password, String name, String surname, Gender gender, Role role,
 			String dateOfBirth) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.name = name;
 		this.surname = surname;
-		this.geneder = geneder;
+		this.gender = gender;
 		this.role = role;
 		this.dateOfBirth = dateOfBirth;
 	}
@@ -34,8 +34,6 @@ public class User {
 	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-
-
 
 	public String getUsername() {
 		return username;
@@ -61,16 +59,16 @@ public class User {
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-	public String getGeneder() {
-		return geneder;
+	public Gender getGeneder() {
+		return gender;
 	}
-	public void setGeneder(String geneder) {
-		this.geneder = geneder;
+	public void setGeneder(Gender gender) {
+		this.gender = gender;
 	}
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
-	public void setRole(String role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 	

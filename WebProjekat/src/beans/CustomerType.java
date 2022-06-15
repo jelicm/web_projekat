@@ -1,7 +1,9 @@
 package beans;
 
+import enums.TypeName;
+
 public class CustomerType {
-	private String typeName;
+	private TypeName typeName;
 	private double discount;
 	private int requredNumberOfPoints;
 	
@@ -9,18 +11,18 @@ public class CustomerType {
 		
 	}
 	
-	public CustomerType(String typeName, double discount, int requredNumberOfPoints) {
+	public CustomerType(TypeName typeName, double discount, int requredNumberOfPoints) {
 		super();
 		this.typeName = typeName;
 		this.discount = discount;
 		this.requredNumberOfPoints = requredNumberOfPoints;
 	}
 	
-	public String getTypeName() {
+	public TypeName getTypeName() {
 		return typeName;
 	}
 	
-	public void setTypeName(String typeName) {
+	public void setTypeName(TypeName typeName) {
 		this.typeName = typeName;
 	}
 	

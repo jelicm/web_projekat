@@ -1,29 +1,43 @@
 package beans;
 
+import enums.FacilityContent;
+import enums.FacilityType;
+import enums.Status;
+
 public class SportFacility {
 	private String name;
-	private String type; 			//enum?
-	private String content; 		//????
-	private boolean isWorking;
+	private FacilityType type;
+	private FacilityContent content; 
+	private Status status;
 	private Location location;
-	private String image; 			///??
-	private int workTime; 			//??
+	private String image;
+	private double averageRating;
+	private String workTime;
 	
 	public SportFacility()
 	{
 		
 	}
 	
-	public SportFacility(String name, String type, String content, boolean isWorking, Location location, String image,
-			int workTime) {
+	public SportFacility(String name, FacilityType type, FacilityContent content, Status status, Location location, String image,
+			double averageRating, String workTime) {
 		super();
 		this.name = name;
 		this.type = type;
 		this.content = content;
-		this.isWorking = isWorking;
+		this.status = status;
 		this.location = location;
 		this.image = image;
+		this.averageRating = averageRating;
 		this.workTime = workTime;
+	}
+
+	public double getAverageRating() {
+		return averageRating;
+	}
+
+	public void setAverageRating(double averageRating) {
+		this.averageRating = averageRating;
 	}
 
 	public String getName() {
@@ -34,28 +48,28 @@ public class SportFacility {
 		this.name = name;
 	}
 
-	public String getType() {
+	public FacilityType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(FacilityType type) {
 		this.type = type;
 	}
 
-	public String getContent() {
+	public FacilityContent getContent() {
 		return content;
 	}
 
-	public void setContent(String content) {
+	public void setContent(FacilityContent content) {
 		this.content = content;
 	}
 
-	public boolean isWorking() {
-		return isWorking;
+	public Status getStatus() {
+		return status;
 	}
 
-	public void setWorking(boolean isWorking) {
-		this.isWorking = isWorking;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
 	public Location getLocation() {
@@ -74,11 +88,11 @@ public class SportFacility {
 		this.image = image;
 	}
 
-	public int getWorkTime() {
+	public String getWorkTime() {
 		return workTime;
 	}
 
-	public void setWorkTime(int workTime) {
+	public void setWorkTime(String workTime) {
 		this.workTime = workTime;
 	}
 	

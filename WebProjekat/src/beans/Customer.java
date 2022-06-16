@@ -6,6 +6,7 @@ import enums.Gender;
 import enums.Role;
 
 public class Customer extends User {
+
 	private MembershipFee membershipFee;
 	private int points;
 	private ArrayList<SportFacility> visitedSportFacilities;

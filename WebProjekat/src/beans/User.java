@@ -59,10 +59,10 @@ public class User {
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-	public Gender getGeneder() {
+	public Gender getGender() {
 		return gender;
 	}
-	public void setGeneder(Gender gender) {
+	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
 	public Role getRole() {

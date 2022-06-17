@@ -2,6 +2,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Pocetna strana</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 <div id="loginForm">
@@ -18,7 +19,7 @@
 			<tr><td>Naziv:</td><td><input v-model="naziv" type="text" name="naziv"></td><td><button  v-on:click="pretragaNaziv(naziv)">Pretrazi</button></td></tr>
 			<tr><td>Tip:</td><td><input v-model="tip" type="text" name="tip"></td><td><button  v-on:click="pretragaTip(tip)">Pretrazi</button></td></tr>
 			<tr><td>Lokacija:</td><td><input v-model="lokacija" type="text" name="lokacija"></td><td><button  v-on:click="pretragaLokacija(lokacija)">Pretrazi</button></td></tr>
-			<tr><td>Prosecna ocena:</td><td><input v-model="prosecnaOcena" type="text" name="prosecnaOcena"></td><td><button  v-on:click="pretragaOcena(prosecnaOcena)">Pretrazi</button></td></tr>
+			<tr><td>Prosecna ocena:</td><td><input style='width:100%' v-model="prosecnaOcena" min="0" max="5" type="number" name="prosecnaOcena"></td><td><button  v-on:click="pretragaOcena(prosecnaOcena)">Pretrazi</button></td></tr>
 			<tr><td align="center" colspan="2"><button  v-on:click="ponistiPretragu()">Ponisti</button></td></tr>
 		</table>
 		<p></p>
@@ -28,10 +29,8 @@
 						<th><b>Logo</b></th>
 						<th><b>Naziv</b></th>
 						<th><b>Tip</b></th>
-						<th><b>Sadrzaj</b></th>
 						<th><b>Lokacija</b></th>
 						<th><b>Prosecna ocena</b></th>
-						<th><b>Radno vreme</b></th>
 						<th><b>Status</b></th>
 					</tr>
 				</thead>
@@ -41,11 +40,9 @@
 						<td><img v-bind:src=" 'img/' + o.image"></td>
 						<td>{{o.name}}</td>
 						<td>{{o.type }}</td>
-						<td>{{o.content}}</td>
 						<td>{{o.location.address.street}} {{o.location.address.number}}, {{o.location.address.city}}, {{o.location.address.zipCode}}</td>
 						<td>{{o.averageRating}}</td>
-						<td>{{o.workTime}}</td>
-						<td>{{o.status}}</td>
+						<td v-bind:class="[{green : o.status=='RADI'}, {red : o.status=='NE_RADI'}]">{{o.status}}</td>
 					</tr>
 				</tbody>
 			</table>

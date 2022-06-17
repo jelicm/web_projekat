@@ -1,0 +1,21 @@
+{
+	"Teretana1" : {
+		"name" : "Teretana1",
+		"type" : "TERETANA",
+		"content" : "PERSONALNI_TRENINZI",
+		"status": "RADI",
+		"location" : {
+			"longitude": "45.234",
+			"latitude": "19.234",
+			"address" : {
+				"number": 5,
+				"street": "Njegoseva",
+				"city": "Novi Sad",
+				"zipCode": 21000
+			}
+		},
+		"image" : "nema slike",
+		"averageRating": 4.35,
+		"workTime": "08:00 - 21:00"	
+	}
+}

@@ -3,5 +3,6 @@ package enums;
 public enum FacilityContent {
 	GRUPNI_TRENINZI,
 	PERSONALNI_TRENINZI,
-	SAUNA
+	SAUNA,
+	BAZEN
 }

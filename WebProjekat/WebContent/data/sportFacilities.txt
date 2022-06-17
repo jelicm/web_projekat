@@ -15,7 +15,7 @@
 			}
 		},
 		"image" : "gym1.png",
-		"averageRating": 4.35,
+		"averageRating": 4.75,
 		"workTime": "08:00 - 21:00"	
 	},
 	"Teretana2" : {
@@ -34,7 +34,7 @@
 			}
 		},
 		"image" : "gym2.png",
-		"averageRating": 4.35,
+		"averageRating": 3.35,
 		"workTime": "08:00 - 21:00"	
 	},
 	
@@ -56,7 +56,24 @@
 		"image" : "gym3.png",
 		"averageRating": 4.35,
 		"workTime": "08:00 - 21:00"	
+	},
+	"Sportski centar 1" : {
+		"name" : "Sportski centar 1",
+		"type" : "SPORTSKI_CENTAR",
+		"content" : "GRUPNI_TRENINZI",
+		"status": "NE_RADI",
+		"location" : {
+			"longitude": "45.234",
+			"latitude": "19.254",
+			"address" : {
+				"number": 12,
+				"street": "Sekspirova",
+				"city": "Beograd",
+				"zipCode": 11000
+			}
+		},
+		"image" : "gym4.png",
+		"averageRating": 4.35,
+		"workTime": "08:00 - 21:00"	
 	}
-	
-	
 }

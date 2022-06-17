@@ -13,7 +13,15 @@
 			<tr><td align="center" colspan="2"><a href="register.html">Registruj se</a></td></tr>
 		</table>
 	</form>
-	
+	<h4>Pretrazi sportske objekte:</h4>
+	<table>
+			<tr><td>Naziv:</td><td><input v-model="naziv" type="text" name="naziv"></td><td><button  v-on:click="pretragaNaziv(naziv)">Pretrazi</button></td></tr>
+			<tr><td>Tip:</td><td><input v-model="tip" type="text" name="tip"></td><td><button  v-on:click="pretragaTip(tip)">Pretrazi</button></td></tr>
+			<tr><td>Lokacija:</td><td><input v-model="lokacija" type="text" name="lokacija"></td><td><button  v-on:click="pretragaLokacija(lokacija)">Pretrazi</button></td></tr>
+			<tr><td>Prosecna ocena:</td><td><input v-model="prosecnaOcena" type="text" name="prosecnaOcena"></td><td><button  v-on:click="pretragaOcena(prosecnaOcena)">Pretrazi</button></td></tr>
+			<tr><td align="center" colspan="2"><button  v-on:click="ponistiPretragu()">Ponisti</button></td></tr>
+		</table>
+		<p></p>
 	<table border="1" id="tabela">
 				<thead>
 					<tr bgcolor="lightgrey">
@@ -29,7 +37,7 @@
 				</thead>
 				
 				<tbody class="telo">
-					<tr v-for="o in objekti">
+					<tr v-for="o in pretrazeniObjekti">
 						<td><img v-bind:src=" 'img/' + o.image"></td>
 						<td>{{o.name}}</td>
 						<td>{{o.type }}</td>

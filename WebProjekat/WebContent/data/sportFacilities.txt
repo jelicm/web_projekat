@@ -9,13 +9,54 @@
 			"latitude": "19.234",
 			"address" : {
 				"number": 5,
+				"street": "Balzakova",
+				"city": "Novi Sad",
+				"zipCode": 21000
+			}
+		},
+		"image" : "gym1.png",
+		"averageRating": 4.35,
+		"workTime": "08:00 - 21:00"	
+	},
+	"Teretana2" : {
+		"name" : "Teretana2",
+		"type" : "TERETANA",
+		"content" : "PERSONALNI_TRENINZI",
+		"status": "RADI",
+		"location" : {
+			"longitude": "45.234",
+			"latitude": "19.234",
+			"address" : {
+				"number": 7,
 				"street": "Njegoseva",
 				"city": "Novi Sad",
 				"zipCode": 21000
 			}
 		},
-		"image" : "nema slike",
+		"image" : "gym2.png",
+		"averageRating": 4.35,
+		"workTime": "08:00 - 21:00"	
+	},
+	
+	"Teretana3" : {
+		"name" : "Teretana3",
+		"type" : "TERETANA",
+		"content" : "GRUPNI_TRENINZI",
+		"status": "NE_RADI",
+		"location" : {
+			"longitude": "45.234",
+			"latitude": "19.254",
+			"address" : {
+				"number": 7,
+				"street": "Fruskogorska",
+				"city": "Novi Sad",
+				"zipCode": 21000
+			}
+		},
+		"image" : "gym3.png",
 		"averageRating": 4.35,
 		"workTime": "08:00 - 21:00"	
 	}
+	
+	
 }

@@ -40,7 +40,7 @@ public class SportFacilityService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<SportFacility> getSportFacilities() {
 		SportFacilityDAO dao = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
-		return dao.findAllSportFacilities();
+		return dao.findAllSportFacilitiesSorted();
 	}
 
 }

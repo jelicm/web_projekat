@@ -4,7 +4,8 @@
 	<title>Pocetna strana</title>
 </head>
 <body>
-	<form id="loginForm">
+<div id="loginForm">
+	<form >
 		<table>
 			<tr><td>Korisnicko ime:</td><td><input v-model="korisnickoIme" type="text" name="korisnickoIme"></td></tr>
 			<tr><td>Lozinka:</td><td><input v-model="lozinka" type="password" name="lozinka"></td></tr>
@@ -12,6 +13,35 @@
 			<tr><td align="center" colspan="2"><a href="register.html">Registruj se</a></td></tr>
 		</table>
 	</form>
+	
+	<table border="1" id="tabela">
+				<thead>
+					<tr bgcolor="lightgrey">
+						<th><b>Logo</b></th>
+						<th><b>Naziv</b></th>
+						<th><b>Tip</b></th>
+						<th><b>Sadrzaj</b></th>
+						<th><b>Lokacija</b></th>
+						<th><b>Prosecna ocena</b></th>
+						<th><b>Radno vreme</b></th>
+						<th><b>Status</b></th>
+					</tr>
+				</thead>
+				
+				<tbody class="telo">
+					<tr v-for="o in objekti">
+						<td><img v-bind:src=" 'img/' + o.image"></td>
+						<td>{{o.name}}</td>
+						<td>{{o.type }}</td>
+						<td>{{o.content}}</td>
+						<td>{{o.location.address.street}} {{o.location.address.number}}, {{o.location.address.city}}, {{o.location.address.zipCode}}</td>
+						<td>{{o.averageRating}}</td>
+						<td>{{o.workTime}}</td>
+						<td>{{o.status}}</td>
+					</tr>
+				</tbody>
+			</table>
+</div>	
 	<script src="js/vue.js"></script>
 	<script src="js/axios.js"></script>
 	<script src="app/app.js"></script>

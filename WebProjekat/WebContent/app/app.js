@@ -3,7 +3,15 @@ var app = new Vue({
     data:{
         korisnickoIme: '',
 		lozinka: '',
+		objekti: {}
     },
+
+	mounted() {
+		axios
+			.get("rest/sportFacilities")
+			.then((response) => (this.objekti = response.data));
+	},
+	
     methods: {
         login: function(event){
             event.preventDefault()

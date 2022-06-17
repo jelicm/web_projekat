@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -18,6 +19,7 @@ import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import beans.SportFacility;
+import enums.Status;
 
 public class SportFacilityDAO {
 	private HashMap<String, SportFacility> sportFacilities = new HashMap<String, SportFacility>();
@@ -33,6 +35,21 @@ public class SportFacilityDAO {
 
 	public Collection<SportFacility> findAllSportFacilities() {
 		return sportFacilities.values();
+	}
+	
+	public Collection<SportFacility> findAllSportFacilitiesSorted() {
+		ArrayList <SportFacility> ret = new ArrayList <SportFacility>();
+		for(SportFacility sf : sportFacilities.values())
+		{
+			if(sf.getStatus()==Status.RADI)
+				ret.add(sf);
+		}
+		for(SportFacility sf : sportFacilities.values())
+		{
+			if(sf.getStatus()==Status.NE_RADI)
+				ret.add(sf);
+		}
+		return ret;
 	}
 
 	public SportFacility findSportFacility(String name) {

@@ -11,7 +11,7 @@ var app = new Vue({
     methods: {
         registration: function(event){
             event.preventDefault()
-            if(!this.ime || !this.lozinka || !this.ime || !this.prezime || !this.pol || !this.datumRodjenja){
+            if(!this.korisnickoIme || !this.lozinka || !this.ime || !this.prezime || !this.pol || !this.datumRodjenja){
 				alert("Postoji nepopunjeno polje forme!")
 				return
 			}

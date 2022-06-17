@@ -1,0 +1,11 @@
+{
+  "holja" : {
+    "username" : "holja",
+    "password" : "holja2208",
+    "name" : "nikola",
+    "surname" : "holjevac",
+    "gender" : "MUSKI",
+    "role" : "ADMINISTRATOR",
+    "dateOfBirth" : "2000-08-22"
+  }
+}

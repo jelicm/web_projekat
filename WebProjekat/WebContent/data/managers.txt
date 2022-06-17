@@ -1,0 +1,12 @@
+{
+  "ana" : {
+    "username" : "ana",
+    "password" : "ana montana",
+    "name" : "ana",
+    "surname" : "obradovic",
+    "gender" : "ZENSKI",
+    "role" : "MENADZER",
+    "dateOfBirth" : "2000-01-01",
+    "sportFacility" : null  
+  }
+}

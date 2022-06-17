@@ -1,15 +1,19 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<title>Pocetna strana</title>
 </head>
 <body>
 	<form id="loginForm">
 		<table>
-			<tr><td>Korisnicko ime:</td><td><input type="text" name="korisnickoIme"></td></tr>
-			<tr><td>Lozinka:</td><td><input type="text" name="lozinka"></td></tr>
-			<tr><td align="center" colspan="2"><input type="submit" value="Uloguj se"></td></tr>
+			<tr><td>Korisnicko ime:</td><td><input v-model="korisnickoIme" type="text" name="korisnickoIme"></td></tr>
+			<tr><td>Lozinka:</td><td><input v-model="lozinka" type="password" name="lozinka"></td></tr>
+			<tr><td align="center" colspan="2"><input v-on:click="login" type="submit" value="Uloguj se"></td></tr>
 			<tr><td align="center" colspan="2"><a href="register.html">Registruj se</a></td></tr>
 		</table>
 	</form>
+	<script src="js/vue.js"></script>
+	<script src="js/axios.js"></script>
+	<script src="app/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,15 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Kupac</title>
+</head>
+<body>
+	<form id="customerMainPage">
+		<p>Ulogovan je kupac: {{customer.name}} {{customer.surname}}</p>
+		<a v-on:click="logout" href="index.html">Izloguj se</a>
+	</form>
+	<script src="js/vue.js"></script>
+	<script src="js/axios.js"></script>
+	<script src="customerMainPage.js"></script>
+</body>
+</html>

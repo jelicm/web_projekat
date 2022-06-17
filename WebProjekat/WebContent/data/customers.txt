@@ -1,0 +1,53 @@
+{
+  "mare" : {
+    "username" : "mare",
+    "password" : "markan123",
+    "name" : "marko",
+    "surname" : "maric",
+    "gender" : "MUSKI",
+    "role" : "KUPAC",
+    "dateOfBirth" : "2000-11-11",
+    "membershipFee" : null,
+    "points" : 0,
+    "visitedSportFacilities" : null,
+    "customerType" : {
+      "typeName" : "NEMA",
+      "discount" : 0.0,
+      "requredNumberOfPoints" : 1000
+    }
+  },
+  "mitar" : {
+    "username" : "mitar",
+    "password" : "miric",
+    "name" : "mitar",
+    "surname" : "miric",
+    "gender" : "MUSKI",
+    "role" : "KUPAC",
+    "dateOfBirth" : "1950-10-10",
+    "membershipFee" : null,
+    "points" : 0,
+    "visitedSportFacilities" : null,
+    "customerType" : {
+      "typeName" : "NEMA",
+      "discount" : 0.0,
+      "requredNumberOfPoints" : 1000
+    }
+  },
+  "perke" : {
+    "username" : "perke",
+    "password" : "pier112233",
+    "name" : "petar",
+    "surname" : "petrovic",
+    "gender" : "MUSKI",
+    "role" : "KUPAC",
+    "dateOfBirth" : "2001-12-12",
+    "membershipFee" : null,
+    "points" : 0,
+    "visitedSportFacilities" : null,
+    "customerType" : {
+      "typeName" : "NEMA",
+      "discount" : 0.0,
+      "requredNumberOfPoints" : 1000
+    }
+  }
+}

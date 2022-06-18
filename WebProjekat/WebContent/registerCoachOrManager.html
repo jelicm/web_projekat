@@ -1,0 +1,50 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Registracija</title>
+</head>
+<body>
+	<form id="registerForm">
+		<table>
+			<tr>
+				<td>Korisničko ime:</td><td><input v-model="korisnickoIme" type="text" name="korisnickoIme"></td>
+			</tr>
+			<tr>
+				<td>Lozinka:</td><td><input v-model="lozinka" type="password" name="lozinka"></td>
+			</tr>
+			<tr>
+				<td>Ime:</td><td><input v-model="ime" type="text" name="ime"></td>
+			</tr>
+			<tr>
+				<td>Prezime:</td><td><input v-model="prezime" type="text" name="prezime"></td>
+			</tr>
+			<tr>
+				<td>Pol:</td>
+				<td><select style='width:100%' v-model="pol" name="pol">
+						<option value="MUSKI">Muski</option>
+						<option value="ZENSKI">Zenski</option>
+						</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Datum rođenja:</td><td><input style='width:100%' v-model="datumRodjenja" type="date" name="datumRodjenja"></td>
+			</tr>
+			<tr>
+				<td>Uloga:</td>
+				<td><select style='width:100%' v-model="uloga" name="uloga">
+						<option value="MENADZER">Menadzer</option>
+						<option value="TRENER">Trener</option>
+						</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input v-on:click="registration" type="submit" value="Registruj"></td>
+			</tr>
+		</table>
+	</form>
+	<a href="adminMainPage.html">Nazad</a>
+	<script src="js/vue.js"></script>
+	<script src="js/axios.js"></script>
+	<script src="registerCoachOrManager.js"></script>
+</body>
+</html>

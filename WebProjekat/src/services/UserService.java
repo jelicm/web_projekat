@@ -65,6 +65,44 @@ public class UserService {
 		return Response.status(400).build();
 	}
 	
+	@POST
+	@Path("/registerCoach")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response registerCoach(Coach coach) {
+		CustomerDAO customerDAO = (CustomerDAO) ctx.getAttribute("customerDAO");
+		Customer c = customerDAO.findCustomer(coach.getUsername());
+		if (c != null) {
+			return Response.status(400).build();
+		}
+		CoachDAO coachDAO = (CoachDAO) ctx.getAttribute("coachDAO");
+		Coach co = coachDAO.findCoach(coach.getUsername());
+		if (co == null) {
+			coachDAO.addOrModifyCoach(coach);
+			return Response.status(200).entity("adminMainPage.html").build();
+		}
+		return Response.status(400).build();
+	}
+	
+	@POST
+	@Path("/registerManager")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response registerManager(Manager manager) {
+		CustomerDAO customerDAO = (CustomerDAO) ctx.getAttribute("customerDAO");
+		Customer c = customerDAO.findCustomer(manager.getUsername());
+		if (c != null) {
+			return Response.status(400).build();
+		}
+		ManagerDAO managerDAO = (ManagerDAO) ctx.getAttribute("managerDAO");
+		Manager m = managerDAO.findManager(manager.getUsername());
+		if (m == null) {
+			managerDAO.addOrModifyManager(manager);
+			return Response.status(200).entity("adminMainPage.html").build();
+		}
+		return Response.status(400).build();
+	}
+	
 	@GET
 	@Path("/login/{username}/{password}")
 	@Produces(MediaType.APPLICATION_JSON)

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id ="profileManager">
+	<form>
+		<table>
+			<tr>
+				<td>Korisničko ime:</td><td><input v-if="manager" v-model="manager.username" type="text" name="korisnickoIme"></td>
+			</tr>
+			<tr>
+				<td>Lozinka:</td><td><input v-if="manager" v-model="manager.password" type="password" name="lozinka"></td>
+			</tr>
+			<tr>
+				<td>Ime:</td><td><input v-if="manager" v-model="manager.name" type="text" name="ime"></td>
+			</tr>
+			<tr>
+				<td>Prezime:</td><td><input v-if="manager" v-model="manager.surname" type="text" name="prezime"></td>
+			</tr>
+			<tr>
+				<td>Pol:</td>
+				<td><select style='width:100%' v-if="manager" v-model="manager.gender" name="pol">
+						<option value="MUSKI">Muski</option>
+						<option value="ZENSKI">Zenski</option>
+						</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Datum rođenja:</td><td><input style='width:100%' v-if="manager" v-model="manager.dateOfBirth" type="date" name="datumRodjenja"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input v-on:click="update" type="submit" value="Izmeni"></td>
+			</tr>
+		</table>
+	</form>
+</div>
+	<a href="managerMainPage.html">Nazad</a>
+	<script src="js/vue.js"></script>
+	<script src="js/axios.js"></script>
+	<script src="profileManager.js"></script>
+</body>
+</html>

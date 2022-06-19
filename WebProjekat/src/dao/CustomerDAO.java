@@ -46,6 +46,17 @@ public class CustomerDAO {
 		return customer;
 	}
 	
+	public Customer updateCustomer(Customer customer, String username)
+	{
+		if(!customer.getUsername().equals(username))
+		{
+			if(customers.containsKey(username))
+				return null;
+		}
+		customers.put(username, customer);
+		saveCustomers();
+		return customer;
+	}
 	public Customer deleteCustomer(String username) {
 		Customer c = customers.remove(username);
 		saveCustomers();

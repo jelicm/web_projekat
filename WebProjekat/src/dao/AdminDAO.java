@@ -46,6 +46,16 @@ public class AdminDAO {
 		return admin;
 	}
 	
+	public Admin updateAdmin(Admin admin, String username) {
+		if(!admin.getUsername().equals(username))
+		{
+			if(admins.containsKey(username))
+				return null;
+		}
+		admins.put(username, admin);
+		saveAdmins();
+		return admin;
+	}
 	public Admin deleteAdmin(String username) {
 		Admin a = admins.remove(username);
 		saveAdmins();

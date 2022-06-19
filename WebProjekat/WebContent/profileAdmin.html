@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div id ="profileAdmin">
+	<form>
+		<table>
+			<tr>
+				<td>Korisničko ime:</td><td><input v-if="admin" v-model="admin.username" type="text" name="korisnickoIme"></td>
+			</tr>
+			<tr>
+				<td>Lozinka:</td><td><input v-if="admin" v-model="admin.password" type="password" name="lozinka"></td>
+			</tr>
+			<tr>
+				<td>Ime:</td><td><input v-if="admin" v-model="admin.name" type="text" name="ime"></td>
+			</tr>
+			<tr>
+				<td>Prezime:</td><td><input v-if="admin" v-model="admin.surname" type="text" name="prezime"></td>
+			</tr>
+			<tr>
+				<td>Pol:</td>
+				<td><select style='width:100%' v-if="admin" v-model="admin.gender" name="pol">
+						<option value="MUSKI">Muski</option>
+						<option value="ZENSKI">Zenski</option>
+						</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Datum rođenja:</td><td><input style='width:100%' v-if="admin" v-model="admin.dateOfBirth" type="date" name="datumRodjenja"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input v-on:click="update" type="submit" value="Izmeni"></td>
+			</tr>
+		</table>
+	</form>
+</div>
+	<a href="adminMainPage.html">Nazad</a>
+	<script src="js/vue.js"></script>
+	<script src="js/axios.js"></script>
+	<script src="profileAdmin.js"></script>
+</body>
+</html>

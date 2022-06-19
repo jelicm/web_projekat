@@ -46,6 +46,17 @@ public class CoachDAO {
 		return coach;
 	}
 	
+	public Coach updateCoach(Coach coach, String username){
+		if(!coach.getUsername().equals(username))
+		{
+			if(coaches.containsKey(username))
+				return null;
+		}
+		coaches.put(username, coach);
+		saveCoaches();
+		return coach;
+	}
+	
 	public Coach deleteCoach(String username) {
 		Coach c = coaches.remove(username);
 		saveCoaches();

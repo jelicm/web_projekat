@@ -46,6 +46,16 @@ public class ManagerDAO {
 		return manager;
 	}
 	
+	public Manager updateManager(Manager manager, String username) {
+		if(!manager.getUsername().equals(username))
+		{
+			if(managers.containsKey(username))
+				return null;
+		}
+		managers.put(username, manager);
+		saveManagers();
+		return manager;
+	}
 	public Manager deleteManager(String username) {
 		Manager m = managers.remove(username);
 		saveManagers();

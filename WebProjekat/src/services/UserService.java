@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -143,6 +144,62 @@ public class UserService {
 				return Response.status(200).entity("managerMainPage.html").build();
 			}
 		}	
+		return Response.status(400).build();
+	}
+	
+	@PUT
+	@Path("/updateAdmin/{username}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateAdmin(Admin admin, @PathParam("username") String username){
+		AdminDAO adminDAO = (AdminDAO) ctx.getAttribute("adminDAO");
+		admin = adminDAO.updateAdmin(admin, username);
+		if(admin != null) {
+			request.getSession().setAttribute("loggedInUser", admin);
+			return Response.status(200).entity("adminMainPage.html").build();
+		}
+		
+		return Response.status(400).build();
+	}
+	
+	@PUT
+	@Path("/updateCoach/{username}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateCoach(Coach coach, @PathParam("username") String username){
+		CoachDAO coachDAO = (CoachDAO) ctx.getAttribute("coachDAO");
+		coach = coachDAO.updateCoach(coach, username);
+		if(coach != null) {
+			request.getSession().setAttribute("loggedInUser", coach);
+			return Response.status(200).entity("coachMainPage.html").build();
+		}
+		
+		return Response.status(400).build();
+	}
+	
+	@PUT
+	@Path("/updateCustomer/{username}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateCustomer(Customer customer, @PathParam("username") String username){
+		CustomerDAO customerDAO = (CustomerDAO) ctx.getAttribute("customerDAO");
+		customer = customerDAO.updateCustomer(customer, username);
+		if(customer != null) {
+			request.getSession().setAttribute("loggedInUser", customer);
+			return Response.status(200).entity("customerMainPage.html").build();
+		}
+		
+		return Response.status(400).build();
+	}
+	
+	@PUT
+	@Path("/updateManager/{username}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateManager(Manager manager, @PathParam("username") String username){
+		ManagerDAO managerDAO = (ManagerDAO) ctx.getAttribute("managerDAO");
+		manager = managerDAO.updateManager(manager, username);
+		if(manager != null) {
+			request.getSession().setAttribute("loggedInUser", manager);
+			return Response.status(200).entity("managerMainPage.html").build();
+		}
+		
 		return Response.status(400).build();
 	}
 	

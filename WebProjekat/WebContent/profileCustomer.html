@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Profil</title>
 </head>
 <body>
 	<div id ="profileCustomer">
@@ -32,7 +32,7 @@
 				<td>Datum rođenja:</td><td><input style='width:100%' v-if="customer" v-model="customer.dateOfBirth" type="date" name="datumRodjenja"></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center"><input v-on:click="update" type="submit" value="Izmeni"></td>
+				<td colspan="2" align="center"><input style="margin:10px" v-on:click="update" type="submit" value="Sacuvaj izmene"><input style="margin:10px" v-on:click="restore" type="button" value="Ponisti izmene"></td>
 			</tr>
 		</table>
 	</form>

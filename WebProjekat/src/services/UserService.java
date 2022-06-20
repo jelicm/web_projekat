@@ -149,57 +149,61 @@ public class UserService {
 	
 	@PUT
 	@Path("/updateAdmin/{username}")
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateAdmin(Admin admin, @PathParam("username") String username){
 		AdminDAO adminDAO = (AdminDAO) ctx.getAttribute("adminDAO");
-		admin = adminDAO.updateAdmin(admin, username);
-		if(admin != null) {
+		Admin a = adminDAO.findAdmin(admin.getUsername());
+		if((a != null && a.getUsername().equals(username)) || a == null) {
+			adminDAO.updateAdmin(admin,username);
 			request.getSession().setAttribute("loggedInUser", admin);
 			return Response.status(200).entity("adminMainPage.html").build();
 		}
-		
 		return Response.status(400).build();
 	}
 	
 	@PUT
 	@Path("/updateCoach/{username}")
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateCoach(Coach coach, @PathParam("username") String username){
 		CoachDAO coachDAO = (CoachDAO) ctx.getAttribute("coachDAO");
-		coach = coachDAO.updateCoach(coach, username);
-		if(coach != null) {
+		Coach c = coachDAO.findCoach(coach.getUsername());
+		if((c != null && c.getUsername().equals(username)) || c == null) {
+			coachDAO.updateCoach(coach,username);
 			request.getSession().setAttribute("loggedInUser", coach);
 			return Response.status(200).entity("coachMainPage.html").build();
 		}
-		
 		return Response.status(400).build();
 	}
 	
 	@PUT
 	@Path("/updateCustomer/{username}")
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateCustomer(Customer customer, @PathParam("username") String username){
 		CustomerDAO customerDAO = (CustomerDAO) ctx.getAttribute("customerDAO");
-		customer = customerDAO.updateCustomer(customer, username);
-		if(customer != null) {
+		Customer c = customerDAO.findCustomer(customer.getUsername());
+		if((c != null && c.getUsername().equals(username)) || c == null) {
+			customerDAO.updateCustomer(customer,username);
 			request.getSession().setAttribute("loggedInUser", customer);
 			return Response.status(200).entity("customerMainPage.html").build();
 		}
-		
 		return Response.status(400).build();
 	}
 	
 	@PUT
 	@Path("/updateManager/{username}")
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateManager(Manager manager, @PathParam("username") String username){
 		ManagerDAO managerDAO = (ManagerDAO) ctx.getAttribute("managerDAO");
-		manager = managerDAO.updateManager(manager, username);
-		if(manager != null) {
+		Manager m = managerDAO.findManager(manager.getUsername());
+		if((m != null && m.getUsername().equals(username)) || m == null) {
+			managerDAO.updateManager(manager,username);
 			request.getSession().setAttribute("loggedInUser", manager);
 			return Response.status(200).entity("managerMainPage.html").build();
 		}
-		
 		return Response.status(400).build();
 	}
 	

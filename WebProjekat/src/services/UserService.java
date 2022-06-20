@@ -7,6 +7,10 @@ import beans.Admin;
 import beans.Coach;
 import beans.Customer;
 import beans.Manager;
+import beans.User;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
@@ -247,6 +251,29 @@ public class UserService {
 		return Response.status(200).build();
 	}
 	
+	@GET
+	@Path("/registeredUsers")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<User> getRegisteredUsers() {
+		ArrayList<User> users = new ArrayList<User>();
+		CustomerDAO customerDAO = (CustomerDAO) ctx.getAttribute("customerDAO");
+		for (Customer c : customerDAO.findAllCustomers()) {
+			users.add((User)c);
+		};
+		CoachDAO coachDAO = (CoachDAO) ctx.getAttribute("coachDAO");
+		for(Coach c : coachDAO.findAllCoaches()) {
+			users.add((User)c);
+		};
+		AdminDAO adminDAO = (AdminDAO) ctx.getAttribute("adminDAO");
+		for (Admin a : adminDAO.findAllAdmins()) {
+			users.add((User)a);
+		};
+		ManagerDAO managerDAO = (ManagerDAO) ctx.getAttribute("managerDAO");
+		for(Manager m : managerDAO.findAllManagers()) {
+			users.add((User)m);
+		};
+		return users;
+	}
 
 
 }

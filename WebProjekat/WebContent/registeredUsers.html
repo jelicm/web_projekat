@@ -1,0 +1,37 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Registrovani korisnici</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<div id="registeredUsers">
+	<table border="1" id="tabela">
+				<thead>
+					<tr bgcolor="lightgrey">
+						<th><b>Korisnicko ime</b></th>
+						<th><b>Ime</b></th>
+						<th><b>Prezime</b></th>
+						<th><b>Datum rodjenja</b></th>
+						<th><b>Uloga</b></th>
+					</tr>
+				</thead>
+				
+				<tbody class="telo">
+					<tr v-for="k in registrovaniKorisnici">
+						<td>{{k.username}}</td>
+						<td>{{k.name}}</td>
+						<td>{{k.surname}}</td>
+						<td>{{k.dateOfBirth}}</td>
+						<td>{{k.role}}</td>
+						</tr>
+				</tbody>
+			</table>
+			<br /><br /><br />
+		<a href="adminMainPage.html">Nazad</a>
+</div>	
+	<script src="js/vue.js"></script>
+	<script src="js/axios.js"></script>
+	<script src="registeredUsers.js"></script>
+</body>
+</html>

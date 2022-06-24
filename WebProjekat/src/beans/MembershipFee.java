@@ -9,7 +9,7 @@ public class MembershipFee {
 	private String paymentDate;
 	private String expirationDateAndTime;
 	private int price;
-	private Customer customer;
+	private String customer;
 	private MembershipFeeStatus membershipFeeStatus;
 	private String numberOfAppointments;
 	
@@ -17,7 +17,7 @@ public class MembershipFee {
 	}
 
 	public MembershipFee(String identifier, MembershipFeeType membershipFeeType, String paymentDate,
-			String expirationDateAndTime, int price, Customer customer, MembershipFeeStatus membershipFeeStatus,
+			String expirationDateAndTime, int price, String customer, MembershipFeeStatus membershipFeeStatus,
 			String numberOfAppointments) {
 		super();
 		this.identifier = identifier;
@@ -70,11 +70,11 @@ public class MembershipFee {
 		this.price = price;
 	}
 
-	public Customer getCustomer() {
+	public String getCustomer() {
 		return customer;
 	}
 
-	public void setCustomer(Customer customer) {
+	public void setCustomer(String customer) {
 		this.customer = customer;
 	}
 

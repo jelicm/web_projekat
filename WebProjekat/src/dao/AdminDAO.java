@@ -40,7 +40,7 @@ public class AdminDAO {
 		return admins.containsKey(username) ? admins.get(username) : null;
 	}
 	
-	public Admin addOrModifyAdmin(Admin admin) {
+	public Admin addAdmin(Admin admin) {
 		admins.put(admin.getUsername(), admin);
 		saveAdmins();
 		return admin;

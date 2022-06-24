@@ -40,7 +40,7 @@ public class CoachDAO {
 		return coaches.containsKey(username) ? coaches.get(username) : null;
 	}
 	
-	public Coach addOrModifyCoach(Coach coach) {
+	public Coach addCoach(Coach coach) {
 		coaches.put(coach.getUsername(), coach);
 		saveCoaches();
 		return coach;

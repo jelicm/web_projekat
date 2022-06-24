@@ -7,9 +7,9 @@ import enums.Role;
 
 public class Customer extends User {
 
-	private MembershipFee membershipFee;
+	private String membershipFee;
 	private int points;
-	private ArrayList<SportFacility> visitedSportFacilities;
+	private ArrayList<String> visitedSportFacilities;
 	private CustomerType customerType;
 	
 	public Customer() {
@@ -17,19 +17,19 @@ public class Customer extends User {
 	}
 	
 	public Customer(String username, String password, String name, String surname, Gender gender, Role role,
-			String dateOfBirth, MembershipFee membershipFee, int points, CustomerType customerType) {
+			String dateOfBirth, String membershipFee, int points, CustomerType customerType) {
 		super(username, password, name, surname, gender, role, dateOfBirth);
 		this.membershipFee = membershipFee;
 		this.points = points;
 		this.customerType = customerType;
-		this.visitedSportFacilities = new ArrayList<SportFacility>();
+		this.visitedSportFacilities = new ArrayList<String>();
 	}
 	
-	public ArrayList<SportFacility> getVisitedSportFacilities() {
+	public ArrayList<String> getVisitedSportFacilities() {
 		return visitedSportFacilities;
 	}
 
-	public void setVisitedSportFacilities(ArrayList<SportFacility> visitedSportFacilities) {
+	public void setVisitedSportFacilities(ArrayList<String> visitedSportFacilities) {
 		this.visitedSportFacilities = visitedSportFacilities;
 	}
 
@@ -41,10 +41,10 @@ public class Customer extends User {
 		this.customerType = customerType;
 	}
 
-	public MembershipFee getMembershipFee() {
+	public String getMembershipFee() {
 		return membershipFee;
 	}
-	public void setMembershipFee(MembershipFee membershipFee) {
+	public void setMembershipFee(String membershipFee) {
 		this.membershipFee = membershipFee;
 	}
 	public int getPoints() {

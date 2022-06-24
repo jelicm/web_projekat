@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.annotation.PostConstruct;
@@ -38,9 +39,13 @@ public class SportFacilityService {
 	@GET
 	@Path("/")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<SportFacility> getSportFacilities() {
+	public ArrayList<SportFacility> getSportFacilities() {
 		SportFacilityDAO dao = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
-		return dao.findAllSportFacilitiesSorted();
+		ArrayList<SportFacility> visibleSportFacilities = new ArrayList<SportFacility>();
+		for(SportFacility sf : dao.findAllSportFacilitiesSorted())
+			if(!sf.isDeleted())
+				visibleSportFacilities.add(sf);
+		return visibleSportFacilities;
 	}
 
 }

@@ -40,7 +40,7 @@ public class CustomerDAO {
 		return customers.containsKey(username) ? customers.get(username) : null;
 	}
 	
-	public Customer addOrModifyCustomer(Customer customer) {
+	public Customer addCustomer(Customer customer) {
 		customers.put(customer.getUsername(), customer);
 		saveCustomers();
 		return customer;

@@ -5,17 +5,17 @@ import enums.TrainingType;
 public class Training {
 	private String name;
 	private TrainingType trainingType;
-	private SportFacility sportFacility;
+	private String sportFacility;
 	private int durationInMinutes;
-	private Coach coach;
+	private String coach;
 	private String description;
 	private String image;
 	
 	public Training() {
 	}
 
-	public Training(String name, TrainingType trainingType, SportFacility sportFacility, int durationInMinutes,
-			Coach coach, String description, String image) {
+	public Training(String name, TrainingType trainingType, String sportFacility, int durationInMinutes,
+			String coach, String description, String image) {
 		super();
 		this.name = name;
 		this.trainingType = trainingType;
@@ -42,11 +42,11 @@ public class Training {
 		this.trainingType = trainingType;
 	}
 
-	public SportFacility getSportFacility() {
+	public String getSportFacility() {
 		return sportFacility;
 	}
 
-	public void setSportFacility(SportFacility sportFacility) {
+	public void setSportFacility(String sportFacility) {
 		this.sportFacility = sportFacility;
 	}
 
@@ -58,11 +58,11 @@ public class Training {
 		this.durationInMinutes = durationInMinutes;
 	}
 
-	public Coach getCoach() {
+	public String getCoach() {
 		return coach;
 	}
 
-	public void setCoach(Coach coach) {
+	public void setCoach(String coach) {
 		this.coach = coach;
 	}
 

@@ -2,7 +2,7 @@
 	"Teretana1" : {
 		"name" : "Teretana1",
 		"type" : "TERETANA",
-		"content" : "PERSONALNI_TRENINZI",
+		"trainings" : null,
 		"status": "RADI",
 		"location" : {
 			"longitude": "45.234",
@@ -16,12 +16,13 @@
 		},
 		"image" : "gym1.png",
 		"averageRating": 4.75,
-		"workTime": "08:00 - 21:00"	
+		"workTime": "08:00 - 21:00",
+		"deleted": false
 	},
 	"Teretana2" : {
 		"name" : "Teretana2",
 		"type" : "TERETANA",
-		"content" : "PERSONALNI_TRENINZI",
+		"trainings" : null,
 		"status": "RADI",
 		"location" : {
 			"longitude": "45.234",
@@ -35,13 +36,14 @@
 		},
 		"image" : "gym2.png",
 		"averageRating": 3.35,
-		"workTime": "08:00 - 21:00"	
+		"workTime": "08:00 - 21:00",
+		"deleted": false
 	},
 	
 	"Teretana3" : {
 		"name" : "Teretana3",
 		"type" : "TERETANA",
-		"content" : "GRUPNI_TRENINZI",
+		"trainings" : null,
 		"status": "NE_RADI",
 		"location" : {
 			"longitude": "45.234",
@@ -55,12 +57,13 @@
 		},
 		"image" : "gym3.png",
 		"averageRating": 4.35,
-		"workTime": "08:00 - 21:00"	
+		"workTime": "08:00 - 21:00",
+		"deleted": false
 	},
 	"Sportski centar 1" : {
 		"name" : "Sportski centar 1",
 		"type" : "SPORTSKI_CENTAR",
-		"content" : "GRUPNI_TRENINZI",
+		"trainings" : null,
 		"status": "NE_RADI",
 		"location" : {
 			"longitude": "45.234",
@@ -74,6 +77,7 @@
 		},
 		"image" : "gym4.png",
 		"averageRating": 4.35,
-		"workTime": "08:00 - 21:00"	
+		"workTime": "08:00 - 21:00"	,
+		"deleted": false
 	}
 }

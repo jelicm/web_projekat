@@ -1,12 +1,13 @@
 {
-  "steva" : {
-    "username" : "steva",
-    "password" : "123stevke",
-    "name" : "stevan",
-    "surname" : "stevic",
+  "andre" : {
+    "username" : "andre",
+    "password" : "a1n2d3r4e5",
+    "name" : "andrej",
+    "surname" : "andric",
     "gender" : "MUSKI",
     "role" : "TRENER",
     "dateOfBirth" : "2000-11-11",
-    "trainingHistories" : null
+    "trainingHistories" : null,
+    "deleted" : false
   }
 }

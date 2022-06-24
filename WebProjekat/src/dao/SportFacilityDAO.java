@@ -56,7 +56,7 @@ public class SportFacilityDAO {
 		return sportFacilities.containsKey(name) ? sportFacilities.get(name) : null;
 	}
 	
-	public SportFacility addOrModifySportFacility(SportFacility sportFacility) {
+	public SportFacility addSportFacility(SportFacility sportFacility) {
 		sportFacilities.put(sportFacility.getName(), sportFacility);
 		saveSportFacilities();
 		return sportFacility;

@@ -1,5 +1,7 @@
 package beans;
 
+import java.util.ArrayList;
+
 import enums.FacilityContent;
 import enums.FacilityType;
 import enums.Status;
@@ -7,29 +9,39 @@ import enums.Status;
 public class SportFacility {
 	private String name;
 	private FacilityType type;
-	private FacilityContent content; 
+	private ArrayList<String> trainings; 
 	private Status status;
 	private Location location;
 	private String image;
 	private double averageRating;
 	private String workTime;
+	private boolean deleted;
 	
 	public SportFacility()
 	{
 		
 	}
-	
-	public SportFacility(String name, FacilityType type, FacilityContent content, Status status, Location location, String image,
-			double averageRating, String workTime) {
+
+	public SportFacility(String name, FacilityType type, Status status, Location location, String image,
+			double averageRating, String workTime, boolean deleted) {
 		super();
 		this.name = name;
 		this.type = type;
-		this.content = content;
+		this.trainings = new ArrayList<String>();
 		this.status = status;
 		this.location = location;
 		this.image = image;
 		this.averageRating = averageRating;
 		this.workTime = workTime;
+		this.deleted = deleted;
+	}
+	
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public double getAverageRating() {
@@ -56,12 +68,12 @@ public class SportFacility {
 		this.type = type;
 	}
 
-	public FacilityContent getContent() {
-		return content;
+	public ArrayList<String> getTrainings() {
+		return trainings;
 	}
 
-	public void setContent(FacilityContent content) {
-		this.content = content;
+	public void setTrainings(ArrayList<String> trainings) {
+		this.trainings = trainings;
 	}
 
 	public Status getStatus() {

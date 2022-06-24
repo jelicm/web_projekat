@@ -40,7 +40,7 @@ public class ManagerDAO {
 		return managers.containsKey(username) ? managers.get(username) : null;
 	}
 	
-	public Manager addOrModifyManager(Manager manager) {
+	public Manager addManager(Manager manager) {
 		managers.put(manager.getUsername(), manager);
 		saveManagers();
 		return manager;

@@ -1,12 +1,24 @@
 {
-  "ana" : {
-    "username" : "ana",
-    "password" : "ana montana",
-    "name" : "ana",
-    "surname" : "obradovic",
+  "mara" : {
+    "username" : "mara",
+    "password" : "m1a2r3a4",
+    "name" : "marija",
+    "surname" : "maric",
     "gender" : "ZENSKI",
     "role" : "MENADZER",
-    "dateOfBirth" : "2000-01-01",
-    "sportFacility" : null  
+    "dateOfBirth" : "2000-12-12",
+    "sportFacility" : null,
+    "deleted" : false
+  },
+  "ana" : {
+    "username" : "ana",
+    "password" : "a1n2a3",
+    "name" : "ana",
+    "surname" : "anic",
+    "gender" : "ZENSKI",
+    "role" : "MENADZER",
+    "dateOfBirth" : "2000-03-03",
+    "sportFacility" : null,
+    "deleted" : false
   }
 }

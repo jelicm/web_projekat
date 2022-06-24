@@ -20,7 +20,7 @@ var app = new Vue({
 	            axios.post('rest/users/registerCoach', 
 	            {"name": this.ime, "surname": this.prezime, "gender": this.pol,
 	            "dateOfBirth": this.datumRodjenja, "role": this.uloga, "username": this.korisnickoIme,
-	            "password": this.lozinka, "trainingHistories": null})
+	            "password": this.lozinka, "trainingHistories": null, "deleted": false})
 	            .then(response => {
 	                location.href=response.data 
 	            })
@@ -32,7 +32,7 @@ var app = new Vue({
 				axios.post('rest/users/registerManager', 
 	            {"name": this.ime, "surname": this.prezime, "gender": this.pol,
 	            "dateOfBirth": this.datumRodjenja, "role": this.uloga, "username": this.korisnickoIme,
-	            "password": this.lozinka, "sportFacility": null})
+	            "password": this.lozinka, "sportFacility": null, "deleted": false})
 	            .then(response => {
 	                location.href=response.data 
 	            })

@@ -64,7 +64,7 @@ public class UserService {
 		CustomerDAO customerDAO = (CustomerDAO) ctx.getAttribute("customerDAO");
 		Customer c = customerDAO.findCustomer(customer.getUsername());
 		if (c == null) {
-			customerDAO.addOrModifyCustomer(customer);
+			customerDAO.addCustomer(customer);
 			return Response.status(200).entity("index.html").build();
 		}
 		return Response.status(400).build();
@@ -83,7 +83,7 @@ public class UserService {
 		CoachDAO coachDAO = (CoachDAO) ctx.getAttribute("coachDAO");
 		Coach co = coachDAO.findCoach(coach.getUsername());
 		if (co == null) {
-			coachDAO.addOrModifyCoach(coach);
+			coachDAO.addCoach(coach);
 			return Response.status(200).entity("adminMainPage.html").build();
 		}
 		return Response.status(400).build();
@@ -102,7 +102,7 @@ public class UserService {
 		ManagerDAO managerDAO = (ManagerDAO) ctx.getAttribute("managerDAO");
 		Manager m = managerDAO.findManager(manager.getUsername());
 		if (m == null) {
-			managerDAO.addOrModifyManager(manager);
+			managerDAO.addManager(manager);
 			return Response.status(200).entity("adminMainPage.html").build();
 		}
 		return Response.status(400).build();
@@ -128,7 +128,7 @@ public class UserService {
 			}
 		}
 		
-		if(coach != null) {
+		if(coach != null && !coach.isDeleted()) {
 			if(coach.getPassword().equals(password)) {
 				request.getSession().setAttribute("loggedInUser", coach);
 				return Response.status(200).entity("coachMainPage.html").build();
@@ -142,7 +142,7 @@ public class UserService {
 			}
 		}
 		
-		if(manager != null) {
+		if(manager != null && !manager.isDeleted()) {
 			if(manager.getPassword().equals(password)) {
 				request.getSession().setAttribute("loggedInUser", manager);
 				return Response.status(200).entity("managerMainPage.html").build();
@@ -262,7 +262,8 @@ public class UserService {
 		};
 		CoachDAO coachDAO = (CoachDAO) ctx.getAttribute("coachDAO");
 		for(Coach c : coachDAO.findAllCoaches()) {
-			users.add((User)c);
+			if(!c.isDeleted())
+				users.add((User)c);
 		};
 		AdminDAO adminDAO = (AdminDAO) ctx.getAttribute("adminDAO");
 		for (Admin a : adminDAO.findAllAdmins()) {
@@ -270,7 +271,8 @@ public class UserService {
 		};
 		ManagerDAO managerDAO = (ManagerDAO) ctx.getAttribute("managerDAO");
 		for(Manager m : managerDAO.findAllManagers()) {
-			users.add((User)m);
+			if(!m.isDeleted())
+				users.add((User)m);
 		};
 		return users;
 	}

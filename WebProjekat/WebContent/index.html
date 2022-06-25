@@ -24,6 +24,21 @@
 			<tr><td align="center" colspan="2"><button  v-on:click="ponistiPretragu()">Ponisti</button></td></tr>
 		</table>
 		<p></p>
+		<div>
+		<select name="status" id="status" v-on:change = "statusFilter">
+			<option>Izaberi status</option>
+    		<option v-for = "s in status">{{s}}</option>
+    		
+  		</select>
+  		<br></br>
+  		
+  		<select name="tipovi" id="tipovi"  v-on:change = "tipFilter">
+  			<option>Izaberi tip</option>
+    		<option v-for = "t in tipovi">{{t}}</option>
+    		
+  		</select>
+  		<br></br>
+  		</div>
 	<table border="1" id="tabela">
 				<thead>
 					<tr bgcolor="lightgrey">

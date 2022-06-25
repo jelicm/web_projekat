@@ -11,7 +11,11 @@ var app = new Vue({
 		prosecnaOcena: '',
 		sortiranoNaziv: 0,
 		sortiranoLok: 0,
-		sortiranoOcena: 0
+		sortiranoOcena: 0,
+		status: {},
+		tipovi: {},
+		st: '',
+		tip1: ''
     },
 
 	mounted() {
@@ -21,6 +25,12 @@ var app = new Vue({
 				this.objekti = response.data;
 				this.pretrazeniObjekti = response.data;	
 			});
+		axios.get("rest/enums/status")
+			 .then((response) => {this.status = response.data});
+		
+		axios.get("rest/enums/facilityType")
+			 .then((response) => {this.tipovi = response.data});
+		
 	},
 	
     methods: {
@@ -116,7 +126,45 @@ var app = new Vue({
 				this.sortiranoLok = 0
 			}
 				
+		},
+		statusFilter: function(evt){
+			var s = evt.target.value;
+			if(s == "Izaberi status")
+			{
+				//this.pretrazeniObjekti = this.objekti
+				this.st = '';
+			}
+			else
+				this.st = s;
+			
+			if(this.tip1 != ''  )
+				this.pretrazeniObjekti = this.objekti.filter(o => o.type == this.tip1);
+			else
+				this.pretrazeniObjekti = this.objekti;
+				
+			if(this.st != '')	
+				this.pretrazeniObjekti = this.pretrazeniObjekti.filter(o => o.status == this.st);
+		}, 
+		
+		tipFilter: function(evt){
+			var t = evt.target.value;
+			if(t == "Izaberi tip")
+			{
+				//this.pretrazeniObjekti = this.objekti;
+				this.tip1 = '';
+			}
+			else
+				this.tip1 = t;	
+			
+			if(this.tip1 != ''  )
+				this.pretrazeniObjekti = this.objekti.filter(o => o.type == this.tip1);
+			else
+				this.pretrazeniObjekti = this.objekti;
+				
+			if(this.st != '')	
+				this.pretrazeniObjekti = this.pretrazeniObjekti.filter(o => o.status == this.st);	
 		}
+		
 		
     }
 })

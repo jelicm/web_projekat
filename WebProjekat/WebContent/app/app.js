@@ -8,7 +8,10 @@ var app = new Vue({
 		naziv: '',
 		tip: '',
 		lokacija: '',
-		prosecnaOcena: ''
+		prosecnaOcena: '',
+		sortiranoNaziv: 0,
+		sortiranoLok: 0,
+		sortiranoOcena: 0
     },
 
 	mounted() {
@@ -68,6 +71,52 @@ var app = new Vue({
 			this.prosecnaOcena = '';
 			this.tip = '';
 			this.lokacija = '';
+		},
+		sortNaziv: function(){
+			if(this.sortiranoNaziv === 0)
+			{
+				this.pretrazeniObjekti = this.pretrazeniObjekti.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+				this.sortiranoNaziv = 1
+				this.sortiranoLok = 0
+				this.sortiranoOcena =0
+			}
+			else
+			{
+				this.pretrazeniObjekti.reverse()
+				this.sortiranoNaziv = 0
+			}
+				
+		},
+		sortOcena: function(){
+			if(this.sortiranoOcena === 0)
+			{
+				this.pretrazeniObjekti = this.pretrazeniObjekti.sort((a,b) => (a.averageRating > b.averageRating) ? 1 : ((b.averageRating > a.averageRating) ? -1 : 0));
+				this.sortiranoNaziv = 0
+				this.sortiranoLok = 0
+				this.sortiranoOcena = 1
+			}
+			else
+			{
+				this.pretrazeniObjekti.reverse()
+				this.sortiranoOcena = 1
+			}
+				
+		},
+		sortLokacija: function(){
+			if(this.sortiranoLok === 0)
+			{
+				this.pretrazeniObjekti = this.pretrazeniObjekti.sort((a,b) => (a.location.address.street > b.location.address.street) ? 1 : ((b.location.address.street > a.location.address.street) ? -1 : 0));
+				this.sortiranoNaziv = 0
+				this.sortiranoLok = 1
+				this.sortiranoOcena = 0
+			}
+			else
+			{
+				this.pretrazeniObjekti.reverse()
+				this.sortiranoLok = 0
+			}
+				
 		}
+		
     }
 })

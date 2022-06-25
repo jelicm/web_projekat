@@ -4,3 +4,6 @@ td.green {
 td.red {
 	color: red;
 }
+th.pointer{
+	cursor: pointer;
+}

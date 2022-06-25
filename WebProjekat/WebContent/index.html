@@ -28,10 +28,10 @@
 				<thead>
 					<tr bgcolor="lightgrey">
 						<th><b>Logo</b></th>
-						<th><b>Naziv</b></th>
-						<th><b>Tip</b></th>
-						<th><b>Lokacija</b></th>
-						<th><b>Prosecna ocena</b></th>
+						<th v-on:click = "sortNaziv()" class = "pointer"><b>Naziv</b></th>
+						<th ><b>Tip</b></th>
+						<th v-on:click = "sortLokacija()" class = "pointer"><b>Lokacija</b></th>
+						<th v-on:click = "sortOcena()" class = "pointer"><b>Prosecna ocena</b></th>
 						<th><b>Status</b></th>
 					</tr>
 				</thead>

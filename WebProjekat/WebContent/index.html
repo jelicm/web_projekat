@@ -48,6 +48,7 @@
 						<th v-on:click = "sortLokacija()" class = "pointer"><b>Lokacija</b></th>
 						<th v-on:click = "sortOcena()" class = "pointer"><b>Prosecna ocena</b></th>
 						<th><b>Status</b></th>
+						<th><b>Pregledaj</b></th>
 					</tr>
 				</thead>
 				
@@ -59,6 +60,7 @@
 						<td>{{o.location.address.street}} {{o.location.address.number}}, {{o.location.address.city}}, {{o.location.address.zipCode}}</td>
 						<td>{{o.averageRating}}</td>
 						<td v-bind:class="[{green : o.status=='RADI'}, {red : o.status=='NE_RADI'}]">{{o.status}}</td>
+						<td><button  v-on:click="pregledaj(o)">Detaljnije</button></td>
 					</tr>
 				</tbody>
 			</table>

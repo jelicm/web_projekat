@@ -7,6 +7,8 @@ import beans.Admin;
 import beans.Coach;
 import beans.Customer;
 import beans.Manager;
+import beans.SportFacility;
+import beans.Training;
 import beans.User;
 
 import java.util.ArrayList;
@@ -28,6 +30,8 @@ import dao.AdminDAO;
 import dao.CoachDAO;
 import dao.CustomerDAO;
 import dao.ManagerDAO;
+import dao.SportFacilityDAO;
+import dao.TrainingDAO;
 
 @Path("/users")
 public class UserService {
@@ -42,6 +46,12 @@ public class UserService {
 	@PostConstruct
 	public void init() {
     	String contextPath = ctx.getRealPath("");
+    	if (ctx.getAttribute("sportFacilityDAO") == null) {
+			ctx.setAttribute("sportFacilityDAO", new SportFacilityDAO(contextPath));
+    	}
+    	if (ctx.getAttribute("trainingDAO") == null) {
+			ctx.setAttribute("trainingDAO", new TrainingDAO(contextPath));
+    	}
 		if (ctx.getAttribute("customerDAO") == null) {
 			ctx.setAttribute("customerDAO", new CustomerDAO(contextPath));
 		}
@@ -277,5 +287,69 @@ public class UserService {
 		return users;
 	}
 
+	@GET
+	@Path("/managerSportFacility")
+	@Produces(MediaType.APPLICATION_JSON)
+	public SportFacility managerSportFacility() {
+		SportFacilityDAO sportFacilityDAO = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
+		Manager m = (Manager)request.getSession().getAttribute("loggedInUser");
+		String sportFacilityName = m.getSportFacility();
+		SportFacility sportFacility = sportFacilityDAO.findSportFacility(sportFacilityName);
+		return sportFacility;
+	}
+	
+	@GET
+	@Path("/customersForSportFacility")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<Customer> customersForSportFacility() {
+		SportFacilityDAO sportFacilityDAO = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
+		Manager m = (Manager)request.getSession().getAttribute("loggedInUser");
+		String sportFacilityName = m.getSportFacility();
+		SportFacility sportFacility = sportFacilityDAO.findSportFacility(sportFacilityName);
+		
+		ArrayList<Customer> customers = new ArrayList<Customer>();
+		
+		if(sportFacility != null) {
+			CustomerDAO customerDAO = (CustomerDAO) ctx.getAttribute("customerDAO");
+			for(Customer c : customerDAO.findAllCustomers()) {
+				for(String sf : c.getVisitedSportFacilities()) {
+					if(sf.equals(sportFacility.getName())) {
+						customers.add(c);
+						break;
+					}
+				}
+			}
+		}
+		
+		return customers;
+	}
+	
+	@GET
+	@Path("/coachesForSportFacility")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<Coach> coachesForSportFacility() {
+		SportFacilityDAO sportFacilityDAO = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
+		Manager m = (Manager)request.getSession().getAttribute("loggedInUser");
+		String sportFacilityName = m.getSportFacility();
+		SportFacility sportFacility = sportFacilityDAO.findSportFacility(sportFacilityName);
+		
+		ArrayList<Coach> coaches = new ArrayList<Coach>();
+		ArrayList<String> coachNames = new ArrayList<String>();
+		CoachDAO coachDAO = (CoachDAO) ctx.getAttribute("coachDAO");
+		
+		if(sportFacility != null) {
+			TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
+			for(Training t : trainingDAO.findAllTrainings()) {
+				if(t.getSportFacility().equals(sportFacility.getName())) {
+					coachNames.add(t.getCoach());
+				}
+			}
+		}
+		if(coachNames != null) {
+			for(String name : coachNames)
+				coaches.add(coachDAO.findCoach(name));
+		}
+		return coaches;
+	}
 
 }

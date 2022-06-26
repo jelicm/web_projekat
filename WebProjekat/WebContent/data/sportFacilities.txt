@@ -2,7 +2,7 @@
 	"Teretana1" : {
 		"name" : "Teretana1",
 		"type" : "TERETANA",
-		"trainings" : null,
+		"trainings" : ["trening1", "trening3"],
 		"status": "RADI",
 		"location" : {
 			"longitude": "45.234",
@@ -63,7 +63,7 @@
 	"Sportski centar 1" : {
 		"name" : "Sportski centar 1",
 		"type" : "SPORTSKI_CENTAR",
-		"trainings" : null,
+		"trainings" : ["trening2"],
 		"status": "NE_RADI",
 		"location" : {
 			"longitude": "45.234",

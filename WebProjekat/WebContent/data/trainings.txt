@@ -1,0 +1,29 @@
+{
+  "trening1" : {
+    "name" : "trening1",
+    "trainingType" : "PERSONALNI",
+    "sportFacility" : "Teretana1",
+    "durationInMinutes" : 180,
+    "coach" : "andre",
+    "description" : "Opis za trening1",
+    "image" : "gym1.png"
+  },
+  "trening2" : {
+    "name" : "trening2",
+    "trainingType" : "PERSONALNI",
+    "sportFacility" : "Sportski centar 1",
+    "durationInMinutes" : 150,
+    "coach" : "stivi",
+    "description" : "Opis za trening2",
+    "image" : "gym2.png"
+  },
+  "trening3" : {
+    "name" : "trening3",
+    "trainingType" : "GRUPNI",
+    "sportFacility" : "Teretana1",
+    "durationInMinutes" : 120,
+    "coach" : "stivi",
+    "description" : "Opis za trening3",
+    "image" : "gym3.png"
+  }
+}

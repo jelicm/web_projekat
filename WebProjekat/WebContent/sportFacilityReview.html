@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sportski objekat</title>
+</head>
+<body>
+	<div id ="sportFacility">
+	<h3>Osnovne informacije o sportskom objektu</h3>
+	<form>
+		<table border="1">
+			<tr>
+				<td>Naziv:</td><td v-if="sportFacility">{{sportFacility.name}}</td>
+			</tr>
+			<tr>
+				<td>Tip objekta:</td><td v-if="sportFacility">{{sportFacility.type}}</td>
+			</tr>
+			<tr>
+				<td>Lokacija:</td><td v-if="sportFacility">{{sportFacility.location.address.street}} {{sportFacility.location.address.number}}, {{sportFacility.location.address.city}}, {{sportFacility.location.address.zipCode}}</td>
+			</tr>
+			<tr>
+				<td>Prosecna ocena:</td><td v-if="sportFacility">{{sportFacility.averageRating}}</td>
+			</tr>
+			<tr>
+				<td>Radno vreme:</td><td v-if="sportFacility">{{sportFacility.workTime}}</td>
+			</tr>
+			<tr>
+				<td>Logo:</td><td v-if="sportFacility"><img v-bind:src=" 'img/' + sportFacility.image"></td>
+			</tr>
+		</table>
+	</form>
+	<h3>Treneri koji drze treninge u sportskom objektu</h3>
+	<table border="1" id="tabela">
+				<thead>
+					<tr bgcolor="lightgrey">
+						<th><b>Ime</b></th>
+						<th><b>Prezime</b></th>
+						<th><b>Datum rodjenja</b></th>
+					</tr>
+				</thead>
+				<tbody class="telo">
+					<tr v-for="t in coachesForSportFacility">
+						<td>{{t.name}}</td>
+						<td>{{t.surname}}</td>
+						<td>{{t.dateOfBirth}}</td>
+						</tr>
+				</tbody>
+			</table>
+	<h3>Kupci koji su posetili sportski objekat</h3>
+	<table border="1" id="tabela">
+				<thead>
+					<tr bgcolor="lightgrey">
+						<th><b>Ime</b></th>
+						<th><b>Prezime</b></th>
+						<th><b>Datum rodjenja</b></th>
+					</tr>
+				</thead>
+				<tbody class="telo">
+					<tr v-for="k in customersForSportFacility">
+						<td>{{k.name}}</td>
+						<td>{{k.surname}}</td>
+						<td>{{k.dateOfBirth}}</td>
+						</tr>
+				</tbody>
+			</table>
+</div>
+	<br/><br/><br/>
+	<a href="managerMainPage.html">Nazad</a>
+	<script src="js/vue.js"></script>
+	<script src="js/axios.js"></script>
+	<script src="sportFacilityReview.js"></script>
+</body>
+</html>

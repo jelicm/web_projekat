@@ -7,7 +7,7 @@
     "gender" : "ZENSKI",
     "role" : "MENADZER",
     "dateOfBirth" : "2000-12-12",
-    "sportFacility" : null,
+    "sportFacility" : "Teretana1",
     "deleted" : false
   },
   "ana" : {
@@ -18,7 +18,7 @@
     "gender" : "ZENSKI",
     "role" : "MENADZER",
     "dateOfBirth" : "2000-03-03",
-    "sportFacility" : null,
+    "sportFacility" : "Sportski centar 1",
     "deleted" : false
   }
 }

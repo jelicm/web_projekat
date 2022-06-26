@@ -1,0 +1,60 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Kreiranje sportskog objekta</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+	<form id="createSportFacility">
+	<table>
+		<tr>
+			<td>Naziv:</td><td><input v-model="naziv" type="text" name="naziv"></td>
+		</tr>
+		<tr>
+			<td>Tip:</td>
+			<td><select v-model="tip" name="tip">
+					<option value="TERETANA">Teretana</option>
+					<option value="BAZEN">Bazen</option>
+					<option value="SPORTSKI_CENTAR">Sportski centar</option>
+					<option value="PLESNI_STUDIO">Plesni studio</option>
+					</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Geografska duzina:</td><td><input v-model="geoDuzina" type="number" min="-180" max="180" name="geoDuzina"></td>
+		</tr>
+		<tr>
+			<td>Geografska sirina:</td><td><input v-model="geoSirina" type="number" min="-90" max="90" name="geoSirina"></td>
+		</tr>
+		<tr>
+			<td>Ulica:</td><td><input v-model="ulica" type="text" name="ulica"></td>
+		</tr>
+		<tr>
+			<td>Broj u ulici:</td><td><input v-model="broj" type="number" min="1" name="broj"></td>
+		</tr>
+		<tr>
+			<td>Grad:</td><td><input v-model="grad" type="text" name="grad"></td>
+		</tr>
+		<tr>
+			<td>Postanski kod:</td><td><input v-model="kod" type="number" min="1" name="kod"></td>
+		</tr>
+		<tr>
+			<td>Slika:</td><td><input v-model="slika" type="file" name="slika"></td>
+		</tr>
+		<tr>
+			<td>Izaberi menadzera:</td>
+			<td><select v-model="menadzer">
+    				<option v-for = "m in menadzeri">{{m.name}} {{m.surname}}</option>	
+  				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><input v-on:click="create" type="submit" value="Kreiraj"></td>
+		</tr>
+	</table>
+</form>
+	<script src="js/vue.js"></script>
+	<script src="js/axios.js"></script>
+	<script src="createSportFacility.js"></script>
+</body>
+</html>

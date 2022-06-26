@@ -351,5 +351,18 @@ public class UserService {
 		}
 		return coaches;
 	}
-
+	
+	@GET
+	@Path("/availableManagers")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<Manager> availableManagers() {
+		ManagerDAO managerDAO = (ManagerDAO) ctx.getAttribute("managerDAO");
+		ArrayList<Manager> availableManagers = new ArrayList<Manager>(); 
+		for(Manager m : managerDAO.findAllManagers()) {
+			if(m.getSportFacility() == null)
+				availableManagers.add(m);
+		}
+		return availableManagers;
+	}
+	
 }

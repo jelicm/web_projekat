@@ -7,3 +7,15 @@ td.red {
 th.pointer{
 	cursor: pointer;
 }
+tr.visible {
+	visibility: visible;
+}
+tr.hidden {
+	visibility: collapse;
+}
+form.visible {
+	visibility: visible;
+}
+form.hidden {
+	visibility: hidden;
+}

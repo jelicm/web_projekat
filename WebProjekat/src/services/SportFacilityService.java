@@ -48,6 +48,7 @@ public class SportFacilityService {
 	
 	@POST
 	@Path("/createSportFacility/{manager}")
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createSportFacility(SportFacility sportFacility, @PathParam("manager") String manager) {
 		SportFacilityDAO sportFacilityDAO = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");

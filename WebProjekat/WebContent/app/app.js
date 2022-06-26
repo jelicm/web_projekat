@@ -163,6 +163,15 @@ var app = new Vue({
 				
 			if(this.st != '')	
 				this.pretrazeniObjekti = this.pretrazeniObjekti.filter(o => o.status == this.st);	
+		},
+		
+		pregledaj: function(o){
+			event.preventDefault()
+			axios.get('rest/sportFacilities/review/' + o.name)
+            .then(response => {
+                location.href=response.data 
+            })
+			
 		}
 		
 		

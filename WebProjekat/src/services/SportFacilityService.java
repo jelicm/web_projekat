@@ -83,5 +83,26 @@ public class SportFacilityService {
 				visibleSportFacilities.add(sf);
 		return visibleSportFacilities;
 	}
+	
+	@GET
+	@Path("/review/{name}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response reviewSportFacility(@PathParam("name") String name) {
+		SportFacilityDAO dao = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
+		SportFacility sf = dao.findSportFacility(name);
+		if(sf != null) {
+			request.getSession().setAttribute("reviewedSportFacility", sf);
+			return Response.status(200).entity("sportFacilityInfo.html").build();
+		}
+		return Response.status(400).build();
+	}
+	
+	@GET
+	@Path("/reviewed")
+	@Produces(MediaType.APPLICATION_JSON)
+	public SportFacility getReviewedSportFacility() {
+		SportFacility sf = (SportFacility)request.getSession().getAttribute("reviewedSportFacility");
+		return sf;
+	}
 
 }

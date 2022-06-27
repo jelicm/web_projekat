@@ -403,4 +403,66 @@ public class UserService {
 		
 		return Response.status(400).build();
 	}
+	
+	@GET
+	@Path("/trainingReview/{name}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response trainingReview(@PathParam("name") String name) {
+		Manager m = (Manager)request.getSession().getAttribute("loggedInUser");
+		TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
+		Training t = trainingDAO.findTraining(name);
+		if(t != null)
+		{	
+			ctx.setAttribute("Training", t);
+			return Response.status(200).entity("updateTraining.html").build();
+		}
+		return Response.status(400).build();
+	}
+	
+	@GET
+	@Path("/getTraining/")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Training getTraining() {
+		
+		Training t = (Training) ctx.getAttribute("Training");
+		return t;
+	}
+	
+	@PUT
+	@Path("/updateTraining/{coach}/{name}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateTraining(Training training, @PathParam("coach") String coach, @PathParam("name") String name) {
+		Manager m = (Manager)request.getSession().getAttribute("loggedInUser");
+		TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
+		SportFacilityDAO sportFacilityDAO = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
+		String sp = m.getSportFacility();
+		SportFacility sf = sportFacilityDAO.findSportFacility(sp);
+		if (sp != null) {
+			CoachDAO coachDAO = (CoachDAO) ctx.getAttribute("coachDAO");
+			String[] words = coach.split(" ");
+			for(Coach c : coachDAO.findAllCoaches()) {
+				if(c.getName().equals(words[0]) && c.getSurname().equals(words[1])) {
+					training.setCoach(c.getUsername());
+					break;
+				}
+			}
+			
+		Training tr = trainingDAO.findTraining(training.getName());
+
+		if((tr != null && tr.getName().equals(name)) || tr == null) {
+			trainingDAO.updateTraining(training, name);
+			if(training.getName() != name) {
+				ArrayList<String> trainings = sf.getTrainings();
+				trainings.remove(name);
+				trainings.add(training.getName());
+				sportFacilityDAO.addSportFacility(sf);
+			}
+			return Response.status(200).entity("managerMainPage.html").build();
+		}
+		
+		}
+		return Response.status(400).build();
+	}
 }

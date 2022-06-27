@@ -19,9 +19,11 @@ import javax.ws.rs.core.Response;
 import dao.CustomerDAO;
 import dao.ManagerDAO;
 import dao.SportFacilityDAO;
+import dao.TrainingDAO;
 import beans.Customer;
 import beans.Manager;
 import beans.SportFacility;
+import beans.Training;
 
 
 @Path("/sportFacilities")
@@ -43,6 +45,9 @@ public class SportFacilityService {
 		}
 		if (ctx.getAttribute("managerDAO") == null) {
 			ctx.setAttribute("managerDAO", new ManagerDAO(contextPath));
+		}
+		if (ctx.getAttribute("trainingDAO") == null) {
+			ctx.setAttribute("trainingDAO", new TrainingDAO(contextPath));
 		}
 	}
 	
@@ -105,5 +110,27 @@ public class SportFacilityService {
 		SportFacility sf = (SportFacility)ctx.getAttribute("reviewedSportFacility");
 		return sf;
 	}
+	
+	@GET
+	@Path("/trainingsForSportFacility/{name}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<Training> trainingsForSportFacility(@PathParam("name") String name) {
+		SportFacility sportFacility;
+		SportFacilityDAO sportFacilityDAO = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
+		sportFacility = sportFacilityDAO.findSportFacility(name);
+		ArrayList <Training> trainings = new ArrayList<Training>();
+		if(sportFacility != null) {
+			TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
+			for(Training t : trainingDAO.findAllTrainings()) {
+				if(t.getSportFacility().equals(sportFacility.getName())) {
+					trainings.add(t);
+				}
+			}
+			
+		}
+		
+		return trainings;
+	}
+
 
 }

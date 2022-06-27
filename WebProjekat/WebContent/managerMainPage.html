@@ -4,7 +4,8 @@
 	<title>Menadzer</title>
 </head>
 <body>
-	<form id="managerMainPage">
+	<div id="managerMainPage">
+	<form >
 		<p>Ulogovan je menadzer: {{manager.name}} {{manager.surname}}</p>
 		<a href="profileManager.html">1. Pregled profila</a>
 		<br />
@@ -14,6 +15,29 @@
 		<br /><br /><br />
 		<a v-on:click="logout" href="index.html">Izloguj se</a>
 	</form>
+	
+	<h3>Pregled treninga u objektu</h3>
+	<table border="1">
+	<thead>
+		<tr bgcolor="lightgrey">
+			<th><b>Slika</b></th>
+			<th><b>Naziv treninga</b></th>
+			<th><b>Opis</b></th>
+			<th><b>Trener</b></th>
+			<th><b>Izmeni</b></th>
+		</tr>	
+	</thead>
+	<tbody>
+		<tr v-for="t in treninzi">
+			<td><img v-bind:src=" 'img/' + t.image"></td>
+			<td>{{t.name}}</td>
+			<td>{{t.description }}</td>
+			<td>{{t.coach}} </td>
+			<td><button  v-on:click="izmeni(t)">Izmeni</button></td>
+		</tr>
+	</tbody>
+	</table>
+	</div>
 	<script src="js/vue.js"></script>
 	<script src="js/axios.js"></script>
 	<script src="managerMainPage.js"></script>

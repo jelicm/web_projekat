@@ -8,7 +8,7 @@
 <div id ="sportFacilityInfo">
 	<h3>Osnovne informacije o sportskom objektu</h3>
 	
-		<table border="1">
+		<table border="1" v-if="sportFacility">
 			<tr>
 				<td>Naziv:</td><td v-if="sportFacility">{{sportFacility.name}}</td>
 			</tr>
@@ -31,8 +31,40 @@
 				<td>Logo:</td><td v-if="sportFacility"><img v-bind:src=" 'img/' + sportFacility.image"></td>
 			</tr>
 		</table>
+	<h3>Pregled treninga u objektu</h3>
+	<table border="1">
+	<thead>
+		<tr bgcolor="lightgrey">
+			<th><b>Slika</b></th>
+			<th><b>Naziv treninga</b></th>
+			<th><b>Opis</b></th>
+			<th><b>Trener</b></th>
+			<th><b>Cena</b></th>
+		</tr>	
+	</thead>
+	<tbody>
+		<tr v-for="t in treninzi">
+			<td><img v-bind:src=" 'img/' + t.image"></td>
+			<td>{{t.name}}</td>
+			<td>{{t.description }}</td>
+			<td>{{t.coach}} </td>
+			<td>0.0</td>
+		</tr>
+	</tbody>
+	</table>
 	
 	
+	<h3>Komentari o sportskom objektu</h3>
+	<table border="1">
+	<thead>
+		<tr bgcolor="lightgrey">
+			<th><b>Komentar</b></th>
+			<th><b>Ocena</b></th>
+		</tr>	
+	</thead>
+	<tbody>
+	</tbody>
+	</table>
 </div>
 	<br/><br/><br/>
 	<a href="index.html">Nazad</a>

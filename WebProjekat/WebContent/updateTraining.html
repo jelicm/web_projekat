@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Dodavanje treninga</title>
+</head>
+<body>
+<div id ="trainingUpdate">
+	<form>
+		<table v-if="trening">
+			<tr>
+				<td>Naziv*:</td><td><input v-model="trening.name" type="text" name="naziv"></td>
+			</tr>
+			<tr>
+				<td>Tip*:</td>
+				<td><select v-model="trening.trainingType" name="tip">
+						<option value="GRUPNI">Grupni</option>
+						<option value="PERSONALNI">Personalni</option>
+						<option value="TERETANA">Teretana</option>
+						</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>Opis:</td><td><input v-model="trening.description" type="text" name="opis"></td>
+			</tr>
+			<tr>
+				<td>Trajanje:</td><td><input v-model="trening.durationInMinutes" type="number" min="10" max="360" name="trajanje"></td>
+			</tr>
+			<tr>
+			<td>Izaberi trenera*:</td>
+			<td>
+			<select v-model="izabraniTrener" name="izabraniTrener">
+    				<option v-for="t in treneri" >{{t.name}} {{t.surname}}</option>	
+  				</select>
+  			</td>
+  			
+  		</tr>
+			<tr>
+				<td colspan="2" align="center"><input v-on:click="update" type="submit" value="Izmeni"></td>
+			</tr>
+		</table>
+	</form>
+</div>
+	<a href="managerMainPage.html">Nazad</a>
+	<script src="js/vue.js"></script>
+	<script src="js/axios.js"></script>
+	<script src="updateTraining.js"></script>
+</body>
+</html>

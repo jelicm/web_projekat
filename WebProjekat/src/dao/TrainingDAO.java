@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
+
 import beans.Training;
 
 public class TrainingDAO {
@@ -50,6 +51,15 @@ public class TrainingDAO {
 		Training t = trainings.remove(name);
 		saveTrainings();
 		return t;
+	}
+	
+	public void updateTraining(Training training, String name) {
+		if(!training.getName().equals(name))
+		{
+			trainings.remove(name);
+		}
+		trainings.put(training.getName(), training);
+		saveTrainings();
 	}
 
 	@SuppressWarnings("unchecked")

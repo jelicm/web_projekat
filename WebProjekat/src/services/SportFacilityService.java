@@ -92,7 +92,7 @@ public class SportFacilityService {
 		SportFacilityDAO dao = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
 		SportFacility sf = dao.findSportFacility(name);
 		if(sf != null) {
-			request.getSession().setAttribute("reviewedSportFacility", sf);
+			ctx.setAttribute("reviewedSportFacility", sf);
 			return Response.status(200).entity("sportFacilityInfo.html").build();
 		}
 		return Response.status(400).build();
@@ -102,7 +102,7 @@ public class SportFacilityService {
 	@Path("/reviewed")
 	@Produces(MediaType.APPLICATION_JSON)
 	public SportFacility getReviewedSportFacility() {
-		SportFacility sf = (SportFacility)request.getSession().getAttribute("reviewedSportFacility");
+		SportFacility sf = (SportFacility)ctx.getAttribute("reviewedSportFacility");
 		return sf;
 	}
 

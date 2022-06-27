@@ -365,4 +365,42 @@ public class UserService {
 		return availableManagers;
 	}
 	
+	@GET
+	@Path("/allCoaches")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Coach> allCoaches() {
+		CoachDAO coachDAO = (CoachDAO) ctx.getAttribute("coachDAO");
+		return coachDAO.findAllCoaches();
+	}
+	
+	@POST
+	@Path("/createTraining/{coach}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response createTraining(Training training, @PathParam("coach") String coach) {
+		Manager m = (Manager)request.getSession().getAttribute("loggedInUser");
+		TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
+		String sp = m.getSportFacility();
+		if (sp != null) {
+			training.setSportFacility(sp);
+			
+			CoachDAO coachDAO = (CoachDAO) ctx.getAttribute("coachDAO");
+			String[] words = coach.split(" ");
+			for(Coach c : coachDAO.findAllCoaches()) {
+				if(c.getName().equals(words[0]) && c.getSurname().equals(words[1])) {
+					training.setCoach(c.getUsername());
+					break;
+				}
+			}
+			
+			Training tr = trainingDAO.findTraining(training.getName());
+			
+			if(tr == null) {
+				tr = trainingDAO.addTraining(training);
+				return Response.status(200).entity("managerMainPage.html").build();
+			}
+		}
+		
+		return Response.status(400).build();
+	}
 }

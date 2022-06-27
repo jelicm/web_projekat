@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Detalji o sportskom objektu</title>
 </head>
 <body>
 <div id ="sportFacilityInfo">
@@ -18,11 +18,14 @@
 			<tr>
 				<td>Lokacija:</td><td v-if="sportFacility">{{sportFacility.location.address.street}} {{sportFacility.location.address.number}}, {{sportFacility.location.address.city}}, {{sportFacility.location.address.zipCode}}</td>
 			</tr>
-			<tr>
+			<tr v-show="sportFacility.averageRating>=1">
 				<td>Prosecna ocena:</td><td v-if="sportFacility">{{sportFacility.averageRating}}</td>
 			</tr>
+			<tr v-show="sportFacility.averageRating<1">
+				<td>Prosecna ocena:</td><td v-if="sportFacility">Nema prosek</td>
+			</tr>
 			<tr>
-				<td>Radno vreme:</td><td v-if="sportFacility">{{sportFacility.workTime}}</td>
+				<td>Status:</td><td v-if="sportFacility">{{sportFacility.status}}</td>
 			</tr>
 			<tr>
 				<td>Logo:</td><td v-if="sportFacility"><img v-bind:src=" 'img/' + sportFacility.image"></td>

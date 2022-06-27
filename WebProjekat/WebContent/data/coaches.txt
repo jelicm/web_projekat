@@ -9,5 +9,16 @@
     "dateOfBirth" : "2000-11-11",
     "trainingHistories" : null,
     "deleted" : false
+  },
+  "stivi" : {
+    "username" : "stivi",
+    "password" : "s1t2i3v4i5",
+    "name" : "stefan",
+    "surname" : "stefanovic",
+    "gender" : "MUSKI",
+    "role" : "TRENER",
+    "dateOfBirth" : "2000-12-12",
+    "trainingHistories" : null,
+    "deleted" : false
   }
 }

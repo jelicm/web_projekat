@@ -40,7 +40,7 @@
 			<td>Postanski kod:</td><td><input v-model="kod" type="number" min="1" name="kod"></td>
 		</tr>
 		<tr>
-			<td>Slika:</td><td><input v-model="slika" type="file" name="slika"></td>
+			<td>Logo:</td><td><input v-model="slika" type="file" name="slika"></td>
 		</tr>
 		<tr v-bind:class="[{visible : menadzeri.length !== 0}, {hidden : menadzeri.length === 0}]">
 			<td>Izaberi menadzera:</td>
@@ -92,6 +92,7 @@
 		</table>
 	</form>
 </div>
+<a href="adminMainPage.html">Nazad</a>
 	<script src="js/vue.js"></script>
 	<script src="js/axios.js"></script>
 	<script src="createSportFacility.js"></script>

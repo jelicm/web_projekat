@@ -1,21 +1,21 @@
 {
   "th1" : {
     "name" : "th1",
-    "applicationDateAndTime" : "12.3.2022. 15:00",
+    "applicationDateAndTime" : "12.6.2022. 15:00",
     "training" : "trening1",
     "customer" : "mitar",
     "coach" : "andre"
   },
   "th2" : {
     "name" : "th2",
-    "applicationDateAndTime" : "15.5.2022. 17:00",
+    "applicationDateAndTime" : "25.6.2022. 17:00",
     "training" : "trening2",
     "customer" : "mitar",
     "coach" : "stivi"
   },
   "th3" : {
     "name" : "th3",
-    "applicationDateAndTime" : "22.3.2022. 10:00",
+    "applicationDateAndTime" : "30.5.2022. 10:00",
     "training" : "trening3",
     "customer" : "mare",
     "coach" : "stivi"

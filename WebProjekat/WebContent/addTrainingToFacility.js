@@ -8,7 +8,7 @@ var app = new Vue({
 		treneri: {},
 		trajanje: '',
 		opis: '',
-		cena: 0
+		cena: ''
     },
     mounted(){
 		axios.get('rest/users/allCoaches')

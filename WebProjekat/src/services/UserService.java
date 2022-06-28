@@ -12,9 +12,11 @@ import beans.Training;
 import beans.TrainingHistory;
 import beans.User;
 
-import java.awt.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
@@ -42,6 +44,7 @@ public class UserService {
 	ServletContext ctx;
 	@Context
 	HttpServletRequest request;
+	public static ArrayList<Training> trainings = new ArrayList<Training>();
 	
 	public UserService() {
 	}
@@ -445,7 +448,7 @@ public class UserService {
 		SportFacilityDAO sportFacilityDAO = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
 		String sp = m.getSportFacility();
 		SportFacility sf = sportFacilityDAO.findSportFacility(sp);
-		if (sp != null) {
+		if (sf != null) {
 			CoachDAO coachDAO = (CoachDAO) ctx.getAttribute("coachDAO");
 			String[] words = coach.split(" ");
 			for(Coach c : coachDAO.findAllCoaches()) {
@@ -456,7 +459,7 @@ public class UserService {
 			}
 			
 		Training tr = trainingDAO.findTraining(training.getName());
-
+		
 		if((tr != null && tr.getName().equals(name)) || tr == null) {
 			trainingDAO.updateTraining(training, name);
 			if(training.getName() != name) {
@@ -473,22 +476,51 @@ public class UserService {
 	}
 	
 	@GET
-	@Path("/getTrainingsForCustomer/")
+	@Path("/getTrainingsForCustomer")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<Training> getTrainingsForCustomer() {
-		ArrayList<Training> trainings = new ArrayList<Training>();
+	public ArrayList<Training> getTrainingsForCustomer() throws ParseException {
+		trainings = new ArrayList<Training>();
 		TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
 		TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
 		Customer c = (Customer) request.getSession().getAttribute("loggedInUser");
-		//ArrayList<TrainingHistory> trainingHistories = (ArrayList<TrainingHistory>) thDAO.findAllTrainingHistories();
 		for(TrainingHistory th : thDAO.findAllTrainingHistories()){
-			if(th.getCustomer().equals(c.getUsername()))
+			SimpleDateFormat sdformat = new SimpleDateFormat("dd.MM.yyyy. HH:mm");
+		    Date d1 = sdformat.parse(th.getApplicationDateAndTime());
+		    Date d2 = new Date();
+		    String d2Str = sdformat.format(d2);
+		    d2 = sdformat.parse(d2Str);
+		    long difference_In_Time = d2.getTime() - d1.getTime();
+		    long difference_In_Days = (difference_In_Time / (1000 * 60 * 60 * 24)) % 365;
+			if(th.getCustomer().equals(c.getUsername()) && difference_In_Days <= 30)
 			{
 				Training t = trainingDAO.findTraining(th.getTraining());
 				trainings.add(t);
 			}
 		}
-		
 		return trainings;
 	}
+	
+	@GET
+	@Path("/getTrainingDates")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<String> getTrainingDates() {
+		ArrayList<String> dates = new ArrayList<String>();
+		TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
+		Customer c = (Customer) request.getSession().getAttribute("loggedInUser");
+		for(TrainingHistory th : thDAO.findAllTrainingHistories()){
+			if(th.getCustomer().equals(c.getUsername()))
+			{
+				
+				for(Training t : trainings){
+					if(t.getName().equals(th.getTraining())) {
+						dates.add(th.getApplicationDateAndTime());
+						break;
+					}
+				}
+			}
+		}
+		return dates;
+	}
+	
+	
 }

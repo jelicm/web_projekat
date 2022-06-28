@@ -3,6 +3,7 @@ var app = new Vue({
     data:{
 		trening: null,
 		slika: '',
+		prethodnaSlika: '',
 		izabraniTrener: '',
 		treneri: {},
 		name: ''
@@ -17,16 +18,16 @@ var app = new Vue({
 			    if(t.username == this.trening.coach)
 					this.izabraniTrener = t.name + " " + t.surname;
 			});
-		
+			this.prethodnaSlika = this.trening.image;
 			this.name = this.trening.name;
 		})
     },
     methods: {
         update: function(event){
             event.preventDefault()
-            //let array = this.slika.split("\\")
-            //let slikaPutanja = array[array.length - 1]
-            if(!this.trening.name || !this.trening.trainingType || !this.izabraniTrener){
+            let array = this.slika.split("\\")
+            this.trening.image = array[array.length - 1]
+            if(!this.trening.name || !this.trening.trainingType || !this.izabraniTrener || !this.slika){
 				alert("Postoji nepopunjeno obavezno polje forme!")
 				return
 			}

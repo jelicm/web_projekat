@@ -6,7 +6,8 @@
     "durationInMinutes" : 180,
     "coach" : "andre",
     "description" : "Opis za trening1",
-    "image" : "gym1.png"
+    "image" : "gym1.png",
+    "price" : 100
   },
   "trening2" : {
     "name" : "trening2",
@@ -15,7 +16,8 @@
     "durationInMinutes" : 150,
     "coach" : "stivi",
     "description" : "Opis za trening2",
-    "image" : "gym2.png"
+    "image" : "gym2.png",
+    "price" : 200
   },
   "trening3" : {
     "name" : "trening3",
@@ -24,6 +26,7 @@
     "durationInMinutes" : 120,
     "coach" : "stivi",
     "description" : "Opis za trening3",
-    "image" : "gym3.png"
+    "image" : "gym3.png",
+    "price" : 300
   }
 }

@@ -10,12 +10,13 @@ public class Training {
 	private String coach;
 	private String description;
 	private String image;
+	private int price;
 	
 	public Training() {
 	}
 
 	public Training(String name, TrainingType trainingType, String sportFacility, int durationInMinutes,
-			String coach, String description, String image) {
+			String coach, String description, String image, int price) {
 		super();
 		this.name = name;
 		this.trainingType = trainingType;
@@ -24,6 +25,7 @@ public class Training {
 		this.coach = coach;
 		this.description = description;
 		this.image = image;
+		this.price = price;
 	}
 
 	public String getName() {
@@ -81,5 +83,15 @@ public class Training {
 	public void setImage(String image) {
 		this.image = image;
 	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
+	
 	
 }

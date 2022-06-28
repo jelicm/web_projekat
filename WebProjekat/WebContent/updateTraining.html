@@ -28,6 +28,9 @@
 				<td>Trajanje:</td><td><input v-model="trening.durationInMinutes" type="number" min="10" max="360" name="trajanje"></td>
 			</tr>
 			<tr>
+				<td>Cena:</td><td><input v-model="trening.price" type="number" min="0"  name="cena"></td>
+			</tr>
+			<tr>
 			<td>Izaberi trenera*:</td>
 			<td>
 			<select v-model="izabraniTrener" name="izabraniTrener">
@@ -35,7 +38,8 @@
   				</select>
   			</td>
   			
-  		</tr>
+  			</tr>
+  			
 			<tr>
 				<td colspan="2" align="center"><input v-on:click="update" type="submit" value="Izmeni"></td>
 			</tr>

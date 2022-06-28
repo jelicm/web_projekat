@@ -7,7 +7,8 @@ var app = new Vue({
 		izabraniTrener: '',
 		treneri: {},
 		trajanje: '',
-		opis: ''
+		opis: '',
+		cena: 0
     },
     mounted(){
 		axios.get('rest/users/allCoaches')
@@ -24,15 +25,19 @@ var app = new Vue({
 			}
 			let trajanje = 0
 			let opis = ""
+			let cena = 0
 			if(this.trajanje){
 				trajanje = this.trajanje
 			}
 			if(this.opis){
 				opis = this.opis
 			}
+			if(this.cena){
+				cena = this.cena
+			}
 			axios.post('rest/users/createTraining/' + this.izabraniTrener, 
 	            {"name": this.naziv, "trainingType": this.tip, "sportFacility": null, "image" : slikaPutanja,
-	            "durationInMinutes" : trajanje, "coach" : null, "description": opis})
+	            "durationInMinutes" : trajanje, "coach" : null, "description": opis, "price": cena})
 	            .then(response => {
 	                location.href=response.data 
 	            })

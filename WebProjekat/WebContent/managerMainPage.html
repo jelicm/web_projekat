@@ -24,6 +24,7 @@
 			<th><b>Naziv treninga</b></th>
 			<th><b>Opis</b></th>
 			<th><b>Trener</b></th>
+			<th><b>Cena</b></th>
 			<th><b>Izmeni</b></th>
 		</tr>	
 	</thead>
@@ -33,6 +34,7 @@
 			<td>{{t.name}}</td>
 			<td>{{t.description }}</td>
 			<td>{{t.coach}} </td>
+			<td>{{t.price}} </td>
 			<td><button  v-on:click="izmeni(t)">Izmeni</button></td>
 		</tr>
 	</tbody>

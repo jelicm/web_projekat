@@ -4,12 +4,34 @@
 	<title>Kupac</title>
 </head>
 <body>
-	<form id="customerMainPage">
+<div id="customerMainPage">
+	<form >
 		<p>Ulogovan je kupac: {{customer.name}} {{customer.surname}}</p>
 		<a href="profileCustomer.html">1. Pregled profila</a>
 		<br /><br /><br />
 		<a v-on:click="logout" href="index.html">Izloguj se</a>
 	</form>
+	
+	<h3>Pregled treninga</h3>
+	<table border="1">
+	<thead>
+		<tr bgcolor="lightgrey">
+			<th><b>Slika</b></th>
+			<th><b>Naziv treninga</b></th>
+			<th><b>Opis</b></th>
+			<th><b>Trener</b></th>
+		</tr>	
+	</thead>
+	<tbody>
+		<tr v-for="t in treninzi">
+			<td><img v-bind:src=" 'img/' + t.image"></td>
+			<td>{{t.name}}</td>
+			<td>{{t.description }}</td>
+			<td>{{t.coach}} </td>
+		</tr>
+	</tbody>
+	</table>
+</div>
 	<script src="js/vue.js"></script>
 	<script src="js/axios.js"></script>
 	<script src="customerMainPage.js"></script>

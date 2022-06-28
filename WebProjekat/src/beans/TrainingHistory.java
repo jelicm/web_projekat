@@ -1,6 +1,7 @@
 package beans;
 
 public class TrainingHistory {
+	private String name;
 	private String applicationDateAndTime;
 	private String training;
 	private String customer;
@@ -10,12 +11,13 @@ public class TrainingHistory {
 	}
 
 	public TrainingHistory(String applicationDateAndTime, String training, String customer,
-			String coach) {
+			String coach, String name) {
 		super();
 		this.applicationDateAndTime = applicationDateAndTime;
 		this.training = training;
 		this.customer = customer;
 		this.coach = coach;
+		this.name = name;
 	}
 
 	public String getApplicationDateAndTime() {
@@ -48,6 +50,14 @@ public class TrainingHistory {
 
 	public void setCoach(String coach) {
 		this.coach = coach;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

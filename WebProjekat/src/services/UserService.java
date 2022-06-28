@@ -9,8 +9,10 @@ import beans.Customer;
 import beans.Manager;
 import beans.SportFacility;
 import beans.Training;
+import beans.TrainingHistory;
 import beans.User;
 
+import java.awt.List;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -32,6 +34,7 @@ import dao.CustomerDAO;
 import dao.ManagerDAO;
 import dao.SportFacilityDAO;
 import dao.TrainingDAO;
+import dao.TrainingHistoryDAO;
 
 @Path("/users")
 public class UserService {
@@ -63,6 +66,9 @@ public class UserService {
 		}
 		if (ctx.getAttribute("managerDAO") == null) {
 			ctx.setAttribute("managerDAO", new ManagerDAO(contextPath));
+		}
+		if (ctx.getAttribute("trainingHistoryDAO") == null) {
+			ctx.setAttribute("trainingHistoryDAO", new TrainingHistoryDAO(contextPath));
 		}
 	}
 	
@@ -464,5 +470,25 @@ public class UserService {
 		
 		}
 		return Response.status(400).build();
+	}
+	
+	@GET
+	@Path("/getTrainingsForCustomer/")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<Training> getTrainingsForCustomer() {
+		ArrayList<Training> trainings = new ArrayList<Training>();
+		TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
+		TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
+		Customer c = (Customer) request.getSession().getAttribute("loggedInUser");
+		//ArrayList<TrainingHistory> trainingHistories = (ArrayList<TrainingHistory>) thDAO.findAllTrainingHistories();
+		for(TrainingHistory th : thDAO.findAllTrainingHistories()){
+			if(th.getCustomer().equals(c.getUsername()))
+			{
+				Training t = trainingDAO.findTraining(th.getTraining());
+				trainings.add(t);
+			}
+		}
+		
+		return trainings;
 	}
 }

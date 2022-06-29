@@ -48,7 +48,7 @@ var app = new Vue({
 	  },
 	  grupniTreninzi() {
 	    const grupniTreninzi = []
-	    for (let i = 0, len = this.datumiPersonalni.length; i < len; i++) {
+	    for (let i = 0, len = this.datumiGrupni.length; i < len; i++) {
 	      grupniTreninzi.push({
 	        treninzi: this.grupni[i],
 	        datumi: this.datumiGrupni[i],
@@ -62,6 +62,15 @@ var app = new Vue({
         logout: function(){
 		axios.get('rest/users/logout')
 		.then(coach = {})
-		}
+		},
+		otkazi: function(pt){
+		axios.get('rest/users/cancelTraining/' + pt.treninzi.name)
+        .then(response => {
+            location.href=response.data 
+        })
+        .catch(function(){
+            alert("Trening je za manje od 2 dana, ne moze se otkazati!")
+        })	
+        }
 	}
 });

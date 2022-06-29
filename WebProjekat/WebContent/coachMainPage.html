@@ -21,6 +21,7 @@
 			<th><b>Tip sportskog objekta</b></th>
 			<th><b>Datum i vreme treniranja</b></th>
 			<th><b>Cena treniranja</b></th>
+			<th><b>Otkazivanje treninga</b></th>
 		</tr>	
 	</thead>
 	<tbody>
@@ -31,6 +32,7 @@
 			<td>{{pt.tipovi}} </td>
 			<td>{{pt.datumi}}</td>
 			<td>{{pt.treninzi.price}} </td>
+			<td align="center"><button v-on:click="otkazi(pt)">Otkazi</button></td>
 		</tr>
 	</tbody>
 	</table>

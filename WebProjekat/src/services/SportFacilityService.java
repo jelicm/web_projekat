@@ -20,10 +20,12 @@ import dao.CustomerDAO;
 import dao.ManagerDAO;
 import dao.SportFacilityDAO;
 import dao.TrainingDAO;
+import dao.TrainingHistoryDAO;
 import beans.Customer;
 import beans.Manager;
 import beans.SportFacility;
 import beans.Training;
+import beans.TrainingHistory;
 
 
 @Path("/sportFacilities")
@@ -32,6 +34,7 @@ public class SportFacilityService {
 	ServletContext ctx;
 	@Context
 	HttpServletRequest request;
+	public static ArrayList<Training> managerTrainings = new ArrayList<Training>();
 	
 	public SportFacilityService() {
 		
@@ -48,6 +51,9 @@ public class SportFacilityService {
 		}
 		if (ctx.getAttribute("trainingDAO") == null) {
 			ctx.setAttribute("trainingDAO", new TrainingDAO(contextPath));
+		}
+		if (ctx.getAttribute("trainingHistoryDAO") == null) {
+			ctx.setAttribute("trainingHistoryDAO", new TrainingHistoryDAO(contextPath));
 		}
 	}
 	
@@ -118,18 +124,41 @@ public class SportFacilityService {
 		SportFacility sportFacility;
 		SportFacilityDAO sportFacilityDAO = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
 		sportFacility = sportFacilityDAO.findSportFacility(name);
-		ArrayList <Training> trainings = new ArrayList<Training>();
+		managerTrainings = new ArrayList<Training>();
 		if(sportFacility != null) {
 			TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
+			TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
 			for(Training t : trainingDAO.findAllTrainings()) {
+				int numOfTrainings = 0;
+				for(TrainingHistory th : thDAO.findAllTrainingHistories()) {
+					if(th.getTraining().equals(t.getName()))
+						numOfTrainings++;
+				}
 				if(t.getSportFacility().equals(sportFacility.getName())) {
-					trainings.add(t);
+					for(int i = 0; i < numOfTrainings; i++)
+						managerTrainings.add(t);
 				}
 			}
 			
 		}
-		
-		return trainings;
+		return managerTrainings;
+	}
+	
+	@GET
+	@Path("/getTrainingDates")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<String> getTrainingDates() {
+		ArrayList<String> dates = new ArrayList<String>();
+		TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
+		for(TrainingHistory th : thDAO.findAllTrainingHistories()){
+			for(Training t : managerTrainings){
+				if(t.getName().equals(th.getTraining())) {
+					dates.add(th.getApplicationDateAndTime());
+					break;
+				}
+			}
+		}
+		return dates;
 	}
 
 

@@ -667,15 +667,12 @@ public class UserService {
 		}
 		if(trHistory != null) {
 			SimpleDateFormat sdformat = new SimpleDateFormat("dd.MM.yyyy. HH:mm");
-			System.out.println(trHistory.getApplicationDateAndTime());
 		    Date d1 = sdformat.parse(trHistory.getApplicationDateAndTime());
 		    Date d2 = new Date();
 		    String d2Str = sdformat.format(d2);
-		    System.out.println(d2Str);
 		    d2 = sdformat.parse(d2Str);
 		    long difference_In_Time = d1.getTime() - d2.getTime();
 		    long difference_In_Days = (difference_In_Time / (1000 * 60 * 60 * 24)) % 365;
-		    System.out.println(difference_In_Days);
 		    for(Training t : coachPersonalTrainings){
 				if(t.getName().equals(name) && difference_In_Days >= 2) {
 					thDAO.deleteTrainingHistory(trHistory.getName());

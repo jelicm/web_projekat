@@ -12,6 +12,7 @@ var app = new Vue({
 	data: {
 		manager: {},
 		treninzi: {},
+		datumi:{}
 	},
 	mounted() {
 		axios.get('rest/users/loggedInManager')
@@ -19,17 +20,31 @@ var app = new Vue({
 			this.manager = response.data
 			axios.get('rest/sportFacilities/trainingsForSportFacility/' + this.manager.sportFacility)
 			.then(response => {this.treninzi = response.data})
+			axios.get('rest/sportFacilities/getTrainingDates')
+			.then(response => (this.datumi = response.data))
 		
 		})
 		
+	},
+	computed: {
+	  treninziSaDatumom() {
+	    const treninziSaDatumom = []
+	    for (let i = 0, len = this.datumi.length; i < len; i++) {
+	      treninziSaDatumom.push({
+	        treninzi: this.treninzi[i],
+	        datumi: this.datumi[i]
+	      })
+	    }
+	    return treninziSaDatumom
+	  }
 	},
 	methods: {
         logout: function(){
 		axios.get('rest/users/logout')
 		.then(manager = {})
 		},
-		izmeni: function(t){
-			axios.get('rest/users/trainingReview/' + t.name)
+		izmeni: function(tsd){
+			axios.get('rest/users/trainingReview/' + tsd.treninzi.name)
 		.then(response => {location.href=response.data} )
 		}
 	}

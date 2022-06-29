@@ -12,7 +12,8 @@ var app = new Vue({
 	data: {
 		customer: {},
 		treninzi: {},
-		datumi: {}
+		datumi: {},
+		tipovi: {}
 	},
 	mounted() {
 		axios.get('rest/users/loggedInCustomer')
@@ -21,6 +22,8 @@ var app = new Vue({
 		.then(response => (this.treninzi = response.data))
 		axios.get('rest/users/getTrainingDates')
 		.then(response => (this.datumi = response.data))
+		axios.get('rest/users/getSportFacilityType')
+		.then(response => (this.tipovi = response.data))
 	},
 	computed: {
 	  treninziSaDatumom() {
@@ -28,7 +31,8 @@ var app = new Vue({
 	    for (let i = 0, len = this.datumi.length; i < len; i++) {
 	      treninziSaDatumom.push({
 	        treninzi: this.treninzi[i],
-	        datumi: this.datumi[i]
+	        datumi: this.datumi[i],
+	        tipovi: this.tipovi[i]
 	      })
 	    }
 	    return treninziSaDatumom

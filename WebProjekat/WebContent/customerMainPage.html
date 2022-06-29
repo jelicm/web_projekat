@@ -17,15 +17,21 @@
 	<thead>
 		<tr bgcolor="lightgrey">
 			<th><b>Naziv treninga</b></th>
+			<th><b>Tip treninga</b></th>
 			<th><b>Sportski objekat</b></th>
+			<th><b>Tip sportskog objekta</b></th>
 			<th><b>Datum i vreme treniranja</b></th>
+			<th><b>Cena treniranja</b></th>
 		</tr>	
 	</thead>
 	<tbody>
 		<tr v-for="tsd in treninziSaDatumom">
 			<td>{{tsd.treninzi.name}}</td>
+			<td>{{tsd.treninzi.trainingType}} </td>
 			<td>{{tsd.treninzi.sportFacility}} </td>
-			<td >{{tsd.datumi}}</td>
+			<td>{{tsd.tipovi}} </td>
+			<td>{{tsd.datumi}}</td>
+			<td>{{tsd.treninzi.price}} </td>
 		</tr>
 	</tbody>
 	</table>

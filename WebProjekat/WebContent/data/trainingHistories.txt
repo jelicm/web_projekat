@@ -19,5 +19,12 @@
     "training" : "trening3",
     "customer" : "mare",
     "coach" : "stivi"
+  },
+  "th4" : {
+    "name" : "th4",
+    "applicationDateAndTime" : "22.6.2022. 13:00",
+    "training" : "trening4",
+    "customer" : "mare",
+    "coach" : "andre"
   }
 }

@@ -4,12 +4,60 @@
 	<title>Trener</title>
 </head>
 <body>
-	<form id="coachMainPage">
+<div id="coachMainPage">
+	<form>
 		<p>Ulogovan je trener: {{coach.name}} {{coach.surname}}</p>
 		<a href="profileCoach.html">1. Pregled profila</a>
 		<br /><br /><br />
 		<a v-on:click="logout" href="index.html">Izloguj se</a>
 	</form>
+	<h3>Pregled personalnih treninga</h3>
+	<table border="1">
+	<thead>
+		<tr bgcolor="lightgrey">
+			<th><b>Naziv treninga</b></th>
+			<th><b>Tip treninga</b></th>
+			<th><b>Sportski objekat</b></th>
+			<th><b>Tip sportskog objekta</b></th>
+			<th><b>Datum i vreme treniranja</b></th>
+			<th><b>Cena treniranja</b></th>
+		</tr>	
+	</thead>
+	<tbody>
+		<tr v-for="pt in personalniTreninzi">
+			<td>{{pt.treninzi.name}}</td>
+			<td>{{pt.treninzi.trainingType}} </td>
+			<td>{{pt.treninzi.sportFacility}} </td>
+			<td>{{pt.tipovi}} </td>
+			<td>{{pt.datumi}}</td>
+			<td>{{pt.treninzi.price}} </td>
+		</tr>
+	</tbody>
+	</table>
+	<h3>Pregled grupnih treninga</h3>
+	<table border="1">
+	<thead>
+		<tr bgcolor="lightgrey">
+			<th><b>Naziv treninga</b></th>
+			<th><b>Tip treninga</b></th>
+			<th><b>Sportski objekat</b></th>
+			<th><b>Tip sportskog objekta</b></th>
+			<th><b>Datum i vreme treniranja</b></th>
+			<th><b>Cena treniranja</b></th>
+		</tr>	
+	</thead>
+	<tbody>
+		<tr v-for="gt in grupniTreninzi">
+			<td>{{gt.treninzi.name}}</td>
+			<td>{{gt.treninzi.trainingType}} </td>
+			<td>{{gt.treninzi.sportFacility}} </td>
+			<td>{{gt.tipovi}} </td>
+			<td>{{gt.datumi}}</td>
+			<td>{{gt.treninzi.price}} </td>
+		</tr>
+	</tbody>
+	</table>
+</div>
 	<script src="js/vue.js"></script>
 	<script src="js/axios.js"></script>
 	<script src="coachMainPage.js"></script></body>

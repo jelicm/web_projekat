@@ -15,7 +15,18 @@
 		<br /><br /><br />
 		<a v-on:click="logout" href="index.html">Izloguj se</a>
 	</form>
-	
+	<h4>Pretrazi treninge:</h4>
+	<table>
+
+			<tr><td>Cena:</td><td><input style='width:100%' v-model="minCena" min="0"  type="number" name="minCena"></td>
+				<td><input style='width:100%' v-model="maxCena" v-bind:min="minCena"  type="number" name="maxCena"></td>
+			<td><button  v-on:click="pretragaCena(minCena, maxCena)">Pretrazi</button></td></tr>
+			<tr><td>Datum prijave:</td><td><input style='width:100%' v-model="datumPocetak" type="date" name="datumPocetak"></td>
+			<td><input style='width:100%' v-model="datumKraj" type="date" name="datumKraj"></td>
+			<td><button  v-on:click="pretragaDatum(datumPocetak, datumKraj)">Pretrazi</button></td></tr>
+			<tr><td align="right" colspan="2"><button  v-on:click="ponistiPretragu()">Ponisti</button></td></tr>
+		</table>
+		
 	<h3>Pregled treninga u objektu</h3>
 	<table border="1">
 	<thead>
@@ -31,7 +42,7 @@
 		</tr>	
 	</thead>
 	<tbody>
-		<tr v-for="tsd in treninziSaDatumom">
+		<tr v-for="tsd in treninziSaDatumomFiltrirano">
 			<td><img v-bind:src=" 'img/' + tsd.treninzi.image"></td>
 			<td>{{tsd.treninzi.name}}</td>
 			<td>{{tsd.treninzi.trainingType}}</td>

@@ -11,6 +11,20 @@
 		<br /><br /><br />
 		<a v-on:click="logout" href="index.html">Izloguj se</a>
 	</form>
+	
+	<h4>Pretrazi personalne treninge:</h4>
+	<table>
+			<tr><td>Naziv sportskog objekta:</td><td><input v-model="naziv1" type="text" name="naziv1"></td><td><button  v-on:click="pretragaNazivPersonalni(naziv1)">Pretrazi</button></td></tr>
+			
+			<tr><td>Cena:</td><td><input style='width:100%' v-model="minCena1" min="0"  type="number" name="minCena1"></td>
+				<td><input style='width:100%' v-model="maxCena1" v-bind:min="minCena1"  type="number" name="maxCena1"></td>
+			<td><button  v-on:click="pretragaCenaPersonalni(minCena1, maxCena1)">Pretrazi</button></td></tr>
+			<tr><td>Datum prijave:</td><td><input style='width:100%' v-model="datumPocetak1" type="date" name="datumPocetak1"></td>
+			<td><input style='width:100%' v-model="datumKraj1" type="date" name="datumKraj1"></td>
+			<td><button  v-on:click="pretragaDatumPersonalni(datumPocetak1, datumKraj1)">Pretrazi</button></td></tr>
+			<tr><td align="right" colspan="2"><button  v-on:click="ponistiPretraguPersonalni()">Ponisti</button></td></tr>
+		</table>
+		
 	<h3>Pregled personalnih treninga</h3>
 	<table border="1">
 	<thead>
@@ -25,7 +39,7 @@
 		</tr>	
 	</thead>
 	<tbody>
-		<tr v-for="pt in personalniTreninzi">
+		<tr v-for="pt in personalniTreninziFilter">
 			<td>{{pt.treninzi.name}}</td>
 			<td>{{pt.treninzi.trainingType}} </td>
 			<td>{{pt.treninzi.sportFacility}} </td>
@@ -35,7 +49,22 @@
 			<td align="center"><button v-on:click="otkazi(pt)">Otkazi</button></td>
 		</tr>
 	</tbody>
+	<table>
+	<br></br>
+	<h4>Pretrazi grupne treninge:</h4>
+	
+			<tr><td>Naziv sportskog objekta:</td><td><input v-model="naziv2" type="text" name="naziv2"></td><td><button  v-on:click="pretragaNazivGrupni(naziv2)">Pretrazi</button></td></tr>
+			
+			<tr><td>Cena:</td><td><input style='width:100%' v-model="minCena2" min="0"  type="number" name="minCena2"></td>
+				<td><input style='width:100%' v-model="maxCena2" v-bind:min="minCena2"  type="number" name="maxCena2"></td>
+			<td><button  v-on:click="pretragaCenaGrupni(minCena2, maxCena2)">Pretrazi</button></td></tr>
+			<tr><td>Datum prijave:</td><td><input style='width:100%' v-model="datumPocetak2" type="date" name="datumPocetak2"></td>
+			<td><input style='width:100%' v-model="datumKraj2" type="date" name="datumKraj2"></td>
+			<td><button  v-on:click="pretragaDatumGrupni(datumPocetak2, datumKraj2)">Pretrazi</button></td></tr>
+			<tr><td align="right" colspan="2"><button  v-on:click="ponistiPretraguGrupni()">Ponisti</button></td></tr>
+		</table>
 	</table>
+	
 	<h3>Pregled grupnih treninga</h3>
 	<table border="1">
 	<thead>
@@ -49,7 +78,7 @@
 		</tr>	
 	</thead>
 	<tbody>
-		<tr v-for="gt in grupniTreninzi">
+		<tr v-for="gt in grupniTreninziFilter">
 			<td>{{gt.treninzi.name}}</td>
 			<td>{{gt.treninzi.trainingType}} </td>
 			<td>{{gt.treninzi.sportFacility}} </td>

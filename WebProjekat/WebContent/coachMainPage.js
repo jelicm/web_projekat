@@ -32,6 +32,15 @@ var app = new Vue({
 		personalniTreninzi: [],
 		grupniTreninzi: [],
 		grupniTreninziFilter:[],
+		sortiranoNaziv1 : 0,
+		sortiranoCena1 : 0,
+		sortiranoDatum1: 0,
+		sortiranoNaziv2: 0,
+		sortiranoCena2: 0,
+		sortiranoDatum2: 0,
+		tipo1: '',
+		tipo2: '',
+		tipoviObjekata: {},
 	},
 	mounted() {
 		axios.get('rest/users/loggedInCoach')
@@ -70,6 +79,8 @@ var app = new Vue({
 		    }
 			this.grupniTreninziFilter = this.grupniTreninzi
 		})
+		axios.get("rest/enums/facilityType")
+			 .then((response) => {this.tipoviObjekata = response.data});
 	},
 	computed: {
 	  /*personalniTreninzi() {
@@ -253,6 +264,178 @@ var app = new Vue({
 				this.datumKraj2 = '';
 			}
 			
+		},
+		
+		sortNaziv1: function(){
+			if(this.sortiranoNaziv1 === 0)
+			{
+				this.personalniTreninziFilter = this.personalniTreninziFilter.sort((a,b) => (a.treninzi.sportFacility > b.treninzi.sportFacility) ? 1 : ((a.treninzi.sportFacility < b.treninzi.sportFacility) ? -1 : 0));
+				this.sortiranoNaziv1 = 1
+				this.sortiranoCena1 = 0
+				this.sortiranoDatum1 =0
+			}
+			else
+			{
+				this.personalniTreninziFilter.reverse()
+				this.sortiranoNaziv1 = 0
+			}
+				
+		},
+		
+		sortCena1: function(){
+			if(this.sortiranoCena1 === 0)
+			{
+				this.personalniTreninziFilter = this.personalniTreninziFilter.sort((a,b) => (a.treninzi.price > b.treninzi.price) ? 1 : ((a.treninzi.price < b.treninzi.price) ? -1 : 0));
+				this.sortiranoNaziv1 = 0
+				this.sortiranoCena1 = 1
+				this.sortiranoDatum1 = 0
+			}
+			else
+			{
+				this.personalniTreninziFilter.reverse()
+				this.sortiranoCena1 = 0
+			}
+				
+		},
+		
+		sortDatum1: function(){
+			if(this.sortiranoDatum1 === 0)
+			{
+				this.personalniTreninziFilter = this.personalniTreninziFilter.sort((a,b) => {
+					
+					const pa = a.datumi.split(" ")[0].split(".");
+					const pb = b.datumi.split(" ")[0].split(".");
+					if(parseInt(pa[2]) > parseInt(pb[2]))
+						return 1;
+					else if(parseInt(pa[2]) < parseInt(pb[2]))
+						return -1;
+					else if (parseInt(pa[1]) > parseInt(pb[1]))
+						return 1;
+					else if(parseInt(pa[1]) < parseInt(pb[1]))
+						return -1;
+					else if (parseInt(pa[0]) > parseInt(pb[0]))
+						return 1;
+					else if(parseInt(pa[0]) < parseInt(pb[0]))
+						return -1;
+					else 
+					{
+						if(a.split(" ")[1].split(":")[1] > b.split(" ")[1].split(":")[1])
+							return 1;
+						if(a.split(" ")[1].split(":")[1] < b.split(" ")[1].split(":")[1])
+							return -1;	
+					}
+					return 0;
+				})
+				this.sortiranoNaziv1 = 0
+				this.sortiranoCena1 = 0
+				this.sortiranoDatum1 = 1
+			}
+			else
+			{
+				this.personalniTreninziFilter.reverse()
+				this.sortiranoDatum1 = 0
+			}
+		},
+		
+		sortNaziv2: function(){
+			if(this.sortiranoNaziv2 === 0)
+			{
+				this.grupniTreninziFilter = this.grupniTreninziFilter.sort((a,b) => (a.treninzi.sportFacility > b.treninzi.sportFacility) ? 1 : ((a.treninzi.sportFacility < b.treninzi.sportFacility) ? -1 : 0));
+				this.sortiranoNaziv2 = 1
+				this.sortiranoCena2 = 0
+				this.sortiranoDatum2 =0
+			}
+			else
+			{
+				this.grupniTreninziFilter.reverse()
+				this.sortiranoNaziv1 = 0
+			}
+				
+		},
+		
+		sortCena2: function(){
+			if(this.sortiranoCena2 === 0)
+			{
+				this.grupniTreninziFilter = this.grupniTreninziFilter.sort((a,b) => (a.treninzi.price > b.treninzi.price) ? 1 : ((a.treninzi.price < b.treninzi.price) ? -1 : 0));
+				this.sortiranoNaziv2 = 0
+				this.sortiranoCena2 = 1
+				this.sortiranoDatum2 = 0
+			}
+			else
+			{
+				this.grupniTreninziFilter.reverse()
+				this.sortiranoCena2 = 0
+			}
+				
+		},
+		
+		sortDatum2: function(){
+			if(this.sortiranoDatum2 === 0)
+			{
+				this.grupniTreninziFilter = this.gupniTreninziFilter.sort((a,b) => {
+					
+					const pa = a.datumi.split(" ")[0].split(".");
+					const pb = b.datumi.split(" ")[0].split(".");
+					if(parseInt(pa[2]) > parseInt(pb[2]))
+						return 1;
+					else if(parseInt(pa[2]) < parseInt(pb[2]))
+						return -1;
+					else if (parseInt(pa[1]) > parseInt(pb[1]))
+						return 1;
+					else if(parseInt(pa[1]) < parseInt(pb[1]))
+						return -1;
+					else if (parseInt(pa[0]) > parseInt(pb[0]))
+						return 1;
+					else if(parseInt(pa[0]) < parseInt(pb[0]))
+						return -1;
+					else 
+					{
+						if(a.split(" ")[1].split(":")[1] > b.split(" ")[1].split(":")[1])
+							return 1;
+						if(a.split(" ")[1].split(":")[1] < b.split(" ")[1].split(":")[1])
+							return -1;	
+					}
+					return 0;
+				})
+				this.sortiranoNaziv2 = 0
+				this.sortiranoCena2 = 0
+				this.sortiranoDatum2 = 1
+			}
+			else
+			{
+				this.grupniTreninziFilter.reverse()
+				this.sortiranoDatum2 = 0
+			}
+		},
+		
+		tipObjektaFilter1: function(evt){
+			var t = evt.target.value;
+			if(t == "Izaberi tip objekta")
+			{
+				this.tipo1 = '';
+				this.personalniTreninziFilter = this.personalniTreninzi;
+			}
+			else
+			{
+				this.tipo1 = t;	
+				this.personalniTreninziFilter = this.personalniTreninzi.filter(o => o.tipovi == this.tipo1);
+			}
+				
+		},
+		
+		tipObjektaFilter2: function(evt){
+			var t = evt.target.value;
+			if(t == "Izaberi tip objekta")
+			{
+				this.tipo2 = '';
+				this.grupniTreninziFilter = this.grupniTreninzi;
+			}
+			else
+			{
+				this.tipo2 = t;	
+				this.grupniTreninziFilter = this.grupniTreninzi.filter(o => o.tipovi == this.tipo2);
+			}
+				
 		},
 	}
 });

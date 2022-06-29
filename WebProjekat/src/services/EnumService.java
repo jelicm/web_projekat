@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 
 import enums.FacilityType;
 import enums.Status;
+import enums.TrainingType;
 
 
 
@@ -40,6 +41,14 @@ public class EnumService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public FacilityType[] getFacilityType() {
 		FacilityType[] values = FacilityType.values();
+		return values;
+	}
+	
+	@GET
+	@Path("/trainingType")
+	@Produces(MediaType.APPLICATION_JSON)
+	public TrainingType[] getTrainingType() {
+		TrainingType[] values = TrainingType.values();
 		return values;
 	}
 	

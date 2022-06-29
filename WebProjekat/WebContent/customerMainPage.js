@@ -21,6 +21,13 @@ var app = new Vue({
 		datumKraj: '',
 		treninziSaDatumom: [],
 		treninziSaDatumomFiltrirano: [],
+		sortiranoNaziv : 0,
+		sortiranoCena : 0,
+		sortiranoDatum: 0,
+		tipoviObjekata: {},
+		tipoviTreninga: {},
+		tipo: '',
+		tipt: '',
 		
 	},
 	mounted() {
@@ -43,6 +50,11 @@ var app = new Vue({
 			this.treninziSaDatumomFiltrirano = this.treninziSaDatumom;
 
 		})
+		axios.get("rest/enums/facilityType")
+			 .then((response) => {this.tipoviObjekata = response.data});
+		axios.get("rest/enums/trainingType")
+			 .then((response) => {this.tipoviTreninga = response.data});
+		
 	},
 	/*computed: {
 	  treninziSaDatumom() {
@@ -133,6 +145,115 @@ var app = new Vue({
 			this.maxCena = 0;
 			this.datumPocetak = '';
 			this.datumKraj = '';
+		},
+		
+		sortNaziv: function(){
+			if(this.sortiranoNaziv === 0)
+			{
+				this.treninziSaDatumomFiltrirano = this.treninziSaDatumomFiltrirano.sort((a,b) => (a.treninzi.sportFacility > b.treninzi.sportFacility) ? 1 : ((a.treninzi.sportFacility < b.treninzi.sportFacility) ? -1 : 0));
+				this.sortiranoNaziv = 1
+				this.sortiranoCena = 0
+				this.sortiranoDatum =0
+			}
+			else
+			{
+				this.treninziSaDatumomFiltrirano.reverse()
+				this.sortiranoNaziv = 0
+			}
+				
+		},
+		
+		sortCena: function(){
+			if(this.sortiranoCena === 0)
+			{
+				this.treninziSaDatumomFiltrirano = this.treninziSaDatumomFiltrirano.sort((a,b) => (a.treninzi.price > b.treninzi.price) ? 1 : ((a.treninzi.price < b.treninzi.price) ? -1 : 0));
+				this.sortiranoNaziv = 0
+				this.sortiranoCena = 1
+				this.sortiranoDatum = 0
+			}
+			else
+			{
+				this.treninziSaDatumomFiltrirano.reverse()
+				this.sortiranoCena = 0
+			}
+				
+		},
+		
+		sortDatum: function(){
+			if(this.sortiranoDatum === 0)
+			{
+				this.treninziSaDatumomFiltrirano = this.treninziSaDatumomFiltrirano.sort((a,b) => {
+					
+					const pa = a.datumi.split(" ")[0].split(".");
+					const pb = b.datumi.split(" ")[0].split(".");
+					if(parseInt(pa[2]) > parseInt(pb[2]))
+						return 1;
+					else if(parseInt(pa[2]) < parseInt(pb[2]))
+						return -1;
+					else if (parseInt(pa[1]) > parseInt(pb[1]))
+						return 1;
+					else if(parseInt(pa[1]) < parseInt(pb[1]))
+						return -1;
+					else if (parseInt(pa[0]) > parseInt(pb[0]))
+						return 1;
+					else if(parseInt(pa[0]) < parseInt(pb[0]))
+						return -1;
+					else 
+					{
+						if(a.split(" ")[1].split(":")[1] > b.split(" ")[1].split(":")[1])
+							return 1;
+						if(a.split(" ")[1].split(":")[1] < b.split(" ")[1].split(":")[1])
+							return -1;	
+					}
+					return 0;
+				})
+				this.sortiranoNaziv = 0
+				this.sortiranoCena = 0
+				this.sortiranoDatum = 1
+			}
+			else
+			{
+				this.treninziSaDatumomFiltrirano.reverse()
+				this.sortiranoDatum = 0
+			}
+		},
+		
+		tipObjektaFilter: function(evt){
+			var t = evt.target.value;
+			if(t == "Izaberi tip objekta")
+			{
+				//this.pretrazeniObjekti = this.objekti;
+				this.tipo = '';
+			}
+			else
+				this.tipo = t;	
+			
+			if(this.tipo != ''  )
+				this.treninziSaDatumomFiltrirano = this.treninziSaDatumom.filter(o => o.tipovi == this.tipo);
+			else
+				this.treninziSaDatumomFiltrirano = this.treninziSaDatumom;
+				
+			if(this.tipt != '')	
+				this.treninziSaDatumomFiltrirano = this.treninziSaDatumomFiltrirano.filter(o => o.treninzi.trainingType == this.tipt);	
+		},
+		
+		tipTreningaFilter: function(evt){
+			var t = evt.target.value;
+			if(t == "Izaberi tip treninga")
+			{
+				//this.pretrazeniObjekti = this.objekti;
+				this.tipt = '';
+			}
+			else
+				this.tipt = t;	
+			
+			if(this.tipo != ''  )
+				this.treninziSaDatumomFiltrirano = this.treninziSaDatumom.filter(o => o.tipovi == this.tipo);
+			else
+				this.treninziSaDatumomFiltrirano = this.treninziSaDatumom;
+				
+			if(this.tipt != '')	
+				this.treninziSaDatumomFiltrirano = this.treninziSaDatumomFiltrirano.filter(o => o.treninzi.trainingType == this.tipt);	
 		},
 	}
 });

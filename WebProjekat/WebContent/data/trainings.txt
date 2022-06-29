@@ -35,8 +35,29 @@
     "sportFacility" : "Teretana2",
     "durationInMinutes" : 150,
     "coach" : "andre",
-    "description" : "Opis za trening5",
+    "description" : "Opis za trening4",
     "image" : "gym3.png",
     "price" : 400
+  },
+  "trening5" : {
+    "name" : "trening5",
+    "trainingType" : "GRUPNI",
+    "sportFacility" : "Teretana2",
+    "durationInMinutes" : 60,
+    "coach" : "andre",
+    "description" : "Opis za trening5",
+    "image" : "gym2.png",
+    "price" : 350
+  },
+  "trening6" : {
+    "name" : "trening6",
+    "trainingType" : "PERSONALNI",
+    "sportFacility" : "Teretana2",
+    "durationInMinutes" : 90,
+    "coach" : "andre",
+    "description" : "Opis za trening6",
+    "image" : "gym1.png",
+    "price" : 300
   }
+  
 }

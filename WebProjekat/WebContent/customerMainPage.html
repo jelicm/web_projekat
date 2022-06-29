@@ -2,6 +2,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Kupac</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 <div id="customerMainPage">
@@ -24,16 +25,27 @@
 			<tr><td align="right" colspan="2"><button  v-on:click="ponistiPretragu()">Ponisti</button></td></tr>
 		</table>
 	
+	<select name="tipovi" id="tipovi"  v-on:change = "tipObjektaFilter">
+  			<option>Izaberi tip objekta</option>
+    		<option v-for = "t in tipoviObjekata">{{t}}</option>
+    		
+  		</select>
+  	<br></br>
+  	<select name="tipoviTreninga" id="tipoviTreninga"  v-on:change = "tipTreningaFilter">
+  			<option>Izaberi tip treninga</option>
+    		<option v-for = "t in tipoviTreninga">{{t}}</option>
+    		
+  		</select>
 	<h3>Pregled treninga</h3>
 	<table border="1" v-if="treninziSaDatumomFiltrirano">
 	<thead>
 		<tr bgcolor="lightgrey">
 			<th><b>Naziv treninga</b></th>
 			<th><b>Tip treninga</b></th>
-			<th><b>Sportski objekat</b></th>
+			<th v-on:click = "sortNaziv()" class = "pointer"><b>Sportski objekat</b></th>
 			<th><b>Tip sportskog objekta</b></th>
-			<th><b>Datum i vreme treniranja</b></th>
-			<th><b>Cena treniranja</b></th>
+			<th v-on:click = "sortDatum()" class = "pointer"><b>Datum i vreme treniranja</b></th>
+			<th v-on:click = "sortCena()" class = "pointer"><b>Cena treniranja</b></th>
 		</tr>	
 	</thead>
 	<tbody>

@@ -2,6 +2,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Menadzer</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 	<div id="managerMainPage">
@@ -27,6 +28,11 @@
 			<tr><td align="right" colspan="2"><button  v-on:click="ponistiPretragu()">Ponisti</button></td></tr>
 		</table>
 		
+	<select name="tipoviTreninga" id="tipoviTreninga"  v-on:change = "tipTreningaFilter">
+  			<option>Izaberi tip treninga</option>
+    		<option v-for = "t in tipoviTreninga">{{t}}</option>
+    		
+  		</select>
 	<h3>Pregled treninga u objektu</h3>
 	<table border="1">
 	<thead>
@@ -36,8 +42,8 @@
 			<th><b>Tip treninga</b></th>
 			<th><b>Opis</b></th>
 			<th><b>Trener</b></th>
-			<th><b>Cena</b></th>
-			<th><b>Datum i vreme odrzavanja</b></th>
+			<th v-on:click = "sortCena()" class = "pointer"><b>Cena</b></th>
+			<th v-on:click = "sortDatum()" class = "pointer"><b>Datum i vreme odrzavanja</b></th>
 			<th><b>Izmeni</b></th>
 		</tr>	
 	</thead>

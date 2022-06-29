@@ -2,6 +2,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Trener</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 <div id="coachMainPage">
@@ -25,16 +26,22 @@
 			<tr><td align="right" colspan="2"><button  v-on:click="ponistiPretraguPersonalni()">Ponisti</button></td></tr>
 		</table>
 		
+	<select name="tipovi1" id="tipovi1"  v-on:change = "tipObjektaFilter1">
+  			<option>Izaberi tip objekta</option>
+    		<option v-for = "t in tipoviObjekata">{{t}}</option>
+    		
+  		</select>
+		
 	<h3>Pregled personalnih treninga</h3>
 	<table border="1">
 	<thead>
 		<tr bgcolor="lightgrey">
-			<th><b>Naziv treninga</b></th>
+			<th ><b>Naziv treninga</b></th>
 			<th><b>Tip treninga</b></th>
-			<th><b>Sportski objekat</b></th>
+			<th v-on:click = "sortNaziv1()" class = "pointer"><b>Sportski objekat</b></th>
 			<th><b>Tip sportskog objekta</b></th>
-			<th><b>Datum i vreme treniranja</b></th>
-			<th><b>Cena treniranja</b></th>
+			<th v-on:click = "sortDatum1()" class = "pointer"><b>Datum i vreme treniranja</b></th>
+			<th v-on:click = "sortCena1()" class = "pointer"><b>Cena treniranja</b></th>
 			<th><b>Otkazivanje treninga</b></th>
 		</tr>	
 	</thead>
@@ -65,16 +72,22 @@
 		</table>
 	</table>
 	
+	<select name="tipovi2" id="tipovi2"  v-on:change = "tipObjektaFilter2">
+  			<option>Izaberi tip objekta</option>
+    		<option v-for = "t in tipoviObjekata">{{t}}</option>
+    		
+  		</select>
+	
 	<h3>Pregled grupnih treninga</h3>
 	<table border="1">
 	<thead>
 		<tr bgcolor="lightgrey">
-			<th><b>Naziv treninga</b></th>
+			<th ><b>Naziv treninga</b></th>
 			<th><b>Tip treninga</b></th>
-			<th><b>Sportski objekat</b></th>
+			<th v-on:click = "sortNaziv2()" class = "pointer"><b>Sportski objekat</b></th>
 			<th><b>Tip sportskog objekta</b></th>
-			<th><b>Datum i vreme treniranja</b></th>
-			<th><b>Cena treniranja</b></th>
+			<th v-on:click = "sortDatum2()" class = "pointer"><b>Datum i vreme treniranja</b></th>
+			<th v-on:click = "sortCena2()" class = "pointer"><b>Cena treniranja</b></th>
 		</tr>	
 	</thead>
 	<tbody>

@@ -26,5 +26,19 @@
     "training" : "trening4",
     "customer" : "mare",
     "coach" : "andre"
+  },
+  "th5" : {
+    "name" : "th5",
+    "applicationDateAndTime" : "28.6.2022. 15:00",
+    "training" : "trening5",
+    "customer" : "mare",
+    "coach" : "andre"
+  },
+  "th6" : {
+    "name" : "th6",
+    "applicationDateAndTime" : "3.7.2022. 15:00",
+    "training" : "trening6",
+    "customer" : "mare",
+    "coach" : "andre"
   }
 }

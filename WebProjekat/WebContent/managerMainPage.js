@@ -172,10 +172,14 @@ var app = new Vue({
 						return -1;
 					else 
 					{
-						if(a.split(" ")[1].split(":")[1] > b.split(" ")[1].split(":")[1])
+						if(a.datumi.split(" ")[1].split(":")[0] > b.datumi.split(" ")[1].split(":")[0])
 							return 1;
-						if(a.split(" ")[1].split(":")[1] < b.split(" ")[1].split(":")[1])
+						if(a.datumi.split(" ")[1].split(":")[0] < b.datumi.split(" ")[1].split(":")[0])
 							return -1;	
+						if(a.datumi.split(" ")[1].split(":")[1] > b.datumi.split(" ")[1].split(":")[1])
+							return 1;
+						if(a.datumi.split(" ")[1].split(":")[1] < b.datumi.split(" ")[1].split(":")[1])
+							return -1;		
 					}
 					return 0;
 				})

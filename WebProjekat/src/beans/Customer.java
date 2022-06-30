@@ -54,4 +54,8 @@ public class Customer extends User {
 		this.points = points;
 	}
 	
+	public void addVisitedSportFacility(String facility){
+		this.visitedSportFacilities.add(facility);
+	}
+	
 }

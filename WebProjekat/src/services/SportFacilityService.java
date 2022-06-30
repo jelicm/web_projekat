@@ -157,6 +157,18 @@ public class SportFacilityService {
 		}
 		return dates;
 	}
-
-
+	
+	
+	@GET
+	@Path("/getAllTrainings")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<Training> getTraining() {
+		ArrayList<Training> trainings = new ArrayList<Training>();
+		TrainingDAO tDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
+		for(Training t : tDAO.findAllTrainings()){
+				trainings.add(t);		}
+		return trainings;
+	}
+	
+	
 }

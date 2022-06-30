@@ -721,6 +721,57 @@ public class UserService {
 			}
 		}
 		mfDAO.addMembershipFee(mf);
+		c.setMembershipFee(mf.getIdentifier());
+		request.getSession().setAttribute("loggedInUser", c);
 		return Response.status(200).entity("customerMainPage.html").build();
 	}
+	
+	@POST
+	@Path("/addTraining")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response addTraining(Training t) {
+		TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
+		CustomerDAO customerDAO = (CustomerDAO) ctx.getAttribute("customerDAO");
+		Customer c = (Customer)request.getSession().getAttribute("loggedInUser");
+		boolean found = false;
+		
+		for(String facility: c.getVisitedSportFacilities())
+		{
+			if(facility.equals(t.getSportFacility()))
+			{
+				found = true;
+				break;
+			}
+		}
+		if(!found)
+		{
+			c.addVisitedSportFacility(t.getName());
+			customerDAO.addCustomer(c);
+			request.getSession().setAttribute("loggedInUser", c);
+		}
+		
+		MembershipFeeDAO mfDAO = (MembershipFeeDAO) ctx.getAttribute("membershipFeeDAO");
+		MembershipFee mf = mfDAO.findMembershipFee(c.getMembershipFee());
+		if(mf.getMembershipFeeStatus() == MembershipFeeStatus.NEAKTIVNA)
+			return Response.status(400).build();
+		
+		if(!mf.getNumberOfAppointments().equals("Neograniceno")){
+			int mfNumber = Integer.parseInt(mf.getNumberOfAppointments());
+			if(mfNumber <= 0)
+				return Response.status(400).build();
+			mfNumber --;
+			mf.setNumberOfAppointments(Integer.toString(mfNumber));
+			mfDAO.addMembershipFee(mf);
+		}
+		SimpleDateFormat sdformat = new SimpleDateFormat("dd.MM.yyyy. HH:mm");
+	    Date d2 = new Date();
+	    String d2Str = sdformat.format(d2);
+	    int numOfTH = thDAO.findAllTrainingHistories().size() + 1;
+	    String id = "th" + Integer.toString(numOfTH);
+		TrainingHistory th = new TrainingHistory(d2Str, t.getName(), c.getUsername(), t.getCoach(), id);
+		thDAO.addTrainingHistory(th);
+			
+		return Response.status(200).entity("customerMainPage.html").build();
+	}
+
 }

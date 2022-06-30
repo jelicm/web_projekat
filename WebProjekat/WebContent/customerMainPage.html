@@ -7,10 +7,12 @@
 <body>
 <div id="customerMainPage">
 	<form >
-		<p>Ulogovan je kupac: {{customer.name}} {{customer.surname}}</p>
+		<p v-if="customer">Ulogovan je kupac: {{customer.name}} {{customer.surname}}</p>
 		<a href="profileCustomer.html">1. Pregled profila</a>
 		<br/>
 		<a href="createMembershipFee.html">2. Kreiraj clanarinu</a>
+		<br/>
+		<a href="customerTrainings.html">3. Pristupi treningu</a>
 		<br /><br /><br />
 		<a v-on:click="logout" href="index.html">Izloguj se</a>
 	</form>
@@ -50,7 +52,7 @@
 			<th v-on:click = "sortCena()" class = "pointer"><b>Cena treniranja</b></th>
 		</tr>	
 	</thead>
-	<tbody>
+	<tbody v-if="treninziSaDatumomFiltrirano">
 		<tr v-for="tsd in treninziSaDatumomFiltrirano">
 			<td>{{tsd.treninzi.name}}</td>
 			<td>{{tsd.treninzi.trainingType}} </td>

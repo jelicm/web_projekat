@@ -7,7 +7,7 @@
     "gender" : "MUSKI",
     "role" : "KUPAC",
     "dateOfBirth" : "2000-11-11",
-    "membershipFee" : null,
+    "membershipFee" : "clanarina2",
     "points" : 0,
     "visitedSportFacilities" : ["Teretana1", "Teretana2", "Sportski centar 1"],
     "customerType" : {

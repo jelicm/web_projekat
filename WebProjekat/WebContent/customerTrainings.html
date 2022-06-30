@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Izbor treninga</title>
+</head>
+<body>
+<div id="customerTrainings">
+	<h3>Izaberite objekat za koji zelite da vidite treninge:</h3>
+	<br/>
+	<select name="objekti" id="objekti"  v-on:change = "objektiFilter">
+  			<option>Izaberite objekat</option>
+    		<option v-for = "s in sportFacilities">{{s.name}}</option>
+    		
+  		</select>
+  	<br/><br/><br/>
+	<table border="1">
+	<thead>
+		<tr bgcolor="lightgrey">
+			<th><b>Slika</b></th>
+			<th><b>Naziv treninga</b></th>
+			<th><b>Opis</b></th>
+			<th><b>Trener</b></th>
+			<th><b>Cena</b></th>
+			<th><b>Sportski objekat</b></th>
+			<th><b>Izaberi</b></th>
+		</tr>	
+	</thead>
+	<tbody>
+		<tr v-for="t in treninziFiltrirano">
+			<td><img v-bind:src=" 'img/' + t.image"></td>
+			<td>{{t.name}}</td>
+			<td>{{t.description }}</td>
+			<td>{{t.coach}} </td>
+			<td>{{t.price}}</td>
+			<td>{{t.sportFacility}}</td>
+			<td><button  v-on:click="dodajTrening(t)">Izaberi</button></td>
+		</tr>
+	</tbody>
+	</table>
+	</div>
+	<br/><br/><br/>
+	<a href="customerMainPage.html">Nazad</a>
+	<script src="js/vue.js"></script>
+	<script src="js/axios.js"></script>
+	<script src="customerTrainings.js"></script>
+</body>
+</html>

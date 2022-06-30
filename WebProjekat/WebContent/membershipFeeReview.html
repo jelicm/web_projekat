@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Dodavanje treninga</title>
+</head>
+<body>
+<div id ="membershipFee">
+	<form>
+		<table>
+				<td>Popust:</td><td>{{popust}}</td>
+			</tr>
+			<tr>
+				<td>Promo kod:</td><td><input v-model="promoKod" type="text" name="promoKod"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input v-on:click="create" type="submit" value="Plati"></td>
+			</tr>
+		</table>
+	</form>
+</div>
+	<a href="createMembershipFee.html">Nazad</a>
+	<script src="js/vue.js"></script>
+	<script src="js/axios.js"></script>
+	<script src="membershipFeeReview.js"></script>
+</body>
+</html>

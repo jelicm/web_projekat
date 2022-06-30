@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Dodavanje treninga</title>
+</head>
+<body>
+<div id ="membershipFee">
+	<form>
+		<table>
+			<tr>
+				<td>Tip paketa clanarine:</td>
+				<td><select @change="promena()" v-model="paket" name="paket">
+						<option value="Osnovni">Osnovni</option>
+						<option value="Srednji">Srednji</option>
+						<option value="Premium">Premium</option>
+						</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Tip clanarine:</td><td>{{tip}}</td>
+			</tr>
+			<tr>
+				<td>Vazenje:</td><td>{{vazenje}}</td>
+			</tr>
+			<tr>
+				<td>Cena:</td><td>{{cena}}</td>
+			</tr>
+			<tr>
+				<td>Broj termina:</td><td>{{termini}}</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input v-on:click="create" type="submit" value="Pregled"></td>
+			</tr>
+		</table>
+	</form>
+</div>
+	<a href="customerMainPage.html">Nazad</a>
+	<script src="js/vue.js"></script>
+	<script src="js/axios.js"></script>
+	<script src="createMembershipFee.js"></script>
+</body>
+</html>

@@ -7,6 +7,7 @@ import beans.Admin;
 import beans.Coach;
 import beans.Customer;
 import beans.Manager;
+import beans.MembershipFee;
 import beans.SportFacility;
 import beans.Training;
 import beans.TrainingHistory;
@@ -34,9 +35,12 @@ import dao.AdminDAO;
 import dao.CoachDAO;
 import dao.CustomerDAO;
 import dao.ManagerDAO;
+import dao.MembershipFeeDAO;
 import dao.SportFacilityDAO;
 import dao.TrainingDAO;
 import dao.TrainingHistoryDAO;
+import enums.MembershipFeeStatus;
+import enums.MembershipFeeType;
 import enums.TrainingType;
 
 @Path("/users")
@@ -75,6 +79,9 @@ public class UserService {
 		}
 		if (ctx.getAttribute("trainingHistoryDAO") == null) {
 			ctx.setAttribute("trainingHistoryDAO", new TrainingHistoryDAO(contextPath));
+		}
+		if (ctx.getAttribute("membershipFeeDAO") == null) {
+			ctx.setAttribute("membershipFeeDAO", new MembershipFeeDAO(contextPath));
 		}
 	}
 	
@@ -421,7 +428,6 @@ public class UserService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response trainingReview(@PathParam("name") String name) {
-		Manager m = (Manager)request.getSession().getAttribute("loggedInUser");
 		TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
 		Training t = trainingDAO.findTraining(name);
 		if(t != null)
@@ -656,7 +662,6 @@ public class UserService {
 	@Path("/cancelTraining/{name}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response cancelTraining (@PathParam("name") String name) throws ParseException {
-		TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
 		TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
 		TrainingHistory trHistory = null;
 		for(TrainingHistory th : thDAO.findAllTrainingHistories()){
@@ -681,5 +686,41 @@ public class UserService {
 			}
 		}
 		return Response.status(400).build();
+	}
+	
+	@POST
+	@Path("/createMembershipFee")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response createMembershipFee(MembershipFee membershipFee) {
+		Customer c = (Customer)request.getSession().getAttribute("loggedInUser");
+		MembershipFeeDAO mfDAO = (MembershipFeeDAO) ctx.getAttribute("membershipFeeDAO");
+		int numOfFees = mfDAO.findAllMembershipFees().size();
+		numOfFees++;
+		membershipFee.setCustomer(c.getUsername());
+		membershipFee.setIdentifier(membershipFee.getIdentifier() + numOfFees);
+		request.getSession().setAttribute("membershipFee", membershipFee);
+		return Response.status(200).entity("membershipFeeReview.html").build();
+	}
+	
+	@POST
+	@Path("/payMembershipFee/{discount}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response payMembershipFee(@PathParam("discount") double discount) {
+		MembershipFee mf = (MembershipFee)request.getSession().getAttribute("membershipFee");
+		Customer c = (Customer)request.getSession().getAttribute("loggedInUser");
+		mf.setPrice((int)(mf.getPrice()-mf.getPrice()*discount));
+		mf.setMembershipFeeStatus(MembershipFeeStatus.AKTIVNA);
+		MembershipFeeDAO mfDAO = (MembershipFeeDAO) ctx.getAttribute("membershipFeeDAO");
+		for(MembershipFee fee : mfDAO.findAllMembershipFees()) {
+			if(fee.getCustomer().equals(c.getUsername())) {
+				fee.setMembershipFeeStatus(MembershipFeeStatus.NEAKTIVNA);
+				mfDAO.updateMembershipFee(fee);
+				break;
+			}
+		}
+		mfDAO.addMembershipFee(mf);
+		return Response.status(200).entity("customerMainPage.html").build();
 	}
 }

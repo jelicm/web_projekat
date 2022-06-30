@@ -1,7 +1,6 @@
 package services;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
@@ -16,12 +15,10 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import dao.CustomerDAO;
 import dao.ManagerDAO;
 import dao.SportFacilityDAO;
 import dao.TrainingDAO;
 import dao.TrainingHistoryDAO;
-import beans.Customer;
 import beans.Manager;
 import beans.SportFacility;
 import beans.Training;

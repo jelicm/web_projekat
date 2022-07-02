@@ -1,0 +1,10 @@
+{
+  "comment1" : {
+    "name" : "comment1",
+    "customer" : "mitar",
+    "sportFacility" : "Teretana1",
+    "content" : "neki kom",
+    "mark" : 4,
+    "permission" : "NA_CEKANJU"
+  }
+}

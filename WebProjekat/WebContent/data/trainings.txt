@@ -58,6 +58,16 @@
     "description" : "Opis za trening6",
     "image" : "gym1.png",
     "price" : 300
+  },
+  "trening7" : {
+    "name" : "trening7",
+    "trainingType" : "PERSONALNI",
+    "sportFacility" : "Teretana3",
+    "durationInMinutes" : 90,
+    "coach" : "andre",
+    "description" : "Opis za trening7",
+    "image" : "gym1.png",
+    "price" : 500
   }
   
 }

@@ -29,7 +29,7 @@ var app = new Vue({
 		axios.get('rest/users/loggedInManager')
 		.then(response => {
 			this.manager = response.data
-			axios.get('rest/sportFacilities/trainingsForSportFacility/' + this.manager.sportFacility)
+			axios.get('rest/sportFacilities/trainingsForSportFacilityManager/' + this.manager.sportFacility)
 			.then(response => {this.treninzi = response.data})
 			axios.get('rest/sportFacilities/getTrainingDates')
 			.then(response =>{

@@ -115,9 +115,9 @@ public class SportFacilityService {
 	}
 	
 	@GET
-	@Path("/trainingsForSportFacility/{name}")
+	@Path("/trainingsForSportFacilityManager/{name}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<Training> trainingsForSportFacility(@PathParam("name") String name) {
+	public ArrayList<Training> trainingsForSportFacilityManager(@PathParam("name") String name) {
 		SportFacility sportFacility;
 		SportFacilityDAO sportFacilityDAO = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
 		sportFacility = sportFacilityDAO.findSportFacility(name);
@@ -139,6 +139,27 @@ public class SportFacilityService {
 			
 		}
 		return managerTrainings;
+	}
+	
+	@GET
+	@Path("/trainingsForSportFacility/{name}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<Training> trainingsForSportFacility(@PathParam("name") String name) {
+		SportFacility sportFacility;
+		SportFacilityDAO sportFacilityDAO = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
+		sportFacility = sportFacilityDAO.findSportFacility(name);
+		ArrayList <Training> trainings = new ArrayList<Training>();
+		if(sportFacility != null) {
+			TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
+			for(Training t : trainingDAO.findAllTrainings()) {
+				if(t.getSportFacility().equals(sportFacility.getName())) {
+					trainings.add(t);
+				}
+			}
+
+		}
+
+		return trainings;
 	}
 	
 	@GET

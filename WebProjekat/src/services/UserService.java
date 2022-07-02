@@ -5,6 +5,7 @@ import javax.ws.rs.core.Response;
 
 import beans.Admin;
 import beans.Coach;
+import beans.Comment;
 import beans.Customer;
 import beans.Manager;
 import beans.MembershipFee;
@@ -33,6 +34,7 @@ import javax.ws.rs.core.Context;
 
 import dao.AdminDAO;
 import dao.CoachDAO;
+import dao.CommentDAO;
 import dao.CustomerDAO;
 import dao.ManagerDAO;
 import dao.MembershipFeeDAO;
@@ -83,6 +85,10 @@ public class UserService {
 		if (ctx.getAttribute("membershipFeeDAO") == null) {
 			ctx.setAttribute("membershipFeeDAO", new MembershipFeeDAO(contextPath));
 		}
+		if (ctx.getAttribute("commentDAO") == null) {
+			ctx.setAttribute("commentDAO", new CommentDAO(contextPath));
+		}
+		
 	}
 	
 	@POST
@@ -768,17 +774,17 @@ public class UserService {
 		TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
 		CustomerDAO customerDAO = (CustomerDAO) ctx.getAttribute("customerDAO");
 		Customer c = (Customer)request.getSession().getAttribute("loggedInUser");
-		boolean found = false;
+		boolean isVisited = false;
 		
 		for(String facility: c.getVisitedSportFacilities())
 		{
 			if(facility.equals(t.getSportFacility()))
 			{
-				found = true;
+				isVisited = true;
 				break;
 			}
 		}
-		if(!found)
+		if(!isVisited)
 		{
 			c.addVisitedSportFacility(t.getSportFacility());
 			customerDAO.addCustomer(c);
@@ -805,8 +811,28 @@ public class UserService {
 	    String id = "th" + Integer.toString(numOfTH);
 		TrainingHistory th = new TrainingHistory(d2Str, t.getName(), c.getUsername(), t.getCoach(), id);
 		thDAO.addTrainingHistory(th);
+		
+		if(!isVisited) 
+		{
+			ctx.setAttribute("visitedSportFacility", t.getSportFacility());
+			return Response.status(200).entity("createComment.html").build();
+		}
 			
 		return Response.status(200).entity("customerMainPage.html").build();
 	}
-
+	
+	@POST
+	@Path("/addComment")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response addComment(Comment com) {
+		CommentDAO commentDAO = (CommentDAO) ctx.getAttribute("commentDAO");
+		String sf = (String) ctx.getAttribute("visitedSportFacility");
+		Customer c = (Customer)request.getSession().getAttribute("loggedInUser");
+		com.setSportFacility(sf);
+		com.setCustomer(c.getUsername());
+		int numOfComments = commentDAO.findAllComments().size() + 1;
+		com.setName("comment" + Integer.toString(numOfComments));
+		commentDAO.addComment(com);
+		return Response.status(200).entity("customerMainPage.html").build();
+	}
 }

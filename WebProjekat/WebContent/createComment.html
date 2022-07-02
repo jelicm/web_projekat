@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Dodaj komentar</title>
+</head>
+<body>
+	<div id="createComment">
+	<h3>Da li želite da ostavite komentar?</h3>
+		<table>
+			<tr><td>Komentar:</td><td><input v-model="komentar" type="text" name="naziv"></td>
+			<tr><td>Ocena:</td><td><input style='width:100%' v-model="ocena" min="1" max="5"  type="number" name="ocena"></td>
+			<tr><td align="right" colspan="2"><button  v-on:click="dodajKomentar()">Sacuvaj</button></td></tr>
+		</table>
+		
+	</div>
+	<a href="customerMainPage.html">Preskoči</a>
+	<script src="js/vue.js"></script>
+	<script src="js/axios.js"></script>
+	<script src="createComment.js"></script>
+</body>
+</html>

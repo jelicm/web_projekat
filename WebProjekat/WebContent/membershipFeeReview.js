@@ -7,12 +7,12 @@ var app = new Vue({
     },
     mounted(){
 		axios.get('rest/users/loggedInCustomer')
-		.then(response => {this.popust = (response.data.customerType.discount*100) + '%'; this.decimala=response.data.customerType.discount})
+		.then(response => {this.popust = response.data.customerType.discount + '%'; this.procenat=response.data.customerType.discount})
     },
     methods: {
         create: function(event){
             event.preventDefault()
-            axios.post('rest/users/payMembershipFee/'+ this.decimala)
+            axios.post('rest/users/payMembershipFee/'+ this.procenat)
 	            .then(response => {
 	                location.href=response.data 
 	            })

@@ -745,7 +745,7 @@ public class UserService {
 		MembershipFee mf = (MembershipFee)request.getSession().getAttribute("membershipFee");
 		CustomerDAO cDAO = (CustomerDAO)ctx.getAttribute("customerDAO");
 		Customer c = (Customer)request.getSession().getAttribute("loggedInUser");
-		mf.setPrice((int)(mf.getPrice()-mf.getPrice()*discount));
+		mf.setPrice((int)(mf.getPrice()-mf.getPrice()*discount/100));
 		mf.setMembershipFeeStatus(MembershipFeeStatus.AKTIVNA);
 		MembershipFeeDAO mfDAO = (MembershipFeeDAO) ctx.getAttribute("membershipFeeDAO");
 		for(MembershipFee fee : mfDAO.findAllMembershipFees()) {
@@ -780,7 +780,7 @@ public class UserService {
 		}
 		if(!found)
 		{
-			c.addVisitedSportFacility(t.getName());
+			c.addVisitedSportFacility(t.getSportFacility());
 			customerDAO.addCustomer(c);
 			request.getSession().setAttribute("loggedInUser", c);
 		}

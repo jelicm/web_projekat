@@ -17,61 +17,61 @@ import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
-import beans.MembershipFee;
+import beans.Comment;
 
-public class MembershipFeeDAO {
-	private HashMap<String, MembershipFee> membershipFees = new HashMap<String, MembershipFee>();
+public class CommentDAO {
+	private HashMap<String, Comment> comments = new HashMap<String, Comment>();
 	private String path;
 	
-	public MembershipFeeDAO() {
+	public CommentDAO() {
 	}
 	
-	public MembershipFeeDAO(String contextPath) {
+	public CommentDAO(String contextPath) {
 		this.path = contextPath;
-		loadMembershipFees();
+		loadComments();
 	}
 
-	public Collection<MembershipFee> findAllMembershipFees() {
-		return membershipFees.values();
+	public Collection<Comment> findAllComments() {
+		return comments.values();
 	}
 
-	public MembershipFee findMembershipFee(String identifier) {
-		return membershipFees.containsKey(identifier) ? membershipFees.get(identifier) : null;
+	public Comment findComment(String name) {
+		return comments.containsKey(name) ? comments.get(name) : null;
 	}
 	
-	public MembershipFee addMembershipFee(MembershipFee membershipFee) {
-		membershipFees.put(membershipFee.getIdentifier(), membershipFee);
-		saveMembershipFees();
-		return membershipFee;
+	public Comment addComment(Comment comment) {
+		comments.put(comment.getName(), comment);
+		saveComments();
+		return comment;
 	}
 	
-	public MembershipFee deleteMembershipFee(String identifier) {
-		MembershipFee mf = membershipFees.remove(identifier);
-		saveMembershipFees();
-		return mf;
+	public Comment deleteComment(String name) {
+		Comment c = comments.remove(name);
+		saveComments();
+		return c;
 	}
 	
-	public void updateMembershipFee(MembershipFee mf) {
-		membershipFees.put(mf.getIdentifier(), mf);
-		saveMembershipFees();
+	public void updateMembershipFee(Comment c) {
+		comments.put(c.getName(), c);
+		saveComments();
 	}
 
 	@SuppressWarnings("unchecked")
-	private void loadMembershipFees() {
+	private void loadComments() {
 		FileWriter fileWriter = null;
 		BufferedReader in = null;
 		File file = null;
 		try {
-			file = new File(path + "/data/membershipFees.txt");
+			file = new File(path + "/data/comments.txt");
 			in = new BufferedReader(new FileReader(file));
 
 			ObjectMapper objectMapper = new ObjectMapper();
 			objectMapper.setVisibilityChecker(
 					VisibilityChecker.Std.defaultInstance().withFieldVisibility(JsonAutoDetect.Visibility.ANY));
 			TypeFactory factory = TypeFactory.defaultInstance();
-			MapType type = factory.constructMapType(HashMap.class, String.class, MembershipFee.class);
+			MapType type = factory.constructMapType(HashMap.class, String.class, Comment.class);
 			objectMapper.getFactory().configure(JsonGenerator.Feature.ESCAPE_NON_ASCII, true);
-			this.membershipFees = ((HashMap<String, MembershipFee>) objectMapper.readValue(file, type));
+			this.comments = ((HashMap<String, Comment>) objectMapper.readValue(file, type));
 		} catch (FileNotFoundException fnfe) {
 			try {
 				file.createNewFile();
@@ -79,8 +79,8 @@ public class MembershipFeeDAO {
 				ObjectMapper objectMapper = new ObjectMapper();
 				objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 				objectMapper.getFactory().configure(JsonGenerator.Feature.ESCAPE_NON_ASCII, true);
-				String stringMembershipFees = objectMapper.writeValueAsString(membershipFees);
-				fileWriter.write(stringMembershipFees);
+				String stringComments = objectMapper.writeValueAsString(comments);
+				fileWriter.write(stringComments);
 			} catch (IOException e) {
 				e.printStackTrace();
 			} finally {
@@ -106,16 +106,16 @@ public class MembershipFeeDAO {
 		}
 	}
 	
-	public void saveMembershipFees() {
-		File f = new File(path + "/data/membershipFees.txt");
+	public void saveComments() {
+		File f = new File(path + "/data/comments.txt");
 		FileWriter fileWriter = null;
 		try {
 			fileWriter = new FileWriter(f);
 			ObjectMapper objectMapper = new ObjectMapper();
 			objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 			objectMapper.getFactory().configure(JsonGenerator.Feature.ESCAPE_NON_ASCII, true);
-			String stringMembershipFees = objectMapper.writeValueAsString(this.membershipFees);
-			fileWriter.write(stringMembershipFees);
+			String stringComments = objectMapper.writeValueAsString(this.comments);
+			fileWriter.write(stringComments);
 			fileWriter.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -129,4 +129,5 @@ public class MembershipFeeDAO {
 			}
 		}
 	}
+
 }

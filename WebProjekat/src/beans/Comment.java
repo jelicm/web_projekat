@@ -1,20 +1,42 @@
 package beans;
 
+import enums.Permission;
+
 public class Comment {
+	private String name;
 	private String customer;
 	private String sportFacility;
 	private String content;
 	private int mark;
-	
+	private Permission permission;
+
 	public Comment() {
 	}
 
-	public Comment(String customer, String sportFacility, String content, int mark) {
+	public Comment(String name, String customer, String sportFacility, String content, int mark, Permission permission) {
 		super();
+		this.name = name;
 		this.customer = customer;
 		this.sportFacility = sportFacility;
 		this.content = content;
 		this.mark = mark;
+		this.permission = permission;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public Permission getPermission() {
+		return permission;
+	}
+
+	public void setPermission(Permission permission) {
+		this.permission = permission;
 	}
 
 	public String getCustomer() {

@@ -251,8 +251,42 @@ public class UserService {
 	@GET
 	@Path("/loggedInCustomer")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Customer getCustomer() {
+	public Customer getCustomer() throws ParseException {
 		Customer c = (Customer)request.getSession().getAttribute("loggedInUser");
+		CustomerDAO customerDAO = (CustomerDAO) ctx.getAttribute("customerDAO");
+		MembershipFeeDAO mfDAO = (MembershipFeeDAO) ctx.getAttribute("membershipFeeDAO");
+		MembershipFee mf = mfDAO.findMembershipFee(c.getMembershipFee());
+		if(mf != null && mf.getMembershipFeeStatus() == MembershipFeeStatus.AKTIVNA){
+			SimpleDateFormat sdformat = new SimpleDateFormat("dd.MM.yyyy. HH:mm");
+		    Date d1 = sdformat.parse(mf.getExpirationDateAndTime());
+		    Date d2 = new Date();
+		    String d2Str = sdformat.format(d2);
+		    d2 = sdformat.parse(d2Str);
+		    if(d2.compareTo(d1) > 0) {
+		    	if(mf.getPrice() == 100 && Integer.parseInt(mf.getNumberOfAppointments()) > 20) {
+		    		c.setPoints(c.getPoints() - mf.getPrice()*133*4/1000);
+		    		c.setPoints(c.getPoints() < 0 ? 0 : c.getPoints());
+		    	}
+		    	else if(mf.getPrice() == 300 && Integer.parseInt(mf.getNumberOfAppointments()) > 60) {
+		    		c.setPoints(c.getPoints() - mf.getPrice()*133*4/1000);
+		    		c.setPoints(c.getPoints() < 0 ? 0 : c.getPoints());
+		    	}
+		    	else {
+		    		int usedAppointments = 0;
+		    		if(mf.getPrice() == 100)
+		    			usedAppointments = 30 - Integer.parseInt(mf.getNumberOfAppointments());
+		    		else if(mf.getPrice() == 300)
+		    			usedAppointments = 90 - Integer.parseInt(mf.getNumberOfAppointments());
+		    		else
+		    			usedAppointments = 100;
+		    		c.setPoints(c.getPoints() + mf.getPrice()*usedAppointments/1000);
+		    	}
+		    	mf.setMembershipFeeStatus(MembershipFeeStatus.NEAKTIVNA);
+		    	mfDAO.updateMembershipFee(mf);
+		    	customerDAO.updateCustomer(c, c.getUsername());
+		    	request.getSession().setAttribute("loggedInUser", c);
+		    }
+		}
 		return c;
 	}
 	
@@ -709,6 +743,7 @@ public class UserService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response payMembershipFee(@PathParam("discount") double discount) {
 		MembershipFee mf = (MembershipFee)request.getSession().getAttribute("membershipFee");
+		CustomerDAO cDAO = (CustomerDAO)ctx.getAttribute("customerDAO");
 		Customer c = (Customer)request.getSession().getAttribute("loggedInUser");
 		mf.setPrice((int)(mf.getPrice()-mf.getPrice()*discount));
 		mf.setMembershipFeeStatus(MembershipFeeStatus.AKTIVNA);
@@ -717,12 +752,12 @@ public class UserService {
 			if(fee.getCustomer().equals(c.getUsername())) {
 				fee.setMembershipFeeStatus(MembershipFeeStatus.NEAKTIVNA);
 				mfDAO.updateMembershipFee(fee);
-				break;
 			}
 		}
 		mfDAO.addMembershipFee(mf);
 		c.setMembershipFee(mf.getIdentifier());
 		request.getSession().setAttribute("loggedInUser", c);
+		cDAO.updateCustomer(c, c.getUsername());
 		return Response.status(200).entity("customerMainPage.html").build();
 	}
 	

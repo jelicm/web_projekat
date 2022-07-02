@@ -34,10 +34,10 @@ var app = new Vue({
 			var paymentDate = today.getDate()+'.'+(today.getMonth()+1)+'.'+today.getFullYear()+'.';
 			var expirationDateAndTime;
 			if(this.paket == 'Osnovni'){
-				expirationDateAndTime = expirationDateAndTime = (today.getDate()-1)+'.'+(today.getMonth()+2)+'.'+today.getFullYear()+'.';
+				expirationDateAndTime = expirationDateAndTime = today.getDate()+'.'+(today.getMonth()+2)+'.'+today.getFullYear()+'.';
 			}
 			else if(this.paket == 'Srednji'){
-				expirationDateAndTime = (today.getDate()-1)+'.'+(today.getMonth()+4)+'.'+today.getFullYear()+'.';
+				expirationDateAndTime = today.getDate()+'.'+(today.getMonth()+4)+'.'+today.getFullYear()+'.';
 			}
 			else{
 				expirationDateAndTime = today.getDate()+'.'+(today.getMonth()+1)+'.'+(today.getFullYear()+1)+'.';

@@ -3,7 +3,7 @@
     "identifier" : "clanarina1",
     "membershipFeeType" : "MESECNA",
     "paymentDate" : "30.6.2022.",
-    "expirationDateAndTime" : "29.7.2022. 12:00",
+    "expirationDateAndTime" : "30.7.2022. 12:00",
     "price" : 100,
     "customer" : "mare",
     "membershipFeeStatus" : "NEAKTIVNA",

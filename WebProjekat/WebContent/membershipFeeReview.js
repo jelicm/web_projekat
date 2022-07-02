@@ -2,7 +2,7 @@ var app = new Vue({
     el: '#membershipFee',
     data:{
 		popust: '',
-		decimala: 0,
+		procenat: 0,
 		promoKod: ''
     },
     mounted(){

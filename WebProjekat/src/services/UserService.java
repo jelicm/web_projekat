@@ -307,6 +307,11 @@ public class UserService {
 		    		ct.setRequiredNumberOfPoints(100);
 		    		ct.setTypeName(TypeName.BRONZANI);
 		    	}
+		    	else {
+		    		ct.setDiscount(0);
+		    		ct.setRequiredNumberOfPoints(0);
+		    		ct.setTypeName(TypeName.NEMA);
+		    	}
 		    	c.setCustomerType(ct);
 		    	customerDAO.updateCustomer(c, c.getUsername());
 		    	request.getSession().setAttribute("loggedInUser", c);

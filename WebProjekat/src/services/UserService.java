@@ -286,25 +286,25 @@ public class UserService {
 		    			usedAppointments = 90 - Integer.parseInt(mf.getNumberOfAppointments());
 		    		else
 		    			usedAppointments = 100;
-		    		c.setPoints(c.getPoints() + mf.getPrice()*usedAppointments);
+		    		c.setPoints(c.getPoints() + mf.getPrice()*usedAppointments/1000);
 		    	}
 		    	mf.setMembershipFeeStatus(MembershipFeeStatus.NEAKTIVNA);
 		    	mfDAO.updateMembershipFee(mf);
 		    	
 		    	CustomerType ct = c.getCustomerType();
-		    	if(c.getPoints()>3000) {
-		    		ct.setDiscount(5);
-		    		ct.setRequiredNumberOfPoints(3000);
+		    	if(c.getPoints() >= 1000) {
+		    		ct.setDiscount(10);
+		    		ct.setRequiredNumberOfPoints(1000);
 		    		ct.setTypeName(TypeName.ZLATNI);
 		    	}
-		    	else if(c.getPoints()>2000) {
-		    		ct.setDiscount(3);
-		    		ct.setRequiredNumberOfPoints(2000);
+		    	else if(c.getPoints() >= 500) {
+		    		ct.setDiscount(5);
+		    		ct.setRequiredNumberOfPoints(500);
 		    		ct.setTypeName(TypeName.SREBRNI);
 		    	}
-		    	else if(c.getPoints()>1000) {
+		    	else if(c.getPoints() >= 100) {
 		    		ct.setDiscount(1);
-		    		ct.setRequiredNumberOfPoints(1000);
+		    		ct.setRequiredNumberOfPoints(100);
 		    		ct.setTypeName(TypeName.BRONZANI);
 		    	}
 		    	c.setCustomerType(ct);

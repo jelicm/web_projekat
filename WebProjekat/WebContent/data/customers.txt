@@ -9,7 +9,7 @@
     "dateOfBirth" : "2000-11-11",
     "membershipFee" : "clanarina2",
     "points" : 0,
-    "visitedSportFacilities" : ["Teretana1", "Teretana2", "Sportski centar 1"],
+    "visitedSportFacilities" : [ "Teretana1", "Teretana2", "Sportski centar 1" ],
     "customerType" : {
       "typeName" : "NEMA",
       "discount" : 0.0,
@@ -26,7 +26,7 @@
     "dateOfBirth" : "1950-10-10",
     "membershipFee" : "clanarina3",
     "points" : 0,
-    "visitedSportFacilities" : ["Teretana2", "Sportski centar 1"],
+    "visitedSportFacilities" : [ "Teretana1", "Sportski centar 1", "Teretana3" ],
     "customerType" : {
       "typeName" : "NEMA",
       "discount" : 0.0,
@@ -43,7 +43,7 @@
     "dateOfBirth" : "2001-12-12",
     "membershipFee" : null,
     "points" : 0,
-    "visitedSportFacilities" : ["Teretana1", "Teretana2"],
+    "visitedSportFacilities" : null,
     "customerType" : {
       "typeName" : "NEMA",
       "discount" : 0.0,

@@ -1,4 +1,14 @@
 {
+  "clanarina3" : {
+    "identifier" : "clanarina3",
+    "membershipFeeType" : "MESECNA",
+    "paymentDate" : "30.6.2022.",
+    "expirationDateAndTime" : "30.7.2022. 12:00",
+    "price" : 100,
+    "customer" : "mitar",
+    "membershipFeeStatus" : "AKTIVNA",
+    "numberOfAppointments" : "28"
+  },
   "clanarina1" : {
     "identifier" : "clanarina1",
     "membershipFeeType" : "MESECNA",
@@ -18,15 +28,5 @@
     "customer" : "mare",
     "membershipFeeStatus" : "AKTIVNA",
     "numberOfAppointments" : "Neograniceno"
-  },
-    "clanarina3" : {
-    "identifier" : "clanarina3",
-    "membershipFeeType" : "MESECNA",
-    "paymentDate" : "30.6.2022.",
-    "expirationDateAndTime" : "30.7.2022. 12:00",
-    "price" : 100,
-    "customer" : "mitar",
-    "membershipFeeStatus" : "AKTIVNA",
-    "numberOfAppointments" : "30"
   }
 }

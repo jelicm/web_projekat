@@ -1,4 +1,20 @@
 {
+  "comment3" : {
+    "name" : "comment3",
+    "customer" : "mitar",
+    "sportFacility" : "Teretana3",
+    "content" : "Zadovoljavajuce",
+    "mark" : 4,
+    "permission" : "NA_CEKANJU"
+  },
+  "comment2" : {
+    "name" : "comment2",
+    "customer" : "mare",
+    "sportFacility" : "Sportski centar 1",
+    "content" : "Sve top",
+    "mark" : 5,
+    "permission" : "NA_CEKANJU"
+  },
   "comment1" : {
     "name" : "comment1",
     "customer" : "mitar",

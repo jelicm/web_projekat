@@ -1,24 +1,10 @@
 {
-  "th1" : {
-    "name" : "th1",
-    "applicationDateAndTime" : "2.7.2022. 15:00",
-    "training" : "trening1",
-    "customer" : "mitar",
-    "coach" : "andre"
-  },
-  "th2" : {
-    "name" : "th2",
-    "applicationDateAndTime" : "30.6.2022. 17:00",
-    "training" : "trening2",
-    "customer" : "mitar",
-    "coach" : "stivi"
-  },
-  "th3" : {
-    "name" : "th3",
-    "applicationDateAndTime" : "30.5.2022. 10:00",
-    "training" : "trening3",
+  "th5" : {
+    "name" : "th5",
+    "applicationDateAndTime" : "28.6.2022. 15:00",
+    "training" : "trening5",
     "customer" : "mare",
-    "coach" : "stivi"
+    "coach" : "andre"
   },
   "th4" : {
     "name" : "th4",
@@ -27,12 +13,12 @@
     "customer" : "mare",
     "coach" : "andre"
   },
-  "th5" : {
-    "name" : "th5",
-    "applicationDateAndTime" : "28.6.2022. 15:00",
-    "training" : "trening5",
+  "th7" : {
+    "name" : "th7",
+    "applicationDateAndTime" : "03.07.2022. 03:09",
+    "training" : "trening2",
     "customer" : "mare",
-    "coach" : "andre"
+    "coach" : "stivi"
   },
   "th6" : {
     "name" : "th6",
@@ -40,5 +26,33 @@
     "training" : "trening6",
     "customer" : "mare",
     "coach" : "andre"
+  },
+  "th8" : {
+    "name" : "th8",
+    "applicationDateAndTime" : "03.07.2022. 03:10",
+    "training" : "trening7",
+    "customer" : "mitar",
+    "coach" : "andre"
+  },
+  "th1" : {
+    "name" : "th1",
+    "applicationDateAndTime" : "2.7.2022. 15:00",
+    "training" : "trening1",
+    "customer" : "mitar",
+    "coach" : "andre"
+  },
+  "th3" : {
+    "name" : "th3",
+    "applicationDateAndTime" : "30.5.2022. 10:00",
+    "training" : "trening3",
+    "customer" : "mare",
+    "coach" : "stivi"
+  },
+  "th2" : {
+    "name" : "th2",
+    "applicationDateAndTime" : "30.6.2022. 17:00",
+    "training" : "trening2",
+    "customer" : "mitar",
+    "coach" : "stivi"
   }
 }

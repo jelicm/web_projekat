@@ -51,7 +51,7 @@ public class CommentDAO {
 		return c;
 	}
 	
-	public void updateMembershipFee(Comment c) {
+	public void updateComment(Comment c) {
 		comments.put(c.getName(), c);
 		saveComments();
 	}

@@ -13,7 +13,7 @@
     "customerType" : {
       "typeName" : "NEMA",
       "discount" : 0.0,
-      "requredNumberOfPoints" : 1000
+      "requiredNumberOfPoints" : 0
     }
   },
   "mitar" : {
@@ -30,7 +30,7 @@
     "customerType" : {
       "typeName" : "NEMA",
       "discount" : 0.0,
-      "requredNumberOfPoints" : 1000
+      "requiredNumberOfPoints" : 0
     }
   },
   "perke" : {
@@ -47,7 +47,7 @@
     "customerType" : {
       "typeName" : "NEMA",
       "discount" : 0.0,
-      "requredNumberOfPoints" : 1000
+      "requiredNumberOfPoints" : 0
     }
   }
 }

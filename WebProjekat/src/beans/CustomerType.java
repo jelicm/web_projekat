@@ -5,17 +5,17 @@ import enums.TypeName;
 public class CustomerType {
 	private TypeName typeName;
 	private double discount;
-	private int requredNumberOfPoints;
+	private int requiredNumberOfPoints;
 	
 	public CustomerType() {
 		
 	}
 	
-	public CustomerType(TypeName typeName, double discount, int requredNumberOfPoints) {
+	public CustomerType(TypeName typeName, double discount, int requiredNumberOfPoints) {
 		super();
 		this.typeName = typeName;
 		this.discount = discount;
-		this.requredNumberOfPoints = requredNumberOfPoints;
+		this.requiredNumberOfPoints = requiredNumberOfPoints;
 	}
 	
 	public TypeName getTypeName() {
@@ -34,12 +34,12 @@ public class CustomerType {
 		this.discount = discount;
 	}
 	
-	public int getRequredNumberOfPoints() {
-		return requredNumberOfPoints;
+	public int getRequiredNumberOfPoints() {
+		return requiredNumberOfPoints;
 	}
 	
-	public void setRequredNumberOfPoints(int requredNumberOfPoints) {
-		this.requredNumberOfPoints = requredNumberOfPoints;
+	public void setRequiredNumberOfPoints(int requiredNumberOfPoints) {
+		this.requiredNumberOfPoints = requiredNumberOfPoints;
 	}
 	
 }

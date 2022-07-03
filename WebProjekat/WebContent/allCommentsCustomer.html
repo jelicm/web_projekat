@@ -1,0 +1,34 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Pregled komentara</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<div id="commentsCustomer">
+	<table border="1" id="tabela">
+				<thead>
+					<tr bgcolor="lightgrey">
+						<th><b>Tekst komentara</b></th>
+						<th><b>Kupac koji je komentarisao</b></th>
+						<th><b>Sportski objekat za koji je vezan</b></th>
+						<th><b>Ocena</b></th>
+					</tr>
+				</thead>
+				
+				<tbody class="telo">
+					<tr v-for="k in komentari">
+						<td>{{k.content}}</td>
+						<td>{{k.customer}}</td>
+						<td>{{k.sportFacility}}</td>
+						<td>{{k.mark}}</td>
+					</tr>
+				</tbody>
+			</table>
+</div>
+<a href="customerMainPage.html">Nazad</a>
+	<script src="js/vue.js"></script>
+	<script src="js/axios.js"></script>	
+	<script src="commentsCustomer.js"></script>
+</body>
+</html>

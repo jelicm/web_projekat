@@ -7,6 +7,7 @@ import beans.Admin;
 import beans.Coach;
 import beans.Comment;
 import beans.Customer;
+import beans.CustomerType;
 import beans.Manager;
 import beans.MembershipFee;
 import beans.SportFacility;
@@ -42,8 +43,8 @@ import dao.SportFacilityDAO;
 import dao.TrainingDAO;
 import dao.TrainingHistoryDAO;
 import enums.MembershipFeeStatus;
-import enums.MembershipFeeType;
 import enums.TrainingType;
+import enums.TypeName;
 
 @Path("/users")
 public class UserService {
@@ -285,10 +286,28 @@ public class UserService {
 		    			usedAppointments = 90 - Integer.parseInt(mf.getNumberOfAppointments());
 		    		else
 		    			usedAppointments = 100;
-		    		c.setPoints(c.getPoints() + mf.getPrice()*usedAppointments/1000);
+		    		c.setPoints(c.getPoints() + mf.getPrice()*usedAppointments);
 		    	}
 		    	mf.setMembershipFeeStatus(MembershipFeeStatus.NEAKTIVNA);
 		    	mfDAO.updateMembershipFee(mf);
+		    	
+		    	CustomerType ct = c.getCustomerType();
+		    	if(c.getPoints()>3000) {
+		    		ct.setDiscount(5);
+		    		ct.setRequiredNumberOfPoints(3000);
+		    		ct.setTypeName(TypeName.ZLATNI);
+		    	}
+		    	else if(c.getPoints()>2000) {
+		    		ct.setDiscount(3);
+		    		ct.setRequiredNumberOfPoints(2000);
+		    		ct.setTypeName(TypeName.SREBRNI);
+		    	}
+		    	else if(c.getPoints()>1000) {
+		    		ct.setDiscount(1);
+		    		ct.setRequiredNumberOfPoints(1000);
+		    		ct.setTypeName(TypeName.BRONZANI);
+		    	}
+		    	c.setCustomerType(ct);
 		    	customerDAO.updateCustomer(c, c.getUsername());
 		    	request.getSession().setAttribute("loggedInUser", c);
 		    }

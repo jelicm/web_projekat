@@ -19,7 +19,7 @@ var app = new Vue({
             {"name": this.ime, "surname": this.prezime, "gender": this.pol,
             "dateOfBirth": this.datumRodjenja, "role": 'KUPAC', "username": this.korisnickoIme,
             "password": this.lozinka, "membershipFee": null, "visitedSportFacilities": null,
-            "customerType": {"typeName": 'NEMA',"discount": 0.0, "requredNumberOfPoints": 1000},
+            "customerType": {"typeName": 'NEMA',"discount": 0.0, "requiredNumberOfPoints": 0},
             "points": 0})
             .then(response => {
                 location.href=response.data 

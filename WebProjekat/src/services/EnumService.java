@@ -1,7 +1,5 @@
 package services;
 
-import java.util.ArrayList;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
@@ -13,8 +11,6 @@ import javax.ws.rs.core.MediaType;
 import enums.FacilityType;
 import enums.Status;
 import enums.TrainingType;
-
-
 
 @Path("/enums")
 public class EnumService {

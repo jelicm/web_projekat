@@ -55,16 +55,23 @@
 	
 	
 	<h3>Komentari o sportskom objektu</h3>
-	<table border="1">
-	<thead>
-		<tr bgcolor="lightgrey">
-			<th><b>Komentar</b></th>
-			<th><b>Ocena</b></th>
-		</tr>	
-	</thead>
-	<tbody>
-	</tbody>
-	</table>
+	<table border="1" id="tabela">
+				<thead>
+					<tr bgcolor="lightgrey">
+						<th><b>Tekst komentara</b></th>
+						<th><b>Kupac koji je komentarisao</b></th>
+						<th><b>Ocena</b></th>
+					</tr>
+				</thead>
+				
+				<tbody class="telo">
+					<tr v-for="k in komentari">
+						<td>{{k.content}}</td>
+						<td>{{k.customer}}</td>
+						<td>{{k.mark}}</td>
+					</tr>
+				</tbody>
+			</table>
 </div>
 	<br/><br/><br/>
 	<a href="index.html">Nazad</a>

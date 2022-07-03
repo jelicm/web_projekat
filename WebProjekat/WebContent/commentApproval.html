@@ -1,0 +1,37 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Odobravanje komentara</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<div id="commentApproval">
+	<h3>Pregled komentara koji cekaju na odobravanje:</h3>
+	<table border="1" id="tabela">
+				<thead>
+					<tr bgcolor="lightgrey">
+						<th><b>Tekst komentara</b></th>
+						<th><b>Kupac koji je komentarisao</b></th>
+						<th><b>Sportski objekat za koji je vezan</b></th>
+						<th><b>Odobravanje</b></th>
+						<th><b>Odbijanje</b></th>
+					</tr>
+				</thead>
+				
+				<tbody class="telo">
+					<tr v-for="k in komentari">
+						<td>{{k.content}}</td>
+						<td>{{k.customer}}</td>
+						<td>{{k.sportFacility}}</td>
+						<td><button v-on:click="odobri(k)">Odobri</button></td>
+						<td><button v-on:click="odbij(k)">Odbij</button></td>
+					</tr>
+				</tbody>
+			</table>
+</div>
+<a href="adminMainPage.html">Nazad</a>
+	<script src="js/vue.js"></script>
+	<script src="js/axios.js"></script>	
+	<script src="commentApproval.js"></script>
+</body>
+</html>

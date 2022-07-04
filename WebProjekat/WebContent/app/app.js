@@ -75,6 +75,17 @@ var app = new Vue({
 			this.prosecnaOcena = '';
 			this.lokacija = '';
 		},
+		
+		pretraziSve: function(){
+			this.pretrazeniObjekti = this.objekti
+			
+			this.pretrazeniObjekti = this.pretrazeniObjekti.filter(o => o.name.toLowerCase().includes(this.naziv.toLowerCase()));
+			this.pretrazeniObjekti = this.pretrazeniObjekti.filter(o => (o.location.address.street.toLowerCase().includes(this.lokacija.toLowerCase()) || o.location.address.city.toLowerCase().includes(this.lokacija.toLowerCase())));
+			if(this.prosecnaOcena !== '')
+				this.pretrazeniObjekti = this.pretrazeniObjekti.filter(o => o.averageRating == this.prosecnaOcena);
+			this.pretrazeniObjekti = this.pretrazeniObjekti.filter(o => o.type.toLowerCase().replace('_', '').includes(this.tip.replace(' ','').toLowerCase()));
+		
+		},
 		ponistiPretragu: function(){
 			this.pretrazeniObjekti = this.objekti;
 			this.naziv = '';
@@ -164,6 +175,8 @@ var app = new Vue({
 			if(this.st != '')	
 				this.pretrazeniObjekti = this.pretrazeniObjekti.filter(o => o.status == this.st);	
 		},
+		
+		
 		
 		pregledaj: function(o){
 			event.preventDefault()

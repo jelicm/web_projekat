@@ -349,10 +349,10 @@ public class UserService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<User> getRegisteredUsers() {
 		ArrayList<User> users = new ArrayList<User>();
-		CustomerDAO customerDAO = (CustomerDAO) ctx.getAttribute("customerDAO");
+		/*CustomerDAO customerDAO = (CustomerDAO) ctx.getAttribute("customerDAO");
 		for (Customer c : customerDAO.findAllCustomers()) {
 			users.add((User)c);
-		};
+		};*/
 		CoachDAO coachDAO = (CoachDAO) ctx.getAttribute("coachDAO");
 		for(Coach c : coachDAO.findAllCoaches()) {
 			if(!c.isDeleted())
@@ -366,6 +366,18 @@ public class UserService {
 		for(Manager m : managerDAO.findAllManagers()) {
 			if(!m.isDeleted())
 				users.add((User)m);
+		};
+		return users;
+	}
+	
+	@GET
+	@Path("/registeredCustomers")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Customer> getRegisteredCustomers() {
+		ArrayList<Customer> users = new ArrayList<Customer>();
+		CustomerDAO customerDAO = (CustomerDAO) ctx.getAttribute("customerDAO");
+		for (Customer c : customerDAO.findAllCustomers()) {
+			users.add(c);
 		};
 		return users;
 	}

@@ -9,8 +9,10 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import enums.FacilityType;
+import enums.Role;
 import enums.Status;
 import enums.TrainingType;
+import enums.TypeName;
 
 @Path("/enums")
 public class EnumService {
@@ -47,6 +49,25 @@ public class EnumService {
 		TrainingType[] values = TrainingType.values();
 		return values;
 	}
+	
+	@GET
+	@Path("/typeName")
+	@Produces(MediaType.APPLICATION_JSON)
+	public TypeName[] getCustomerType() {
+		TypeName[] values = TypeName.values();
+		return values;
+	}
+	
+	@GET
+	@Path("/role")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Role[] getRole() {
+		Role[] values = Role.values();
+		return values;
+	}
+	
+	
+	
 	
 
 }

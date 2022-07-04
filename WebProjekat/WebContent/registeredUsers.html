@@ -6,24 +6,49 @@
 </head>
 <body>
 <div id="registeredUsers">
+
+	<h4>Pretrazi korisnike:</h4>
+	<table>
+			<tr><td>Ime:</td><td><input v-model="ime" type="text" name="naziv1"></td><td><button  v-on:click="pretragaIme(ime)">Pretrazi</button></td></tr>
+			<tr><td>Prezime:</td><td><input v-model="prezime" type="text" name="naziv2"></td><td><button  v-on:click="pretragaPrezime(prezime)">Pretrazi</button></td></tr>
+			<tr><td>Korisnicko ime:</td><td><input v-model="username" type="text" name="naziv3"></td><td><button  v-on:click="pretragaUsername(username)">Pretrazi</button></td></tr>
+			<tr><td align="right" colspan="2"><button  v-on:click="ponistiPretragu()">Ponisti</button></td></tr>
+		</table>
+		
+		<select name="tipovi" id="tipovi"  v-on:change = "tipFilter">
+  			<option>Izaberi tip kupca</option>
+    		<option v-for = "t in tipovi">{{t}}</option>
+    		
+  		</select>
+  	<br></br>
+  	<select name="uloge" id="uloge"  v-on:change = "ulogeFilter">
+  			<option>Izaberi ulogu</option>
+    		<option v-for = "u in uloge">{{u}}</option>
+    		
+  		</select>
+  		<br></br>
 	<table border="1" id="tabela">
 				<thead>
 					<tr bgcolor="lightgrey">
-						<th><b>Korisnicko ime</b></th>
-						<th><b>Ime</b></th>
-						<th><b>Prezime</b></th>
+						<th v-on:click = "sortUsername()" class = "pointer"><b>Korisnicko ime</b></th>
+						<th v-on:click = "sortIme()" class = "pointer"><b>Ime</b></th>
+						<th v-on:click = "sortPrezime()" class = "pointer"><b>Prezime</b></th>
 						<th><b>Datum rodjenja</b></th>
 						<th><b>Uloga</b></th>
+						<th><b>Tip</b></th>
+						<th v-on:click = "sortPoeni()" class = "pointer"><b>Poeni</b></th>
 					</tr>
 				</thead>
 				
 				<tbody class="telo">
-					<tr v-for="k in registrovaniKorisnici">
-						<td>{{k.username}}</td>
-						<td>{{k.name}}</td>
-						<td>{{k.surname}}</td>
-						<td>{{k.dateOfBirth}}</td>
-						<td>{{k.role}}</td>
+					<tr v-for="k in registrovaniFiltrirano">
+						<td>{{k.user.username}}</td>
+						<td>{{k.user.name}}</td>
+						<td>{{k.user.surname}}</td>
+						<td>{{k.user.dateOfBirth}}</td>
+						<td>{{k.user.role}}</td>
+						<td>{{k.tip}}</td>
+						<td>{{k.poeni}}</td>
 						</tr>
 				</tbody>
 			</table>

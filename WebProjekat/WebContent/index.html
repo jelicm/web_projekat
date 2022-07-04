@@ -21,6 +21,7 @@
 			<tr><td>Tip:</td><td><input v-model="tip" type="text" name="tip"></td><td><button  v-on:click="pretragaTip(tip)">Pretrazi</button></td></tr>
 			<tr><td>Lokacija:</td><td><input v-model="lokacija" type="text" name="lokacija"></td><td><button  v-on:click="pretragaLokacija(lokacija)">Pretrazi</button></td></tr>
 			<tr><td>Prosecna ocena:</td><td><input style='width:100%' v-model="prosecnaOcena" min="1" max="5" type="number" name="prosecnaOcena"></td><td><button  v-on:click="pretragaOcena(prosecnaOcena)">Pretrazi</button></td></tr>
+			<tr><td align="right" colspan="3"><button  v-on:click="pretraziSve()">Pretrazi sve</button></td></tr>
 			<tr><td align="center" colspan="2"><button  v-on:click="ponistiPretragu()">Ponisti</button></td></tr>
 		</table>
 		<p></p>

@@ -630,11 +630,15 @@ public class UserService {
 	public ArrayList<Training> getPersonalTrainingsForCoach(){
 		coachPersonalTrainings = new ArrayList<Training>();
 		TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
+		TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
 		Coach c = (Coach) request.getSession().getAttribute("loggedInUser");
 		for(Training t : trainingDAO.findAllTrainings()){
 			if(t.getCoach().equals(c.getUsername()) && t.getTrainingType() == TrainingType.PERSONALNI)
 			{
-				coachPersonalTrainings.add(t);
+				for(TrainingHistory th : thDAO.findAllTrainingHistories()){
+					if(th.getTraining().equals(t.getName()))
+						coachPersonalTrainings.add(t);
+				}
 			}
 		}
 		return coachPersonalTrainings;
@@ -646,11 +650,15 @@ public class UserService {
 	public ArrayList<Training> getGroupTrainingsForCoach(){
 		coachGroupTrainings = new ArrayList<Training>();
 		TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
+		TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
 		Coach c = (Coach) request.getSession().getAttribute("loggedInUser");
 		for(Training t : trainingDAO.findAllTrainings()){
 			if(t.getCoach().equals(c.getUsername()) && t.getTrainingType() == TrainingType.GRUPNI)
 			{
-				coachGroupTrainings.add(t);
+				for(TrainingHistory th : thDAO.findAllTrainingHistories()){
+					if(th.getTraining().equals(t.getName()))
+						coachGroupTrainings.add(t);
+				}
 			}
 		}
 		return coachGroupTrainings;
@@ -735,13 +743,13 @@ public class UserService {
 	}
 	
 	@GET
-	@Path("/cancelTraining/{name}")
+	@Path("/cancelTraining/{name}/{date}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response cancelTraining (@PathParam("name") String name) throws ParseException {
+	public Response cancelTraining (@PathParam("name") String name, @PathParam("date") String date) throws ParseException {
 		TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
 		TrainingHistory trHistory = null;
 		for(TrainingHistory th : thDAO.findAllTrainingHistories()){
-			if(th.getTraining().equals(name)) {
+			if(th.getTraining().equals(name) && th.getApplicationDateAndTime().equals(date)) {
 				trHistory = th;
 				break;
 			}
@@ -757,6 +765,12 @@ public class UserService {
 		    for(Training t : coachPersonalTrainings){
 				if(t.getName().equals(name) && difference_In_Days >= 2) {
 					thDAO.deleteTrainingHistory(trHistory.getName());
+					
+					CoachDAO coachDAO = (CoachDAO) ctx.getAttribute("coachDAO");
+					Coach coach = coachDAO.findCoach(t.getCoach());
+					coach.removeTrainingHistory(trHistory.getName());
+					coachDAO.updateCoach(coach, coach.getUsername());
+					
 					return Response.status(200).entity("coachMainPage.html").build();
 				}
 			}
@@ -847,6 +861,11 @@ public class UserService {
 	    String id = "th" + Integer.toString(numOfTH);
 		TrainingHistory th = new TrainingHistory(d2Str, t.getName(), c.getUsername(), t.getCoach(), id);
 		thDAO.addTrainingHistory(th);
+		
+		CoachDAO coachDAO = (CoachDAO) ctx.getAttribute("coachDAO");
+		Coach coach = coachDAO.findCoach(t.getCoach());
+		coach.addTrainingHistory(th.getName());
+		coachDAO.updateCoach(coach, coach.getUsername());
 		
 		if(!isVisited) 
 		{

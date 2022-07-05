@@ -36,4 +36,12 @@ public class Coach extends User {
 		this.trainingHistories = trainingHistories;
 	}
 	
+	public void addTrainingHistory(String trainingHistory){
+		this.trainingHistories.add(trainingHistory);
+	}
+	
+	public void removeTrainingHistory(String trainingHistory){
+		this.trainingHistories.remove(trainingHistory);
+	}
+	
 }

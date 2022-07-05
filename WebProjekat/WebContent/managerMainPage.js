@@ -30,7 +30,7 @@ var app = new Vue({
 		.then(response => {
 			this.manager = response.data
 			axios.get('rest/sportFacilities/trainingsForSportFacilityManager/' + this.manager.sportFacility)
-			.then(response => {this.treninzi = response.data})
+			.then(response => {this.treninzi = response.data,
 			axios.get('rest/sportFacilities/getTrainingDates')
 			.then(response =>{
 				this.datumi = response.data;
@@ -42,7 +42,7 @@ var app = new Vue({
 	    		}
 				this.treninziSaDatumomFiltrirano = this.treninziSaDatumom;
 			})
-		
+			})
 		})
 		
 		axios.get("rest/enums/trainingType")

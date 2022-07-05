@@ -7,10 +7,10 @@ var app = new Vue({
     },
 	mounted() {
 		axios.get('rest/users/managerSportFacility')
-		.then(response => {this.sportFacility = response.data})
+		.then(response => {this.sportFacility = response.data,
 		axios.get('rest/users/coachesForSportFacility')
 		.then(response => {this.coachesForSportFacility = response.data})
 		axios.get('rest/users/customersForSportFacility')
-		.then(response => {this.customersForSportFacility = response.data})
+		.then(response => {this.customersForSportFacility = response.data})})
 	}
 })

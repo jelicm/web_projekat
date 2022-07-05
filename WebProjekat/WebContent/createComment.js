@@ -5,9 +5,6 @@ var app = new Vue({
 		komentar: ""
 		
     },
-	mounted() {
-		
-	},
     methods: {
 		dodajKomentar: function(){
 			

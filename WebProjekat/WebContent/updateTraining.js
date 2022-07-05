@@ -10,7 +10,7 @@ var app = new Vue({
     },
     mounted(){
 		axios.get('rest/users/allCoaches')
-		.then(response => {this.treneri = response.data})
+		.then(response => {this.treneri = response.data,
 		axios.get('rest/users/getTraining')
 		.then(response => {
 			this.trening = response.data;
@@ -20,7 +20,7 @@ var app = new Vue({
 			});
 			this.prethodnaSlika = this.trening.image;
 			this.name = this.trening.name;
-		})
+		})})
     },
     methods: {
         update: function(event){

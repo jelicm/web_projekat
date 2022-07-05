@@ -32,11 +32,11 @@ var app = new Vue({
 	},
 	mounted() {
 		axios.get('rest/users/loggedInCustomer')
-		.then(response => (this.customer = response.data))
+		.then(response => {this.customer = response.data,
 		axios.get('rest/users/getTrainingsForCustomer')
-		.then(response => (this.treninzi = response.data))
+		.then(response => {this.treninzi = response.data,
 		axios.get('rest/users/getTrainingDates')
-		.then(response => (this.datumi = response.data))
+		.then(response => {this.datumi = response.data,
 		axios.get('rest/users/getSportFacilityType')
 		.then(response => {
 			this.tipovi = response.data;
@@ -48,8 +48,8 @@ var app = new Vue({
 		      });
 			}
 			this.treninziSaDatumomFiltrirano = this.treninziSaDatumom;
+		})})})})
 
-		})
 		axios.get("rest/enums/facilityType")
 			 .then((response) => {this.tipoviObjekata = response.data});
 		axios.get("rest/enums/trainingType")

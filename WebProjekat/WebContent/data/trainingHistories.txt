@@ -15,7 +15,7 @@
   },
   "th7" : {
     "name" : "th7",
-    "applicationDateAndTime" : "03.07.2022. 03:09",
+    "applicationDateAndTime" : "30.07.2022. 03:09",
     "training" : "trening2",
     "customer" : "mare",
     "coach" : "stivi"
@@ -50,7 +50,7 @@
   },
   "th2" : {
     "name" : "th2",
-    "applicationDateAndTime" : "30.6.2022. 17:00",
+    "applicationDateAndTime" : "30.7.2022. 17:00",
     "training" : "trening2",
     "customer" : "mitar",
     "coach" : "stivi"

@@ -44,15 +44,12 @@ var app = new Vue({
 	},
 	mounted() {
 		axios.get('rest/users/loggedInCoach')
-		.then(response => (this.coach = response.data))
+		.then(response => {this.coach = response.data,
+		
 		axios.get('rest/users/getPersonalTrainingsForCoach')
-		.then(response => (this.personalni = response.data))
-		axios.get('rest/users/getGroupTrainingsForCoach')
-		.then(response => (this.grupni = response.data))
+		.then(response => {this.personalni = response.data,
 		axios.get('rest/users/getPersonalTrainingDatesForCoach')
-		.then(response => (this.datumiPersonalni = response.data))
-		axios.get('rest/users/getGroupTrainingDatesForCoach')
-		.then(response => (this.datumiGrupni = response.data))
+		.then(response => {this.datumiPersonalni = response.data,
 		axios.get('rest/users/getSportFacilityTypeForPersonal')
 		.then(response => {
 			this.tipoviPersonalni = response.data;
@@ -65,7 +62,12 @@ var app = new Vue({
 			}
 			this.personalniTreninziFilter = this.personalniTreninzi;
 		
-		})
+		})})}),
+		
+		axios.get('rest/users/getGroupTrainingsForCoach')
+		.then(response => {this.grupni = response.data,
+		axios.get('rest/users/getGroupTrainingDatesForCoach')
+		.then(response => {this.datumiGrupni = response.data,
 		axios.get('rest/users/getSportFacilityTypeForGroup')
 		.then(response => {
 			
@@ -78,7 +80,8 @@ var app = new Vue({
 			      })
 		    }
 			this.grupniTreninziFilter = this.grupniTreninzi
-		})
+		})})})})
+		
 		axios.get("rest/enums/facilityType")
 			 .then((response) => {this.tipoviObjekata = response.data});
 	},
@@ -113,12 +116,12 @@ var app = new Vue({
 		.then(coach = {})
 		},
 		otkazi: function(pt){
-		axios.get('rest/users/cancelTraining/' + pt.treninzi.name)
+		axios.get('rest/users/cancelTraining/' + pt.treninzi.name + '/' + pt.datumi)
         .then(response => {
             location.href=response.data 
         })
         .catch(function(){
-            alert("Trening je za manje od 2 dana, ne moze se otkazati!")
+            alert("Trening je za manje od 2 dana ili je vec prosao, te se ne moze otkazati!")
         })	
         },
 		pretragaNazivPersonalni: function(naziv1){

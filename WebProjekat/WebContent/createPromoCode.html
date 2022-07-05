@@ -1,0 +1,34 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Kreiranje promo koda</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<div id="createPromoCode">
+	<form>
+	<table>
+			<tr>
+				<td>Oznaka:</td><td><input v-model="oznaka" type="text" name="oznaka"></td>
+			</tr>
+			<tr>
+				<td>Popust:</td><td><input style='width:100%' v-model="popust" type="number" name="popust" min="1" max="99"></td>
+			</tr>
+			<tr>
+				<td>Broj mogucih upotreba:</td><td><input v-model="broj" type="range" name="broj" min="1" max="100" step="1">{{broj}}</td>
+			</tr>
+			<tr>
+				<td>Datum vazenja:</td><td><input style='width:100%' v-model="datum" type="date" name="datum"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input v-on:click="create" type="submit" value="Kreiraj"></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<a href="adminMainPage.html">Nazad</a>
+	<script src="js/vue.js"></script>
+	<script src="js/axios.js"></script>
+	<script src="createPromoCode.js"></script>
+</body>
+</html>

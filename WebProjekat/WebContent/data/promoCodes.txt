@@ -1,0 +1,20 @@
+{
+  "KOD3" : {
+    "identifier" : "KOD3",
+    "expirationDate" : "2022-10-10",
+    "numberOfUses" : 19,
+    "discount" : 7.0
+  },
+  "KOD2" : {
+    "identifier" : "KOD2",
+    "expirationDate" : "2022-10-10",
+    "numberOfUses" : 0,
+    "discount" : 10.0
+  },
+  "KOD1" : {
+    "identifier" : "KOD1",
+    "expirationDate" : "2022-07-01",
+    "numberOfUses" : 50,
+    "discount" : 3.5
+  }
+}

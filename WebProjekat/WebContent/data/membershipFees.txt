@@ -9,6 +9,16 @@
     "membershipFeeStatus" : "AKTIVNA",
     "numberOfAppointments" : "28"
   },
+  "clanarina4" : {
+    "identifier" : "clanarina4",
+    "membershipFeeType" : "GODISNJA",
+    "paymentDate" : "5.7.2022.",
+    "expirationDateAndTime" : "5.7.2023. 12:00",
+    "price" : 930,
+    "customer" : "mare",
+    "membershipFeeStatus" : "AKTIVNA",
+    "numberOfAppointments" : "Neograniceno"
+  },
   "clanarina1" : {
     "identifier" : "clanarina1",
     "membershipFeeType" : "MESECNA",
@@ -26,7 +36,7 @@
     "expirationDateAndTime" : "30.6.2023. 12:00",
     "price" : 1000,
     "customer" : "mare",
-    "membershipFeeStatus" : "AKTIVNA",
+    "membershipFeeStatus" : "NEAKTIVNA",
     "numberOfAppointments" : "Neograniceno"
   }
 }

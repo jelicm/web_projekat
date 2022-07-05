@@ -10,6 +10,7 @@ import beans.Customer;
 import beans.CustomerType;
 import beans.Manager;
 import beans.MembershipFee;
+import beans.PromoCode;
 import beans.SportFacility;
 import beans.Training;
 import beans.TrainingHistory;
@@ -39,6 +40,7 @@ import dao.CommentDAO;
 import dao.CustomerDAO;
 import dao.ManagerDAO;
 import dao.MembershipFeeDAO;
+import dao.PromoCodeDAO;
 import dao.SportFacilityDAO;
 import dao.TrainingDAO;
 import dao.TrainingHistoryDAO;
@@ -89,7 +91,9 @@ public class UserService {
 		if (ctx.getAttribute("commentDAO") == null) {
 			ctx.setAttribute("commentDAO", new CommentDAO(contextPath));
 		}
-		
+		if (ctx.getAttribute("promoCodeDAO") == null) {
+			ctx.setAttribute("promoCodeDAO", new PromoCodeDAO(contextPath));
+		}
 	}
 	
 	@POST
@@ -794,14 +798,44 @@ public class UserService {
 	}
 	
 	@POST
-	@Path("/payMembershipFee/{discount}")
+	@Path("/payMembershipFee/{discount}/{promoCode}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response payMembershipFee(@PathParam("discount") double discount) {
+	public Response payMembershipFee(@PathParam("discount") double discount, @PathParam("promoCode") String promoCode) throws ParseException {
+		PromoCodeDAO pcDAO = (PromoCodeDAO) ctx.getAttribute("promoCodeDAO");
+		double promoCodeDiscount = 0;
+		if(!promoCode.isEmpty()) {
+			PromoCode pc = pcDAO.findPromoCode(promoCode);
+			if(pc != null) {
+				SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+			    Date d1 = sdformat.parse(pc.getExpirationDate());
+			    Date d2 = new Date();
+			    String d2Str = sdformat.format(d2);
+			    d2 = sdformat.parse(d2Str);
+			    if(d2.compareTo(d1) < 0 && pc.getNumberOfUses() > 0) {
+			    	pc.setNumberOfUses(pc.getNumberOfUses()-1);
+			    	pcDAO.updatePromoCode(pc);
+			    	promoCodeDiscount = pc.getDiscount();
+			    }
+			    else {
+			    	return Response.status(400).build();
+			    }
+			}
+			else {
+				return Response.status(400).build();
+			}
+		}
+		
+		
 		MembershipFee mf = (MembershipFee)request.getSession().getAttribute("membershipFee");
 		CustomerDAO cDAO = (CustomerDAO)ctx.getAttribute("customerDAO");
 		Customer c = (Customer)request.getSession().getAttribute("loggedInUser");
-		mf.setPrice((int)(mf.getPrice()-mf.getPrice()*discount/100));
+		if(discount+promoCodeDiscount >= 100) {
+			mf.setPrice((int)(mf.getPrice()-mf.getPrice()*0.99));
+		}
+		else {
+			mf.setPrice((int)(mf.getPrice()-mf.getPrice()*discount/100-mf.getPrice()*promoCodeDiscount/100));
+		}
 		mf.setMembershipFeeStatus(MembershipFeeStatus.AKTIVNA);
 		MembershipFeeDAO mfDAO = (MembershipFeeDAO) ctx.getAttribute("membershipFeeDAO");
 		for(MembershipFee fee : mfDAO.findAllMembershipFees()) {

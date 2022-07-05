@@ -12,10 +12,13 @@ var app = new Vue({
     methods: {
         create: function(event){
             event.preventDefault()
-            axios.post('rest/users/payMembershipFee/'+ this.procenat)
+            axios.post('rest/users/payMembershipFee/'+ this.procenat + '/' + this.promoKod)
 	            .then(response => {
 	                location.href=response.data 
 	            })
+	            .catch(function(){
+	                alert("Nevazeci promo kod!")
+            	})
         }
     }
 })

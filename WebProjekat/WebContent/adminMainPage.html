@@ -2,9 +2,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Administrator</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-	<form id="adminMainPage">
+	<div id="adminMainPage">
+	<form >
 		<p>Ulogovan je administrator: {{admin.name}} {{admin.surname}}</p>
 		<a href="registerCoachOrManager.html">1. Dodavanje novog menadzera ili trenera</a>
 		<br/>
@@ -21,7 +23,30 @@
 		<a href="createPromoCode.html">7. Definisanje promo koda</a>
 		<br /><br /><br />
 		<a v-on:click="logout" href="index.html">Izloguj se</a>
-	</form>
+		</form>
+		<table border="1" id="tabela">
+				<thead>
+					<tr bgcolor="lightgrey">
+						<th><b>Logo</b></th>
+						<th ><b>Naziv</b></th>
+						<th ><b>Tip</b></th>
+						<th><b>Status</b></th>
+						<th><b>Obrisi</b></th>
+					</tr>
+				</thead>
+				
+				<tbody class="telo">
+					<tr v-for="o in objekti">
+						<td><img v-bind:src=" 'img/' + o.image"></td>
+						<td>{{o.name}}</td>
+						<td>{{o.type}}</td>
+						<td v-bind:class="[{green : o.status=='RADI'}, {red : o.status=='NE_RADI'}]">{{o.status}}</td>
+						<td><button  v-on:click="obrisi(o)">Obrisi</button></td>
+					</tr>
+				</tbody>
+			</table>
+	
+	</div>
 	<script src="js/vue.js"></script>
 	<script src="js/axios.js"></script>
 	<script src="adminMainPage.js"></script>

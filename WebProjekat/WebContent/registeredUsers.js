@@ -180,5 +180,29 @@ var app = new Vue({
 				this.registrovaniFiltrirano = this.registrovaniFiltrirano.filter(o => o.tip == this.tipk);	
 		},
 		
+		obrisiKorisnika: function(k){
+			if(k.user.role == 'MENADZER')
+			{
+				axios.delete("rest/users/deleteManager/" + k.user.username)
+				.then (response => {
+					this.registrovaniFiltrirano = this.registrovaniFiltrirano.filter(r => r.user.username !== k.user.username);
+					this.registrovani = this.registrovani.filter(r => r.user.username !== k.user.username);
+				})
+				.catch(function(){
+                	alert("Ne mozete obrisati mendazera zaduzenog za neki spotski objekat!")
+            	})
+			}
+			if(k.user.role == 'TRENER')
+			{
+				axios.delete("rest/users/deleteCoach/" + k.user.username)
+				.then (response => {
+					this.registrovaniFiltrirano = this.registrovaniFiltrirano.filter(r => r.user.username !== k.user.username);
+					this.registrovani = this.registrovani.filter(r => r.user.username !== k.user.username);
+				})
+				
+			}
+			
+		}
+		
 	}
 })

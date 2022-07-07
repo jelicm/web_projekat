@@ -26,6 +26,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -458,7 +459,7 @@ public class UserService {
 		ManagerDAO managerDAO = (ManagerDAO) ctx.getAttribute("managerDAO");
 		ArrayList<Manager> availableManagers = new ArrayList<Manager>(); 
 		for(Manager m : managerDAO.findAllManagers()) {
-			if(m.getSportFacility() == null)
+			if(m.getSportFacility() == null && !m.isDeleted())
 				availableManagers.add(m);
 		}
 		return availableManagers;
@@ -924,4 +925,42 @@ public class UserService {
 		commentDAO.addComment(com);
 		return Response.status(200).entity("customerMainPage.html").build();
 	}
+	
+	@DELETE
+	@Path("/deleteManager/{username}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteManager(@PathParam("username") String username) {
+		ManagerDAO managerDAO = (ManagerDAO) ctx.getAttribute("managerDAO");
+		Manager m = managerDAO.findManager(username);
+		if(m.getSportFacility() != null && m.getSportFacility() != "")
+			return Response.status(400).build();
+		m.setDeleted(true);
+		managerDAO.addManager(m);
+		return Response.status(200).build();
+	}
+
+	@DELETE
+	@Path("/deleteCoach/{username}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteCoach(@PathParam("username") String username) {
+		CoachDAO coachDAO = (CoachDAO) ctx.getAttribute("coachDAO");
+		TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
+		
+		Coach c = coachDAO.findCoach(username);
+		for(Training t : trainingDAO.findAllTrainings()){
+			if(t.getCoach().equals(c.getUsername()))
+			{
+				t.setCoach(null);
+				trainingDAO.addTraining(t);
+			}
+				
+		}
+		
+		c.setDeleted(true);
+		coachDAO.addCoach(c);
+		return Response.status(200).build();
+	}
+	
+	
+	
 }

@@ -7,7 +7,8 @@
     "coach" : "stivi",
     "description" : "Opis za trening2",
     "image" : "gym2.png",
-    "price" : 200
+    "price" : 200,
+    "deleted": false
   },
   "trening1" : {
     "name" : "trening1",
@@ -17,7 +18,8 @@
     "coach" : "andre",
     "description" : "Opis za trening1",
     "image" : "gym4.png",
-    "price" : 100
+    "price" : 100,
+    "deleted": false
   },
   "trening3" : {
     "name" : "trening3",
@@ -27,7 +29,8 @@
     "coach" : "stivi",
     "description" : "Opis za trening3",
     "image" : "gym1.png",
-    "price" : 300
+    "price" : 300,
+    "deleted": false
   },
   "trening4" : {
     "name" : "trening4",
@@ -37,7 +40,8 @@
     "coach" : "andre",
     "description" : "Opis za trening4",
     "image" : "gym3.png",
-    "price" : 400
+    "price" : 400,
+    "deleted": false
   },
   "trening5" : {
     "name" : "trening5",
@@ -47,7 +51,8 @@
     "coach" : "andre",
     "description" : "Opis za trening5",
     "image" : "gym2.png",
-    "price" : 350
+    "price" : 350,
+    "deleted": false
   },
   "trening6" : {
     "name" : "trening6",
@@ -57,7 +62,8 @@
     "coach" : "andre",
     "description" : "Opis za trening6",
     "image" : "gym1.png",
-    "price" : 300
+    "price" : 300,
+    "deleted": false
   },
   "trening7" : {
     "name" : "trening7",
@@ -67,7 +73,19 @@
     "coach" : "andre",
     "description" : "Opis za trening7",
     "image" : "gym1.png",
-    "price" : 500
+    "price" : 500,
+    "deleted": false
+  },
+  "trening8" : {
+    "name" : "trening8",
+    "trainingType" : "PERSONALNI",
+    "sportFacility" : "Sportski centar 2",
+    "durationInMinutes" : 90,
+    "coach" : "andre",
+    "description" : "Opis za trening8",
+    "image" : "gym1.png",
+    "price" : 500,
+    "deleted": false
   }
   
 }

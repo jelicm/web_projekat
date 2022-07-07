@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -186,9 +187,47 @@ public class SportFacilityService {
 	public ArrayList<Training> getTraining() {
 		ArrayList<Training> trainings = new ArrayList<Training>();
 		TrainingDAO tDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
-		for(Training t : tDAO.findAllTrainings()){
-				trainings.add(t);		}
+		for(Training t : tDAO.findAllTrainings())
+		{
+			if(!t.isDeleted())
+				trainings.add(t);		
+		}
 		return trainings;
+	}
+	
+	@DELETE
+	@Path("/deleteSportFacility/{name}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteSportFacility(@PathParam("name") String name) {
+		SportFacilityDAO sportFacilityDAO = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
+		ManagerDAO managerDAO = (ManagerDAO) ctx.getAttribute("managerDAO");
+		TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
+		SportFacility sf = sportFacilityDAO.findSportFacility(name);
+		for(Manager m : managerDAO.findAllManagers())
+		{
+			if(m.getSportFacility() == null)
+				continue;
+			if(m.getSportFacility().equals(sf.getName()))
+			{
+				m.setSportFacility(null);
+				managerDAO.addManager(m);
+				break;
+			}
+		}
+		
+		for(Training t: trainingDAO.findAllTrainings())
+		{	
+			if(t.getSportFacility().equals(sf.getName()))
+			{
+				t.setDeleted(true);
+				trainingDAO.addTraining(t);
+			}
+				
+		}
+		
+		sf.setDeleted(true);
+		sportFacilityDAO.addSportFacility(sf);
+		return Response.status(200).build(); 
 	}
 	
 	

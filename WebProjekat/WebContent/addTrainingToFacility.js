@@ -37,7 +37,7 @@ var app = new Vue({
 			}
 			axios.post('rest/users/createTraining/' + this.izabraniTrener, 
 	            {"name": this.naziv, "trainingType": this.tip, "sportFacility": null, "image" : slikaPutanja,
-	            "durationInMinutes" : trajanje, "coach" : null, "description": opis, "price": cena})
+	            "durationInMinutes" : trajanje, "coach" : null, "description": opis, "price": cena, "deleted": false})
 	            .then(response => {
 	                location.href=response.data 
 	            })

@@ -20,5 +20,16 @@
     "dateOfBirth" : "2000-12-12",
     "trainingHistories" : [ "th3", "th2", "th7" ],
     "deleted" : false
+  },
+  "mirko" : {
+    "username" : "mirko",
+    "password" : "mirko",
+    "name" : "mirko",
+    "surname" : "mirkoovic",
+    "gender" : "MUSKI",
+    "role" : "TRENER",
+    "dateOfBirth" : "2000-12-12",
+    "trainingHistories" : [ ],
+    "deleted" : false
   }
 }

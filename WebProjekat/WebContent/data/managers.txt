@@ -20,5 +20,16 @@
     "dateOfBirth" : "2000-03-03",
     "sportFacility" : "Sportski centar 1",
     "deleted" : false
+  },
+  "maja" : {
+    "username" : "maja",
+    "password" : "maja",
+    "name" : "maja",
+    "surname" : "majic",
+    "gender" : "ZENSKI",
+    "role" : "MENADZER",
+    "dateOfBirth" : "2000-03-05",
+    "sportFacility" : null,
+    "deleted" : false
   }
 }

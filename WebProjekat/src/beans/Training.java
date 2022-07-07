@@ -11,12 +11,13 @@ public class Training {
 	private String description;
 	private String image;
 	private int price;
+	private boolean deleted;
 	
 	public Training() {
 	}
 
 	public Training(String name, TrainingType trainingType, String sportFacility, int durationInMinutes,
-			String coach, String description, String image, int price) {
+			String coach, String description, String image, int price, boolean deleted) {
 		super();
 		this.name = name;
 		this.trainingType = trainingType;
@@ -26,6 +27,16 @@ public class Training {
 		this.description = description;
 		this.image = image;
 		this.price = price;
+		this.deleted = deleted;
+	}
+
+	
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public String getName() {

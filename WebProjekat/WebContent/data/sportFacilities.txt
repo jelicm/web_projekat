@@ -79,5 +79,25 @@
 		"averageRating": 4.35,
 		"workTime": "08:00 - 21:00"	,
 		"deleted": false
+	},
+	"Sportski centar 2" : {
+		"name" : "Sportski centar 2",
+		"type" : "SPORTSKI_CENTAR",
+		"trainings" : ["trening8"],
+		"status": "NE_RADI",
+		"location" : {
+			"longitude": "45.234",
+			"latitude": "19.254",
+			"address" : {
+				"number": 23,
+				"street": "Sekspirova",
+				"city": "Beograd",
+				"zipCode": 11000
+			}
+		},
+		"image" : "gym2.png",
+		"averageRating": 4.25,
+		"workTime": "08:00 - 21:00"	,
+		"deleted": false
 	}
 }

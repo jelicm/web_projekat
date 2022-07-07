@@ -37,6 +37,7 @@
 						<th><b>Uloga</b></th>
 						<th><b>Tip</b></th>
 						<th v-on:click = "sortPoeni()" class = "pointer"><b>Poeni</b></th>
+						<th><b>Obrisi</b></th>
 					</tr>
 				</thead>
 				
@@ -49,6 +50,8 @@
 						<td>{{k.user.role}}</td>
 						<td>{{k.tip}}</td>
 						<td>{{k.poeni}}</td>
+						<td v-bind:hidden="k.user.role == 'KUPAC' || k.user.role == 'ADMINISTRATOR'"><button  v-on:click="obrisiKorisnika(k)">Obrisi</button></td>
+						<td v-bind:hidden="k.user.role !== 'KUPAC' && k.user.role !== 'ADMINISTRATOR'"></td>
 						</tr>
 				</tbody>
 			</table>

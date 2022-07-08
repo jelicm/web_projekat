@@ -5,11 +5,11 @@
 		"trainings" : ["trening1", "trening3"],
 		"status": "RADI",
 		"location" : {
-			"longitude": "45.234",
-			"latitude": "19.234",
+			"longitude": "19.837813", 
+			"latitude": "45.250653",
 			"address" : {
-				"number": 5,
-				"street": "Balzakova",
+				"number": 76,
+				"street": "Bulevar oslobodjenja",
 				"city": "Novi Sad",
 				"zipCode": 21000
 			}
@@ -25,11 +25,11 @@
 		"trainings" : null,
 		"status": "RADI",
 		"location" : {
-			"longitude": "45.234",
-			"latitude": "19.234",
+			"longitude": "19.834881", 
+			"latitude": "45.239451",
 			"address" : {
-				"number": 7,
-				"street": "Njegoseva",
+				"number": 52,
+				"street": "Narodnog fronta",
 				"city": "Novi Sad",
 				"zipCode": 21000
 			}
@@ -46,11 +46,11 @@
 		"trainings" : null,
 		"status": "NE_RADI",
 		"location" : {
-			"longitude": "45.234",
-			"latitude": "19.254",
+			"longitude": "19.818330", 
+			"latitude": "45.246307",
 			"address" : {
-				"number": 7,
-				"street": "Fruskogorska",
+				"number": 30,
+				"street": "Bulevar Evrope",
 				"city": "Novi Sad",
 				"zipCode": 21000
 			}
@@ -66,18 +66,18 @@
 		"trainings" : ["trening2"],
 		"status": "NE_RADI",
 		"location" : {
-			"longitude": "45.234",
-			"latitude": "19.254",
+			"longitude": "20.477927",  
+			"latitude": "44.795165",
 			"address" : {
-				"number": 12,
-				"street": "Sekspirova",
+				"number": 28,
+				"street": "Maksima Gorkog",
 				"city": "Beograd",
 				"zipCode": 11000
 			}
 		},
 		"image" : "gym4.png",
 		"averageRating": 4.35,
-		"workTime": "08:00-21:00"	,
+		"workTime": "08:00-21:00",
 		"deleted": false
 	},
 	"Sportski centar 2" : {
@@ -86,18 +86,18 @@
 		"trainings" : ["trening8"],
 		"status": "NE_RADI",
 		"location" : {
-			"longitude": "45.234",
-			"latitude": "19.254",
+			"longitude": "20.511307", 
+			"latitude": "44.817578",
 			"address" : {
-				"number": 23,
-				"street": "Sekspirova",
+				"number": 55,
+				"street": "Visnjicka",
 				"city": "Beograd",
 				"zipCode": 11000
 			}
 		},
-		"image" : "gym2.png",
+		"image" : "gym5.png",
 		"averageRating": 4.25,
-		"workTime": "08:00-21:00"	,
+		"workTime": "08:00-21:00",
 		"deleted": false
 	}
 }

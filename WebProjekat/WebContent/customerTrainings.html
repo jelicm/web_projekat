@@ -13,6 +13,16 @@
     		<option v-for = "s in sportFacilities">{{s.name}}</option>
     		
   		</select>
+  	<h3>Izaberite datum i vreme treninga:</h3>
+	<br/>
+	<table>
+			<tr>
+				<td>Datum treninga:</td><td><input style='width:100%' v-model="datum" type="date" name="datum" min='2022-07-12'></td>
+			</tr>
+			<tr>
+				<td>Vreme treninga:</td><td><input style='width:100%' v-model="vreme" type="time" name="vreme"></td>
+			</tr>
+	</table>
   	<br/><br/><br/>
 	<table border="1">
 	<thead>

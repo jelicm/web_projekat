@@ -1,6 +1,8 @@
 package services;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
@@ -20,6 +22,7 @@ import dao.ManagerDAO;
 import dao.SportFacilityDAO;
 import dao.TrainingDAO;
 import dao.TrainingHistoryDAO;
+import enums.Status;
 import beans.Manager;
 import beans.SportFacility;
 import beans.Training;
@@ -32,7 +35,6 @@ public class SportFacilityService {
 	ServletContext ctx;
 	@Context
 	HttpServletRequest request;
-	public static ArrayList<Training> managerTrainings = new ArrayList<Training>();
 	
 	public SportFacilityService() {
 		
@@ -91,6 +93,21 @@ public class SportFacilityService {
 		for(SportFacility sf : dao.findAllSportFacilitiesSorted())
 			if(!sf.isDeleted())
 				visibleSportFacilities.add(sf);
+		for(SportFacility sf: visibleSportFacilities) {
+			SimpleDateFormat sdformat = new SimpleDateFormat("HH:mm");
+			Date time = new Date();
+		    String timeStr = sdformat.format(time);
+		    String[] timeParts = timeStr.split(":");
+		    String[] workTimeParts = sf.getWorkTime().split("-");
+		    String[] startParts = workTimeParts[0].split(":");
+		    String[] endParts = workTimeParts[1].split(":");
+		    if(Integer.parseInt(timeParts[0]) < Integer.parseInt(startParts[0]) || Integer.parseInt(timeParts[0]) > Integer.parseInt(endParts[0])) {
+		    	sf.setStatus(Status.NE_RADI);
+		    }
+		    else {
+		    	sf.setStatus(Status.RADI);
+		    }
+		}
 		return visibleSportFacilities;
 	}
 	
@@ -122,7 +139,7 @@ public class SportFacilityService {
 		SportFacility sportFacility;
 		SportFacilityDAO sportFacilityDAO = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
 		sportFacility = sportFacilityDAO.findSportFacility(name);
-		managerTrainings = new ArrayList<Training>();
+		ArrayList<Training> managerTrainings = new ArrayList<Training>();
 		if(sportFacility != null) {
 			TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
 			TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
@@ -139,6 +156,7 @@ public class SportFacilityService {
 			}
 			
 		}
+		request.getSession().setAttribute("managerTrainings", managerTrainings);
 		return managerTrainings;
 	}
 	
@@ -169,9 +187,11 @@ public class SportFacilityService {
 	public ArrayList<String> getTrainingDates() {
 		ArrayList<String> dates = new ArrayList<String>();
 		TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
-		for(TrainingHistory th : thDAO.findAllTrainingHistories()){
-			for(Training t : managerTrainings){
-				if(t.getName().equals(th.getTraining())) {
+		@SuppressWarnings("unchecked")
+		ArrayList<Training> managerTrainings = (ArrayList<Training>) request.getSession().getAttribute("managerTrainings");
+		for(Training t : managerTrainings){
+			for(TrainingHistory th : thDAO.findAllTrainingHistories()){
+				if(t.getName().equals(th.getTraining()) && !dates.contains(th.getApplicationDateAndTime())) {
 					dates.add(th.getApplicationDateAndTime());
 					break;
 				}

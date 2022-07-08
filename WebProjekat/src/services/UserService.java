@@ -55,9 +55,6 @@ public class UserService {
 	ServletContext ctx;
 	@Context
 	HttpServletRequest request;
-	public static ArrayList<Training> customerTrainings = new ArrayList<Training>();
-	public static ArrayList<Training> coachPersonalTrainings = new ArrayList<Training>();
-	public static ArrayList<Training> coachGroupTrainings = new ArrayList<Training>();
 	
 	public UserService() {
 	}
@@ -468,9 +465,14 @@ public class UserService {
 	@GET
 	@Path("/allCoaches")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Coach> allCoaches() {
+	public ArrayList<Coach> allCoaches() {
+		ArrayList<Coach> coaches = new ArrayList<Coach>();
 		CoachDAO coachDAO = (CoachDAO) ctx.getAttribute("coachDAO");
-		return coachDAO.findAllCoaches();
+		for(Coach c : coachDAO.findAllCoaches()) {
+			if(!c.isDeleted())
+				coaches.add(c);
+		}
+		return coaches;
 	}
 	
 	@POST
@@ -569,7 +571,7 @@ public class UserService {
 	@Path("/getTrainingsForCustomer")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Training> getTrainingsForCustomer() throws ParseException {
-		customerTrainings = new ArrayList<Training>();
+		ArrayList<Training> customerTrainings = new ArrayList<Training>();
 		TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
 		TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
 		Customer c = (Customer) request.getSession().getAttribute("loggedInUser");
@@ -587,6 +589,7 @@ public class UserService {
 				customerTrainings.add(t);
 			}
 		}
+		request.getSession().setAttribute("customerTrainings", customerTrainings);
 		return customerTrainings;
 	}
 	
@@ -597,15 +600,13 @@ public class UserService {
 		ArrayList<String> dates = new ArrayList<String>();
 		TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
 		Customer c = (Customer) request.getSession().getAttribute("loggedInUser");
-		for(TrainingHistory th : thDAO.findAllTrainingHistories()){
-			if(th.getCustomer().equals(c.getUsername()))
-			{
-				
-				for(Training t : customerTrainings){
-					if(t.getName().equals(th.getTraining())) {
-						dates.add(th.getApplicationDateAndTime());
-						break;
-					}
+		@SuppressWarnings("unchecked")
+		ArrayList<Training> customerTrainings = (ArrayList<Training>) request.getSession().getAttribute("customerTrainings");
+		for(Training t : customerTrainings){
+			for(TrainingHistory th : thDAO.findAllTrainingHistories()){
+				if(t.getName().equals(th.getTraining()) && th.getCustomer().equals(c.getUsername()) && !dates.contains(th.getApplicationDateAndTime())) {
+					dates.add(th.getApplicationDateAndTime());
+					break;
 				}
 			}
 		}
@@ -618,6 +619,8 @@ public class UserService {
 	public ArrayList<String> getSportFacilityType() {
 		ArrayList<String> types = new ArrayList<String>();
 		SportFacilityDAO sfDAO = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
+		@SuppressWarnings("unchecked")
+		ArrayList<Training> customerTrainings = (ArrayList<Training>) request.getSession().getAttribute("customerTrainings");
 		for(Training t : customerTrainings){
 			for(SportFacility sf : sfDAO.findAllSportFacilities()) {
 				if(sf.getName().equals(t.getSportFacility())) {
@@ -633,7 +636,7 @@ public class UserService {
 	@Path("/getPersonalTrainingsForCoach")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Training> getPersonalTrainingsForCoach(){
-		coachPersonalTrainings = new ArrayList<Training>();
+		ArrayList<Training> coachPersonalTrainings = new ArrayList<Training>();
 		TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
 		TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
 		Coach c = (Coach) request.getSession().getAttribute("loggedInUser");
@@ -646,6 +649,7 @@ public class UserService {
 				}
 			}
 		}
+		request.getSession().setAttribute("coachPersonalTrainings", coachPersonalTrainings);
 		return coachPersonalTrainings;
 	}
 	
@@ -653,7 +657,7 @@ public class UserService {
 	@Path("/getGroupTrainingsForCoach")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Training> getGroupTrainingsForCoach(){
-		coachGroupTrainings = new ArrayList<Training>();
+		ArrayList<Training> coachGroupTrainings = new ArrayList<Training>();
 		TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
 		TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
 		Coach c = (Coach) request.getSession().getAttribute("loggedInUser");
@@ -666,6 +670,7 @@ public class UserService {
 				}
 			}
 		}
+		request.getSession().setAttribute("coachGroupTrainings", coachGroupTrainings);
 		return coachGroupTrainings;
 	}
 	
@@ -676,18 +681,16 @@ public class UserService {
 		ArrayList<String> dates = new ArrayList<String>();
 		TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
 		Coach c = (Coach) request.getSession().getAttribute("loggedInUser");
-		for(TrainingHistory th : thDAO.findAllTrainingHistories()){
-			if(th.getCoach().equals(c.getUsername()))
-			{
-				
-				for(Training t : coachPersonalTrainings){
-					if(t.getName().equals(th.getTraining())) {
+		@SuppressWarnings("unchecked")
+		ArrayList<Training> coachPersonalTrainings = (ArrayList<Training>) request.getSession().getAttribute("coachPersonalTrainings");
+		for(Training t : coachPersonalTrainings){
+				for(TrainingHistory th : thDAO.findAllTrainingHistories()){
+					if(t.getName().equals(th.getTraining()) && th.getCoach().equals(c.getUsername()) && !dates.contains(th.getApplicationDateAndTime())) {
 						dates.add(th.getApplicationDateAndTime());
 						break;
 					}
 				}
 			}
-		}
 		return dates;
 	}
 	
@@ -698,15 +701,13 @@ public class UserService {
 		ArrayList<String> dates = new ArrayList<String>();
 		TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
 		Coach c = (Coach) request.getSession().getAttribute("loggedInUser");
-		for(TrainingHistory th : thDAO.findAllTrainingHistories()){
-			if(th.getCoach().equals(c.getUsername()))
-			{
-				
-				for(Training t : coachGroupTrainings){
-					if(t.getName().equals(th.getTraining())) {
-						dates.add(th.getApplicationDateAndTime());
-						break;
-					}
+		@SuppressWarnings("unchecked")
+		ArrayList<Training> coachGroupTrainings = (ArrayList<Training>) request.getSession().getAttribute("coachGroupTrainings");
+		for(Training t : coachGroupTrainings){
+			for(TrainingHistory th : thDAO.findAllTrainingHistories()){
+				if(t.getName().equals(th.getTraining()) && th.getCoach().equals(c.getUsername()) && !dates.contains(th.getApplicationDateAndTime())) {
+					dates.add(th.getApplicationDateAndTime());
+					break;
 				}
 			}
 		}
@@ -719,6 +720,8 @@ public class UserService {
 	public ArrayList<String> getSportFacilityTypeForPersonal() {
 		ArrayList<String> types = new ArrayList<String>();
 		SportFacilityDAO sfDAO = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
+		@SuppressWarnings("unchecked")
+		ArrayList<Training> coachPersonalTrainings = (ArrayList<Training>) request.getSession().getAttribute("coachPersonalTrainings");
 		for(Training t : coachPersonalTrainings){
 			for(SportFacility sf : sfDAO.findAllSportFacilities()) {
 				if(sf.getName().equals(t.getSportFacility())) {
@@ -736,6 +739,8 @@ public class UserService {
 	public ArrayList<String> getSportFacilityTypeForGroup() {
 		ArrayList<String> types = new ArrayList<String>();
 		SportFacilityDAO sfDAO = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
+		@SuppressWarnings("unchecked")
+		ArrayList<Training> coachGroupTrainings = (ArrayList<Training>) request.getSession().getAttribute("coachGroupTrainings");
 		for(Training t : coachGroupTrainings){
 			for(SportFacility sf : sfDAO.findAllSportFacilities()) {
 				if(sf.getName().equals(t.getSportFacility())) {
@@ -761,12 +766,14 @@ public class UserService {
 		}
 		if(trHistory != null) {
 			SimpleDateFormat sdformat = new SimpleDateFormat("dd.MM.yyyy. HH:mm");
-		    Date d1 = sdformat.parse(trHistory.getApplicationDateAndTime());
+		    Date d1 = sdformat.parse(trHistory.getTrainingDateAndTime());
 		    Date d2 = new Date();
 		    String d2Str = sdformat.format(d2);
 		    d2 = sdformat.parse(d2Str);
 		    long difference_In_Time = d1.getTime() - d2.getTime();
 		    long difference_In_Days = (difference_In_Time / (1000 * 60 * 60 * 24)) % 365;
+		    @SuppressWarnings("unchecked")
+			ArrayList<Training> coachPersonalTrainings = (ArrayList<Training>) request.getSession().getAttribute("coachPersonalTrainings");
 		    for(Training t : coachPersonalTrainings){
 				if(t.getName().equals(name) && difference_In_Days >= 2) {
 					thDAO.deleteTrainingHistory(trHistory.getName());
@@ -853,9 +860,9 @@ public class UserService {
 	}
 	
 	@POST
-	@Path("/addTraining")
+	@Path("/addTraining/{trainingDateAndTime}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response addTraining(Training t) {
+	public Response addTraining(Training t, @PathParam("trainingDateAndTime") String trainingDateAndTime) {
 		TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
 		CustomerDAO customerDAO = (CustomerDAO) ctx.getAttribute("customerDAO");
 		Customer c = (Customer)request.getSession().getAttribute("loggedInUser");
@@ -894,7 +901,10 @@ public class UserService {
 	    String d2Str = sdformat.format(d2);
 	    int numOfTH = thDAO.findAllTrainingHistories().size() + 1;
 	    String id = "th" + Integer.toString(numOfTH);
-		TrainingHistory th = new TrainingHistory(d2Str, t.getName(), c.getUsername(), t.getCoach(), id);
+	    String[] words = trainingDateAndTime.split(" ");
+	    String[] date = words[0].split("-");
+	    trainingDateAndTime = date[2] + "." + date[1] + "." + date[0] + ". " + words[1];
+		TrainingHistory th = new TrainingHistory(d2Str, trainingDateAndTime, t.getName(), c.getUsername(), t.getCoach(), id);
 		thDAO.addTrainingHistory(th);
 		
 		CoachDAO coachDAO = (CoachDAO) ctx.getAttribute("coachDAO");

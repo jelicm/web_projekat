@@ -2,6 +2,7 @@
   "th5" : {
     "name" : "th5",
     "applicationDateAndTime" : "28.6.2022. 15:00",
+    "trainingDateAndTime" : "30.6.2022. 15:00",
     "training" : "trening5",
     "customer" : "mare",
     "coach" : "andre"
@@ -9,13 +10,15 @@
   "th4" : {
     "name" : "th4",
     "applicationDateAndTime" : "22.6.2022. 13:00",
+    "trainingDateAndTime" : "30.6.2022. 13:00",
     "training" : "trening4",
     "customer" : "mare",
     "coach" : "andre"
   },
   "th7" : {
     "name" : "th7",
-    "applicationDateAndTime" : "30.07.2022. 03:09",
+    "applicationDateAndTime" : "5.7.2022. 03:00",
+    "trainingDateAndTime" : "10.7.2022. 12:00",
     "training" : "trening2",
     "customer" : "mare",
     "coach" : "stivi"
@@ -23,13 +26,15 @@
   "th6" : {
     "name" : "th6",
     "applicationDateAndTime" : "3.7.2022. 15:00",
+    "trainingDateAndTime" : "25.7.2022. 15:00",
     "training" : "trening6",
     "customer" : "mare",
     "coach" : "andre"
   },
   "th8" : {
     "name" : "th8",
-    "applicationDateAndTime" : "03.07.2022. 03:10",
+    "applicationDateAndTime" : "3.7.2022. 03:00",
+    "trainingDateAndTime" : "9.7.2022. 14:00",
     "training" : "trening7",
     "customer" : "mitar",
     "coach" : "andre"
@@ -37,6 +42,7 @@
   "th1" : {
     "name" : "th1",
     "applicationDateAndTime" : "2.7.2022. 15:00",
+    "trainingDateAndTime" : "20.7.2022. 15:00",
     "training" : "trening1",
     "customer" : "mitar",
     "coach" : "andre"
@@ -44,13 +50,15 @@
   "th3" : {
     "name" : "th3",
     "applicationDateAndTime" : "30.5.2022. 10:00",
+    "trainingDateAndTime" : "10.6.2022. 10:00",
     "training" : "trening3",
     "customer" : "mare",
     "coach" : "stivi"
   },
   "th2" : {
     "name" : "th2",
-    "applicationDateAndTime" : "30.7.2022. 17:00",
+    "applicationDateAndTime" : "1.7.2022. 17:00",
+    "trainingDateAndTime" : "5.7.2022. 15:00",
     "training" : "trening2",
     "customer" : "mitar",
     "coach" : "stivi"

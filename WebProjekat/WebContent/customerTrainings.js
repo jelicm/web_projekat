@@ -4,6 +4,8 @@ var app = new Vue({
         sportFacilities: {},
         treninzi: {},
 		treninziFiltrirano: {},
+		datum: '',
+		vreme: ''
     },
 	mounted() {
 		axios.get('rest/sportFacilities/')
@@ -25,7 +27,17 @@ var app = new Vue({
 		},
 		
 		dodajTrening: function(t){
-			axios.post('rest/users/addTraining', {"name": t.name, "trainingType": t.trainingType, "sportFacility": t.sportFacility,
+			if(!this.datum || !this.vreme){
+				alert("Postoji nepopunjeno polje forme za datum ili vreme treninga!")
+				return
+			}
+			var array = this.vreme.split(":")
+			if(Number(array[0])<8 || Number(array[0])>21){
+				alert("Neispravan vremenski interval!")
+				return
+			}
+			var dateAndTime = this.datum + ' ' + this.vreme
+			axios.post('rest/users/addTraining/' + dateAndTime, {"name": t.name, "trainingType": t.trainingType, "sportFacility": t.sportFacility,
 			"durationInMinutes": t.durationInMinutes, "coach": t.coach, "description": t.description, "image": t.image, "price": t.price})
 			.then(response => {
                 location.href=response.data 

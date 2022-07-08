@@ -16,7 +16,7 @@
 		},
 		"image" : "gym1.png",
 		"averageRating": 4.75,
-		"workTime": "08:00 - 21:00",
+		"workTime": "08:00-21:00",
 		"deleted": false
 	},
 	"Teretana2" : {
@@ -36,7 +36,7 @@
 		},
 		"image" : "gym2.png",
 		"averageRating": 3.35,
-		"workTime": "08:00 - 21:00",
+		"workTime": "08:00-21:00",
 		"deleted": false
 	},
 	
@@ -57,7 +57,7 @@
 		},
 		"image" : "gym3.png",
 		"averageRating": 4.35,
-		"workTime": "08:00 - 21:00",
+		"workTime": "08:00-21:00",
 		"deleted": false
 	},
 	"Sportski centar 1" : {
@@ -77,7 +77,7 @@
 		},
 		"image" : "gym4.png",
 		"averageRating": 4.35,
-		"workTime": "08:00 - 21:00"	,
+		"workTime": "08:00-21:00"	,
 		"deleted": false
 	},
 	"Sportski centar 2" : {
@@ -97,7 +97,7 @@
 		},
 		"image" : "gym2.png",
 		"averageRating": 4.25,
-		"workTime": "08:00 - 21:00"	,
+		"workTime": "08:00-21:00"	,
 		"deleted": false
 	}
 }

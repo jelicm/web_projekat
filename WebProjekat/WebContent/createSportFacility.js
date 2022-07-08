@@ -37,7 +37,7 @@ var app = new Vue({
 	            {"name": this.naziv, "type": this.tip, "trainings": null, "status": "NE_RADI",
 	            "location": {"longitude": this.geoDuzina, "latitude": this.geoSirina, "address": {"number" : this.broj,
 	            "street" : this.ulica, "city" : this.grad, "zipCode" : this.kod} }, "image" : slikaPutanja, "averageRating" : 0.0,
-	            "workTime" : "07:00 - 22:00", "deleted": false})
+	            "workTime" : "08:00-21:00", "deleted": false})
 	            .then(response => {
 	                location.href=response.data 
 	            })

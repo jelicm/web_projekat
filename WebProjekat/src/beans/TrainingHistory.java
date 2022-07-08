@@ -3,6 +3,7 @@ package beans;
 public class TrainingHistory {
 	private String name;
 	private String applicationDateAndTime;
+	private String trainingDateAndTime;
 	private String training;
 	private String customer;
 	private String coach;
@@ -10,14 +11,23 @@ public class TrainingHistory {
 	public TrainingHistory() {
 	}
 
-	public TrainingHistory(String applicationDateAndTime, String training, String customer,
+	public TrainingHistory(String applicationDateAndTime, String trainingDateAndTime, String training, String customer,
 			String coach, String name) {
 		super();
+		this.trainingDateAndTime = trainingDateAndTime;
 		this.applicationDateAndTime = applicationDateAndTime;
 		this.training = training;
 		this.customer = customer;
 		this.coach = coach;
 		this.name = name;
+	}
+
+	public String getTrainingDateAndTime() {
+		return trainingDateAndTime;
+	}
+
+	public void setTrainingDateAndTime(String trainingDateAndTime) {
+		this.trainingDateAndTime = trainingDateAndTime;
 	}
 
 	public String getApplicationDateAndTime() {

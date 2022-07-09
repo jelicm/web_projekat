@@ -25,8 +25,8 @@ var app = new Vue({
 		.then(response => {this.menadzeri = response.data})
 		
 		function transliterate(word){
-	    var answer = ""
-	      , a = {};
+	    var answer = "", 
+	      a = {};
 	
 	   a["А"]="A";a["Б"]="B";a["В"]="V";a["Г"]="G";a["Д"]="D";a["Ђ"]="DJ";a["Е"]="E";a["Ж"]="Z";a["З"]="Z";a["И"]="I";
 		a["Ј"]="J";a["К"]="K";a["Л"]="L"; a["Љ"]="LJ";a["М"]="M";a["Н"]="N";

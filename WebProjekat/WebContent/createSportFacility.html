@@ -48,9 +48,9 @@
 		<tr>
 			<td>Postanski kod:</td><td><input v-model="kod" type="number" min="1" name="kod"></td>
 		</tr>
-	<!--  	<tr>
+	  	<tr>
 			<td>Logo:</td><td><input v-model="slika" type="file" name="slika"></td>
-		</tr>-->
+		</tr>
 		<tr v-bind:class="[{visible : menadzeri.length !== 0}, {hidden : menadzeri.length === 0}]">
 			<td>Izaberi menadzera:</td>
 			<td>

@@ -926,11 +926,24 @@ public class UserService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addComment(Comment com) {
 		CommentDAO commentDAO = (CommentDAO) ctx.getAttribute("commentDAO");
+		SportFacilityDAO sportFacilityDAO = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
 		String sf = (String) ctx.getAttribute("visitedSportFacility");
 		Customer c = (Customer)request.getSession().getAttribute("loggedInUser");
 		com.setSportFacility(sf);
 		com.setCustomer(c.getUsername());
 		int numOfComments = commentDAO.findAllComments().size() + 1;
+		double sum = com.getMark();
+		int num = 1;
+		for(Comment comment : commentDAO.findAllComments()){
+			if(comment.getSportFacility().equals(com.getSportFacility()))
+			{
+				sum += comment.getMark();
+				num ++;
+			}
+		}
+		SportFacility sf1 = sportFacilityDAO.findSportFacility(com.getSportFacility());
+		sf1.setAverageRating((double)sum/num);
+		sportFacilityDAO.addSportFacility(sf1);
 		com.setName("comment" + Integer.toString(numOfComments));
 		commentDAO.addComment(com);
 		return Response.status(200).entity("customerMainPage.html").build();

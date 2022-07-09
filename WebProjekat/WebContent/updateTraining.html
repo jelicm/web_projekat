@@ -23,9 +23,12 @@
 			<tr>
 				<td>Trenutna slika:</td><td><img v-bind:src=" 'img/' + prethodnaSlika"></td>
 			</tr>
-			<tr>
+			  <tr>
 				<td>Nova slika*:</td><td><input v-model="slika" type="file" name="slika"></td>
 			</tr>
+			<!--<tr>
+				<td>Nova slika*:</td><td><input ref="slika" type="file" name="slika" v-on:change="onChangeFileUpload()"></td>
+			</tr>-->
 			<tr>
 				<td>Opis:</td><td><input v-model="trening.description" type="text" name="opis"></td>
 			</tr>

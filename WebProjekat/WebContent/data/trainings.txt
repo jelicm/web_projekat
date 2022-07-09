@@ -6,7 +6,7 @@
     "durationInMinutes" : 150,
     "coach" : "stivi",
     "description" : "Opis za trening2",
-    "image" : "training3.png",
+    "image" : "training2.png",
     "price" : 200,
     "deleted": false
   },
@@ -39,7 +39,7 @@
     "durationInMinutes" : 150,
     "coach" : "andre",
     "description" : "Opis za trening4",
-    "image" : "gym3.png",
+    "image" : "training4.png",
     "price" : 400,
     "deleted": false
   },
@@ -50,7 +50,7 @@
     "durationInMinutes" : 60,
     "coach" : "andre",
     "description" : "Opis za trening5",
-    "image" : "gym2.png",
+    "image" : "training5.png",
     "price" : 350,
     "deleted": false
   },
@@ -61,7 +61,7 @@
     "durationInMinutes" : 90,
     "coach" : "andre",
     "description" : "Opis za trening6",
-    "image" : "gym1.png",
+    "image" : "training6.png",
     "price" : 300,
     "deleted": false
   },
@@ -72,7 +72,7 @@
     "durationInMinutes" : 90,
     "coach" : "andre",
     "description" : "Opis za trening7",
-    "image" : "gym4.png",
+    "image" : "training7.png",
     "price" : 500,
     "deleted": false
   },
@@ -83,7 +83,7 @@
     "durationInMinutes" : 90,
     "coach" : "andre",
     "description" : "Opis za trening8",
-    "image" : "gym3.png",
+    "image" : "training8.png",
     "price" : 500,
     "deleted": false
   }

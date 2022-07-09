@@ -3,6 +3,14 @@
 	<meta charset="UTF-8">
 	<title>Kreiranje sportskog objekta</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.12.0/css/ol.css" type="text/css">
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.12.0/build/ol.js"></script>
+<style>
+      .map {
+        height: 400px;
+        width: 50%;
+      }
+    </style>
 </head>
 <body>
 <div id="createSportFacility">
@@ -21,7 +29,7 @@
 					</select>
 			</td>
 		</tr>
-		<tr>
+		  <tr>
 			<td>Geografska duzina:</td><td><input v-model="geoDuzina" type="number" min="-180" max="180" name="geoDuzina"></td>
 		</tr>
 		<tr>
@@ -30,6 +38,7 @@
 		<tr>
 			<td>Ulica:</td><td><input v-model="ulica" type="text" name="ulica"></td>
 		</tr>
+		 
 		<tr>
 			<td>Broj u ulici:</td><td><input v-model="broj" type="number" min="1" name="broj"></td>
 		</tr>
@@ -39,9 +48,9 @@
 		<tr>
 			<td>Postanski kod:</td><td><input v-model="kod" type="number" min="1" name="kod"></td>
 		</tr>
-		<tr>
+	<!--  	<tr>
 			<td>Logo:</td><td><input v-model="slika" type="file" name="slika"></td>
-		</tr>
+		</tr>-->
 		<tr v-bind:class="[{visible : menadzeri.length !== 0}, {hidden : menadzeri.length === 0}]">
 			<td>Izaberi menadzera:</td>
 			<td>
@@ -90,6 +99,9 @@
 			</tr>
 		</table>
 	</form>
+	
+	<br/><br/><br/>
+	<div id="map" class="map"></div>
 </div>
 <a href="adminMainPage.html">Nazad</a>
 	<script src="js/vue.js"></script>

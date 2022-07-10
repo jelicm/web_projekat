@@ -31,6 +31,14 @@
     "customer" : "mare",
     "coach" : "andre"
   },
+  "th9" : {
+    "name" : "th9",
+    "applicationDateAndTime" : "10.07.2022. 04:34",
+    "trainingDateAndTime" : "20.07.2022. 10:00",
+    "training" : "trening8",
+    "customer" : "mare",
+    "coach" : "andre"
+  },
   "th8" : {
     "name" : "th8",
     "applicationDateAndTime" : "3.7.2022. 03:00",

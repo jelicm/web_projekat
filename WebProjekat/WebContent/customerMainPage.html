@@ -30,14 +30,13 @@
 			<td><button  v-on:click="pretragaDatum(datumPocetak, datumKraj)">Pretrazi</button></td></tr>
 			<tr><td align="right" colspan="2"><button  v-on:click="ponistiPretragu()">Ponisti</button></td></tr>
 		</table>
-	
-	<select name="tipovi" id="tipovi"  v-on:change = "tipObjektaFilter">
+	<br />
+	<select style="margin-right:10px" name="tipovi" id="tipovi"  v-on:change = "tipObjektaFilter">
   			<option>Izaberi tip objekta</option>
     		<option v-for = "t in tipoviObjekata">{{t}}</option>
     		
   		</select>
-  	<br></br>
-  	<select name="tipoviTreninga" id="tipoviTreninga"  v-on:change = "tipTreningaFilter">
+  	<select style="margin-left:10px" name="tipoviTreninga" id="tipoviTreninga"  v-on:change = "tipTreningaFilter">
   			<option>Izaberi tip treninga</option>
     		<option v-for = "t in tipoviTreninga">{{t}}</option>
     		

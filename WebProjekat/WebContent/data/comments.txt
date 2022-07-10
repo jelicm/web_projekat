@@ -1,4 +1,12 @@
 {
+  "comment4" : {
+    "name" : "comment4",
+    "customer" : "mare",
+    "sportFacility" : "Sportski centar 2",
+    "content" : "Sve je odlicno",
+    "mark" : 5,
+    "permission" : "NA_CEKANJU"
+  },
   "comment3" : {
     "name" : "comment3",
     "customer" : "mitar",

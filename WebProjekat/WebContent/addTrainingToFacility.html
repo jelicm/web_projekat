@@ -13,7 +13,7 @@
 			</tr>
 			<tr>
 				<td>Tip*:</td>
-				<td><select v-model="tip" name="tip">
+				<td><select style="width:70%" v-model="tip" name="tip">
 						<option value="GRUPNI">Grupni</option>
 						<option value="PERSONALNI">Personalni</option>
 						<option value="TERETANA">Teretana</option>
@@ -27,7 +27,7 @@
 				<td>Opis:</td><td><input v-model="opis" type="text" name="opis"></td>
 			</tr>
 			<tr>
-				<td>Trajanje:</td><td><input v-model="trajanje" type="number" min="10" max="360" name="trajanje"></td>
+				<td>Trajanje:</td><td><input style="width:67%" v-model="trajanje" type="number" min="10" max="360" name="trajanje"></td>
 			</tr>
 			<tr>
 				<td>Cena:</td><td><input v-model="cena" type="number" min="0" name="cena"></td>
@@ -35,7 +35,7 @@
 			<tr>
 			<td>Izaberi trenera*:</td>
 			<td>
-			<select v-model="izabraniTrener" name="izabraniTrener">
+			<select style="width:70%" v-model="izabraniTrener" name="izabraniTrener">
     				<option v-for="t in treneri" >{{t.name}} {{t.surname}}</option>	
   				</select>
   			</td>
@@ -46,6 +46,7 @@
 		</table>
 	</form>
 </div>
+<br />
 	<a href="managerMainPage.html">Nazad</a>
 	<script src="js/vue.js"></script>
 	<script src="js/axios.js"></script>

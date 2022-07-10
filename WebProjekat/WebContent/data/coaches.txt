@@ -7,7 +7,7 @@
     "gender" : "MUSKI",
     "role" : "TRENER",
     "dateOfBirth" : "2000-11-11",
-    "trainingHistories" : [ "th5", "th4", "th6", "th8", "th1" ],
+    "trainingHistories" : [ "th5", "th4", "th8", "th6", "th1", "th9" ],
     "deleted" : false
   },
   "stivi" : {

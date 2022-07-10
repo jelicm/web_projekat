@@ -7,8 +7,8 @@
 	<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.12.0/build/ol.js"></script>
 	<style>
       .map {
-        height: 400px;
-        width: 50%;
+        height: 220px;
+        width: 320px;
       }
     </style>
 </head>
@@ -22,8 +22,7 @@
 			<tr><td align="center" colspan="2"><a href="register.html">Registruj se</a></td></tr>
 		</table>
 	</form>
-	<br/>
-	<h4>Pretrazi sportske objekte:</h4>
+	<h3>Pretrazi sportske objekte:</h3>
 	<table>
 			<tr><td>Naziv:</td><td><input v-model="naziv" type="text" name="naziv"></td></tr>
 			<tr><td>Tip:</td><td><input v-model="tip" type="text" name="tip"></td></tr>
@@ -31,22 +30,19 @@
 			<tr><td>Prosecna ocena:</td><td><input style='width:100%' v-model="prosecnaOcena" min="1" max="5" type="number" name="prosecnaOcena"></td></tr>
 			<tr><td align="center" colspan="2"><button style="margin:10px" v-on:click="pretraziSve()">Pretrazi sve</button><button style="margin:10px" v-on:click="ponistiPretragu()">Ponisti</button></td></tr>
 		</table>
-		<p></p>
+		<br />
 		<div>
-		<select name="status" id="status" v-on:change = "statusFilter">
+		<select style="margin-right:10px" name="status" id="status" v-on:change = "statusFilter">
 			<option>Izaberi status</option>
     		<option v-for = "s in status">{{s}}</option>
-    		
   		</select>
-  		<br></br>
-  		
-  		<select name="tipovi" id="tipovi"  v-on:change = "tipFilter">
+  		<select style="margin-left:10px" name="tipovi" id="tipovi"  v-on:change = "tipFilter">
   			<option>Izaberi tip</option>
     		<option v-for = "t in tipovi">{{t}}</option>
     		
   		</select>
-  		<br></br>
   		</div>
+  		<br /><br /><br /><br />
 	<table border="1" id="tabela">
 				<thead>
 					<tr bgcolor="lightgrey">
@@ -74,8 +70,10 @@
 			</table>
 			
 			<br/><br/><br/>
+			<div style="position:absolute; top:107px; left:380px">
 	<h3>Pretrazi grad preko mape:</h3>
 	<div id="map" class="map"></div>
+	</div>
 </div>	
 	<script src="js/vue.js"></script>
 	<script src="js/axios.js"></script>

@@ -12,16 +12,15 @@
 			<tr><td>Ime:</td><td><input v-model="ime" type="text" name="naziv1"></td><td><button  v-on:click="pretragaIme(ime)">Pretrazi</button></td></tr>
 			<tr><td>Prezime:</td><td><input v-model="prezime" type="text" name="naziv2"></td><td><button  v-on:click="pretragaPrezime(prezime)">Pretrazi</button></td></tr>
 			<tr><td>Korisnicko ime:</td><td><input v-model="username" type="text" name="naziv3"></td><td><button  v-on:click="pretragaUsername(username)">Pretrazi</button></td></tr>
-			<tr><td align="right" colspan="2"><button  v-on:click="ponistiPretragu()">Ponisti</button></td></tr>
+			<tr><td align="center" colspan="3"><button  v-on:click="ponistiPretragu()">Ponisti</button></td></tr>
 		</table>
-		
-		<select name="tipovi" id="tipovi"  v-on:change = "tipFilter">
+		<br/>
+		<select style="margin-right:10px" name="tipovi" id="tipovi"  v-on:change = "tipFilter">
   			<option>Izaberi tip kupca</option>
     		<option v-for = "t in tipovi">{{t}}</option>
     		
   		</select>
-  	<br></br>
-  	<select name="uloge" id="uloge"  v-on:change = "ulogeFilter">
+  	<select style="margin-left:10px" name="uloge" id="uloge"  v-on:change = "ulogeFilter">
   			<option>Izaberi ulogu</option>
     		<option v-for = "u in uloge">{{u}}</option>
     		

@@ -7,8 +7,8 @@
 <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.12.0/build/ol.js"></script>
 <style>
       .map {
-        height: 400px;
-        width: 50%;
+        height: 250px;
+        width: 400px;
       }
     </style>
 </head>
@@ -21,7 +21,7 @@
 		</tr>
 		<tr>
 			<td>Tip:</td>
-			<td><select v-model="tip" name="tip">
+			<td><select style='width:70%' v-model="tip" name="tip">
 					<option value="TERETANA">Teretana</option>
 					<option value="BAZEN">Bazen</option>
 					<option value="SPORTSKI_CENTAR">Sportski centar</option>
@@ -30,10 +30,10 @@
 			</td>
 		</tr>
 		  <tr>
-			<td>Geografska duzina:</td><td><input v-model="geoDuzina" type="number" min="-180" max="180" name="geoDuzina"></td>
+			<td>Geografska duzina:</td><td><input style='width:70%' v-model="geoDuzina" type="number" min="-180" max="180" name="geoDuzina"></td>
 		</tr>
 		<tr>
-			<td>Geografska sirina:</td><td><input v-model="geoSirina" type="number" min="-90" max="90" name="geoSirina"></td>
+			<td>Geografska sirina:</td><td><input style='width:70%' v-model="geoSirina" type="number" min="-90" max="90" name="geoSirina"></td>
 		</tr>
 		<tr>
 			<td>Ulica:</td><td><input v-model="ulica" type="text" name="ulica"></td>
@@ -54,7 +54,7 @@
 		<tr v-bind:class="[{visible : menadzeri.length !== 0}, {hidden : menadzeri.length === 0}]">
 			<td>Izaberi menadzera:</td>
 			<td>
-			<select v-model="izabraniMenadzer" name="izabraniMenadzer">
+			<select style='width:70%' v-model="izabraniMenadzer" name="izabraniMenadzer">
     				<option v-for="m in menadzeri" >{{m.name}} {{m.surname}}</option>	
   				</select>
   			</td>
@@ -100,8 +100,8 @@
 		</table>
 	</form>
 	
-	<br/><br/><br/>
-	<div id="map" class="map"></div>
+	<br/>
+	<div style="position:absolute; top:10px; left:350px" id="map" class="map"></div>
 </div>
 <a href="adminMainPage.html">Nazad</a>
 	<script src="js/vue.js"></script>

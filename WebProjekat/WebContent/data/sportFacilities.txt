@@ -1,103 +1,102 @@
 {
-	"Teretana1" : {
-		"name" : "Teretana1",
-		"type" : "TERETANA",
-		"trainings" : ["trening1", "trening3"],
-		"status": "RADI",
-		"location" : {
-			"longitude": "19.837813", 
-			"latitude": "45.250653",
-			"address" : {
-				"number": 76,
-				"street": "Bulevar oslobodjenja",
-				"city": "Novi Sad",
-				"zipCode": 21000
-			}
-		},
-		"image" : "gym1.png",
-		"averageRating": 4.75,
-		"workTime": "08:00-21:00",
-		"deleted": false
-	},
-	"Teretana2" : {
-		"name" : "Teretana2",
-		"type" : "TERETANA",
-		"trainings" : null,
-		"status": "RADI",
-		"location" : {
-			"longitude": "19.834881", 
-			"latitude": "45.239451",
-			"address" : {
-				"number": 52,
-				"street": "Narodnog fronta",
-				"city": "Novi Sad",
-				"zipCode": 21000
-			}
-		},
-		"image" : "gym2.png",
-		"averageRating": 3.35,
-		"workTime": "08:00-21:00",
-		"deleted": false
-	},
-	
-	"Teretana3" : {
-		"name" : "Teretana3",
-		"type" : "TERETANA",
-		"trainings" : null,
-		"status": "NE_RADI",
-		"location" : {
-			"longitude": "19.818330", 
-			"latitude": "45.246307",
-			"address" : {
-				"number": 30,
-				"street": "Bulevar Evrope",
-				"city": "Novi Sad",
-				"zipCode": 21000
-			}
-		},
-		"image" : "gym3.png",
-		"averageRating": 4.35,
-		"workTime": "08:00-21:00",
-		"deleted": false
-	},
-	"Sportski centar 1" : {
-		"name" : "Sportski centar 1",
-		"type" : "SPORTSKI_CENTAR",
-		"trainings" : ["trening2"],
-		"status": "NE_RADI",
-		"location" : {
-			"longitude": "20.477927",  
-			"latitude": "44.795165",
-			"address" : {
-				"number": 28,
-				"street": "Maksima Gorkog",
-				"city": "Beograd",
-				"zipCode": 11000
-			}
-		},
-		"image" : "gym4.png",
-		"averageRating": 4.35,
-		"workTime": "08:00-21:00",
-		"deleted": false
-	},
-	"Sportski centar 2" : {
-		"name" : "Sportski centar 2",
-		"type" : "SPORTSKI_CENTAR",
-		"trainings" : ["trening8"],
-		"status": "NE_RADI",
-		"location" : {
-			"longitude": "20.511307", 
-			"latitude": "44.817578",
-			"address" : {
-				"number": 55,
-				"street": "Visnjicka",
-				"city": "Beograd",
-				"zipCode": 11000
-			}
-		},
-		"image" : "gym5.png",
-		"averageRating": 4.25,
-		"workTime": "08:00-21:00",
-		"deleted": false
-	}
+  "Teretana3" : {
+    "name" : "Teretana3",
+    "type" : "TERETANA",
+    "trainings" : null,
+    "status" : "NE_RADI",
+    "location" : {
+      "longitude" : 19.81833,
+      "latitude" : 45.246307,
+      "address" : {
+        "number" : 30,
+        "street" : "Bulevar Evrope",
+        "city" : "Novi Sad",
+        "zipCode" : 21000
+      }
+    },
+    "image" : "gym3.png",
+    "averageRating" : 4.35,
+    "workTime" : "08:00-21:00",
+    "deleted" : false
+  },
+  "Sportski centar 2" : {
+    "name" : "Sportski centar 2",
+    "type" : "SPORTSKI_CENTAR",
+    "trainings" : [ "trening8" ],
+    "status" : "NE_RADI",
+    "location" : {
+      "longitude" : 20.511307,
+      "latitude" : 44.817578,
+      "address" : {
+        "number" : 55,
+        "street" : "Visnjicka",
+        "city" : "Belgrade",
+        "zipCode" : 11000
+      }
+    },
+    "image" : "gym5.png",
+    "averageRating" : 5.0,
+    "workTime" : "08:00-21:00",
+    "deleted" : false
+  },
+  "Teretana2" : {
+    "name" : "Teretana2",
+    "type" : "TERETANA",
+    "trainings" : null,
+    "status" : "NE_RADI",
+    "location" : {
+      "longitude" : 19.834881,
+      "latitude" : 45.239451,
+      "address" : {
+        "number" : 52,
+        "street" : "Narodnog fronta",
+        "city" : "Novi Sad",
+        "zipCode" : 21000
+      }
+    },
+    "image" : "gym2.png",
+    "averageRating" : 3.35,
+    "workTime" : "08:00-21:00",
+    "deleted" : false
+  },
+  "Teretana1" : {
+    "name" : "Teretana1",
+    "type" : "TERETANA",
+    "trainings" : [ "trening1", "trening3" ],
+    "status" : "NE_RADI",
+    "location" : {
+      "longitude" : 19.837813,
+      "latitude" : 45.250653,
+      "address" : {
+        "number" : 76,
+        "street" : "Bulevar oslobodjenja",
+        "city" : "Novi Sad",
+        "zipCode" : 21000
+      }
+    },
+    "image" : "gym1.png",
+    "averageRating" : 4.75,
+    "workTime" : "08:00-21:00",
+    "deleted" : false
+  },
+  "Sportski centar 1" : {
+    "name" : "Sportski centar 1",
+    "type" : "SPORTSKI_CENTAR",
+    "trainings" : [ "trening2" ],
+    "status" : "NE_RADI",
+    "location" : {
+      "longitude" : 20.477927,
+      "latitude" : 44.795165,
+      "address" : {
+        "number" : 28,
+        "street" : "Maksima Gorkog",
+        "city" : "Belgrade",
+        "zipCode" : 11000
+      }
+    },
+    "image" : "gym4.png",
+    "averageRating" : 4.35,
+    "workTime" : "08:00-21:00",
+    "deleted" : false
+  }
 }

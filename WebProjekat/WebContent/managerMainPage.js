@@ -40,6 +40,17 @@ var app = new Vue({
 				       datumi: this.datumi[i]
 	      				})
 	    		}
+				
+				axios.get('rest/sportFacilities/trainingsWithoutHistory/' + this.manager.sportFacility)
+				.then(response => {
+					
+					for (let i = 0, len = response.data.length; i < len; i++) {
+				      this.treninziSaDatumom.push({
+				       treninzi: response.data[i],
+				       datumi: "nije odrzan"
+	      				})
+	    		}
+				})
 				this.treninziSaDatumomFiltrirano = this.treninziSaDatumom;
 			})
 			})
@@ -155,7 +166,10 @@ var app = new Vue({
 			if(this.sortiranoDatum === 0)
 			{
 				this.treninziSaDatumomFiltrirano = this.treninziSaDatumomFiltrirano.sort((a,b) => {
-					
+					if(a == "nije odrzan")
+						return 1
+					if(b == "nije odrzan")
+						return -1
 					const pa = a.datumi.split(" ")[0].split(".");
 					const pb = b.datumi.split(" ")[0].split(".");
 					if(parseInt(pa[2]) > parseInt(pb[2]))

@@ -161,9 +161,44 @@ public class SportFacilityService {
 	}
 	
 	@GET
+	@Path("/trainingsWithoutHistory/{name}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<Training> trainingsWithoutHistory(@PathParam("name") String name){
+		SportFacility sportFacility;
+		SportFacilityDAO sportFacilityDAO = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
+		TrainingHistoryDAO thDAO = (TrainingHistoryDAO) ctx.getAttribute("trainingHistoryDAO");
+		sportFacility = sportFacilityDAO.findSportFacility(name);
+		ArrayList <Training> trainings = new ArrayList<Training>();
+		if(sportFacility != null) {
+			TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
+			for(Training t : trainingDAO.findAllTrainings()) {
+				if(t.getSportFacility().equals(sportFacility.getName())) {
+					boolean f = false;
+					for(TrainingHistory th : thDAO.findAllTrainingHistories())
+					{
+						if(th.getTraining().equals(t.getName()))
+						{	
+							f = true;
+							break;
+						}
+					}
+					if(f)
+						continue;
+					else
+						trainings.add(t);
+								
+				}
+			}
+
+		}
+
+		return trainings;
+	}
+	
+	@GET
 	@Path("/trainingsForSportFacility/{name}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<Training> trainingsForSportFacility(@PathParam("name") String name) {
+	public ArrayList<Training> trainingsForSportFacility(@PathParam("name") String name){
 		SportFacility sportFacility;
 		SportFacilityDAO sportFacilityDAO = (SportFacilityDAO) ctx.getAttribute("sportFacilityDAO");
 		sportFacility = sportFacilityDAO.findSportFacility(name);

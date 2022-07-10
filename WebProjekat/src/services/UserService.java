@@ -438,6 +438,8 @@ public class UserService {
 			TrainingDAO trainingDAO = (TrainingDAO) ctx.getAttribute("trainingDAO");
 			for(Training t : trainingDAO.findAllTrainings()) {
 				if(t.getSportFacility().equals(sportFacility.getName())) {
+					if(coachNames.contains(t.getCoach()))
+						continue;
 					coachNames.add(t.getCoach());
 				}
 			}

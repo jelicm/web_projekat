@@ -30,7 +30,7 @@
       "address" : {
         "number" : 55,
         "street" : "Visnjicka",
-        "city" : "Belgrade",
+        "city" : "Beograd",
         "zipCode" : 11000
       }
     },
@@ -90,7 +90,7 @@
       "address" : {
         "number" : 28,
         "street" : "Maksima Gorkog",
-        "city" : "Belgrade",
+        "city" : "Beograd",
         "zipCode" : 11000
       }
     },
